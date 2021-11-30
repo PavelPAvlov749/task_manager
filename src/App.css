@@ -7,6 +7,7 @@
 
 .root{
   background:url("./img/background.png");
+  /* background-color: rgb(34, 33, 33); */
   background-size: cover;
   background-repeat: no-repeat;
   display: -ms-grid;
@@ -25,7 +26,7 @@
 /* ////////////////////////////////                Header Styles ////////////////////////////*/
 .Header{
     grid-area: H;
-    background-color: rgba(146, 24, 177, 0.308);
+    background-color: rgba(78, 76, 76, 0.712);
     margin-right: 10px;
     margin-top: 10px;
     grid-template-columns: 400px auto;
@@ -34,7 +35,10 @@
     "P N" ;
     display: grid;
     gap:700px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
+
 .Header .Head_nav_container li{
   display: inline;
 }
@@ -49,8 +53,8 @@
   width: 70px;
 }
 .Profile_mini button{
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 15px;
+  margin-left: 50px;
 }
 .Header input {
   height: 34px;
@@ -66,29 +70,36 @@
 /* ////////////////////////////////                Sidebar Styles /////////////////////////*/
 .sidebar{
   grid-area: S;
-  background-color: rgba(146, 24, 177, 0.308);
+  background-color: rgba(83, 80, 80, 0.712);
   font-size: 25px;
+  margin-left: 20px;
+  border-radius: 3px;
+  font-weight: 300;
 
+}
+.sidebar hr{
+  margin: 0%;
+  padding: 0%;
 }
 .sidebar a{
   text-decoration: none;
   color:white;
 }
 .side_list{
-  margin-right: 30px;;
+  margin-right: 10px;;
 }
 .sidebar ul{
-  margin-right: 40px;
+  margin-right: 50px;
   list-style-type:none;
   list-style: none;
 }
 .sidebar li{
-  padding:5px 10px 10px 10px;
+  padding:5px 10px 20px 10px;
 }
 /* /////////////////////////////////             Content container styles ///////////////// */
 .container{
   grid-area: C;
-  background-color: rgba(148, 65, 168, 0.308);
+  background-color: rgba(83, 83, 83, 0.719);
   margin-right: 10px;
 }
 .container button{
@@ -105,7 +116,7 @@
 /* /////////////////////////////////              footer styles */
 .footer{
   grid-area:F;
-  background-color: rgba(34, 18, 37, 0.925);
+  background-color: rgb(34, 33, 33);
   color: rgb(197, 194, 194);
 }
 .footer h2{
@@ -123,5 +134,5 @@
 /* /////////////////////////////////               Task Styles */
 .task{
   grid-area:T;
-  background-color:rgba(148, 65, 168, 0.308);
+  background-color:rgb(34, 33, 33);
 }

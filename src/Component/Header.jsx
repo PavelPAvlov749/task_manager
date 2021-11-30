@@ -4,9 +4,10 @@ const Header = () => {
     return (
         <section className="Header">
             <div className="Profile_mini">
-                <img src="img/avatar.png" alt="" />
+                <img src="#" alt="" />
                 <button type="button">Profile</button>
             </div>
+            
             <div className="Head_nav_container">
                 <ul className="nav">
                     <li>
@@ -19,6 +20,7 @@ const Header = () => {
                 </ul>
                 <h1></h1>
             </div>
+            <hr />
         </section>
     );
 };
