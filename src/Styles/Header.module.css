@@ -1,0 +1,42 @@
+.Header{
+    grid-area: H;
+    background-color: rgba(78, 76, 76, 0.712);
+    margin-right: 10px;
+    margin-top: 10px;
+    grid-template-columns: 400px auto;
+    grid-template-rows: 100px auto;
+    grid-template-areas:
+    "P N" ;
+    display: grid;
+    gap:700px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.Head_nav_container li{
+  display: inline;
+}
+/* /* .Header .nav {
+  margin-left: 70%;
+  display: block;
+} */
+
+.Header button{
+  display: inline;
+  height: 40px;
+  width: 70px;
+}
+.Profile_mini button{
+  margin-top: 15px;
+  margin-left: 50px;
+}
+.Header input {
+  height: 34px;
+  width: 250px;
+}
+.Header .Head_nav_container{
+  grid-area: N;
+}
+.Header .Profile_mini{
+  grid-area: P;
+}

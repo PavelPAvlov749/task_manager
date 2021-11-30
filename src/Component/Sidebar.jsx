@@ -1,10 +1,11 @@
-import '../App.css';
+import styles from "../Styles/Sidebar.module.css"
+
 
 
 const Sidebar = () => 
 {
     return (
-        <section className="sidebar">
+        <section className={styles.sidebar}>
             <ul className="side_list">
                 <li>
                     <a href="#s">Home</a>

@@ -1,14 +1,14 @@
-import "./../App.css";
+import classes from "../Styles/Header.module.css"
 
 const Header = () => {
     return (
-        <section className="Header">
-            <div className="Profile_mini">
+        <section className={classes.Header}>
+            <div className={classes.Profile_mini}>
                 <img src="#" alt="" />
                 <button type="button">Profile</button>
             </div>
             
-            <div className="Head_nav_container">
+            <div className={classes.Head_nav_container}>
                 <ul className="nav">
                     <li>
                         <input type="text" placeholder="Find on page" id="Search"/>

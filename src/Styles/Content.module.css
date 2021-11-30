@@ -1,0 +1,34 @@
+/* /////////////////////////////////             Content container styles ///////////////// */
+.container{
+    grid-area: C;
+    background-color: rgba(83, 83, 83, 0.719);
+    margin-right: 10px;
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  .container .data{
+    margin: 10px 0 0 10px;
+  }
+  .container button{
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 30px;
+    color: rgb(131, 116, 89);
+    font-weight: 700;
+    text-shadow:  5px 5px 20px black;
+  }
+  .content_area{
+    width: 97%;
+    height: 95%;
+    margin: 20px 20px 20px 20px;
+    background-color: rgb(39, 38, 38);
+    border-radius: 5px;
+    box-shadow: 0px 0px 50px 10px black;
+    text-align: center ;
+    text-shadow: 5px 5px 30px  rgb(20, 20, 20);
+  }
+  

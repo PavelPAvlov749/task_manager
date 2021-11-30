@@ -1,4 +1,4 @@
-import "../App.css";
+import "../Styles/Footer.css";
 
 
 const Foot = ()=>
