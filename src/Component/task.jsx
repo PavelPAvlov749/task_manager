@@ -1,11 +1,14 @@
-import "../App.css";
+import styles from "../Styles/Task.module.css";
 
 
 const Task = ()=>
 {
-    <section className="Task_container">
+    return(
+    <section className={styles.task}>
         <div id="task">
-            <h2>Title</h2>
+            <div className={styles.name_div}>
+                <h2>Task Name</h2>
+            </div>
             <ul className="task_props">
                 <li>
                     Begin : 
@@ -20,10 +23,16 @@ const Task = ()=>
                     Progress :
                 </li>
             </ul>
-            <button type="button">Open</button>
-            <button type="button">Delete task</button>
+            <hr />
+            <div className={styles.btn_div}>
+                <button type="button">Open</button>
+                <button type="button">Rename</button>
+                <button type="button">Delete task</button>
+            </div>
+            
         </div>
     </section>
+    )
 }
 
 export default Task;
