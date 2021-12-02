@@ -2,11 +2,41 @@ import styles from "../Styles/Content.module.css";
 import Task from "./task.jsx";
 
 
-let text = "You doesnt have any tasks yet , press the "/+"/ to add new task.";
-let text_content = document.querySelector(".content_area");
+class Task_{
+    constructor(_name,_text)
+    {
+        this.status = "New";
+        this.name = _name;
+        this.task_text = _text;
+        this.date = Date();
+    }
+    get_name()
+    {
+        return this.name;
+    }
+    set_status(_status)
+    {
+        return this.status;
+    }
+    get_text()
+    {
+        return this.text;
+    }
+    get_date()
+    {
+        return this.date;
+    }
+    
+}
 
-const Container = ()=>
-{
+let Task_01 = new Task_("Task one","Первая таска ждя отладки класса Task_");
+
+let task_list = Array();
+task_list.unshift(Task_01);
+
+
+
+function Container() {
     return (
         <div className={styles.container}>
             <div className={styles.task_status}>
@@ -26,13 +56,13 @@ const Container = ()=>
                 </ul>
             </div>
             <div className={styles.content_area}>
-                <Task />
+                <Task name={Task_01.get_name()} date={Task_01.get_date()} description={Task_01.get_text()} />
                 You doesnt have any tasks yet , press the "+" to add new task.
-                <button type="button">+</button>
-                
+                <button type="button" id="add_btn">+</button>
+               
             </div>
         </div>
-    )
-};
+    );
+}
 
 export default Container;

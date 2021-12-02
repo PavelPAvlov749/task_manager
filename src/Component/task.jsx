@@ -1,20 +1,20 @@
 import styles from "../Styles/Task.module.css";
 
 
-const Task = ()=>
+const Task = (props)=>
 {
     return(
     <section className={styles.task}>
         <div id="task">
             <div className={styles.name_div}>
-                <h2>Task Name</h2>
+                <h2>{props.name}</h2>
             </div>
             <ul className="task_props">
                 <li>
-                    Begin : 
+                    Begin : {props.date}
                 </li>
                 <li>
-                    Description :
+                    Description : {props.description}
                 </li>
                 <li>
                     Status :
