@@ -8,15 +8,15 @@ const Sidebar = () =>
         <section className={styles.sidebar}>
             <ul className="side_list">
                 <li>
-                    <a href="#s">Home</a>
+                    <a href="/">Home</a>
                     <hr />
                 </li>
                 <li>
-                    <a href="#S">Massages</a>
+                    <a href="/dialogs">Massages</a>
                     <hr />
                 </li>
                 <li>
-                    <a href="#s">Tasks</a>
+                    <a href="/tasks">Tasks</a>
                     <hr />
                 </li>
                 <li>

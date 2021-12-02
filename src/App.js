@@ -4,20 +4,30 @@ import Header from './Component/Header.jsx';
 import Sidebar from './Component/Sidebar';
 import Container from './Component/container';
 import Foot from './Component/footer';
-import Dialogs from "./Component/Dialogs";
+import Dialogs from "./Component/Dialogs.jsx";
+import {BrowserRouter as Router, Routes ,Route} from "react-router-dom";
 
 
 function App() {
   return (
-<div className="root">
-    <Header />
-    <Sidebar />
-    {/* <Container /> */}
-    <Foot />
-    <Dialogs />
-</div>
-    
-  );
+    <Router>
+      <div className="root ">
+      <Header />
+      <Sidebar />
+      <Foot />
+
+      <Routes >
+        
+        <Route path="/dialogs" element={<Dialogs />}/>
+        <Route path="/tasks" element={<Container />}/>
+
+      
+      </Routes>
+      </div>
+    </Router>
+
+  )
+
 }
 
 
