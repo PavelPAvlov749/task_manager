@@ -4,6 +4,7 @@ import Header from './Component/Header.jsx';
 import Sidebar from './Component/Sidebar';
 import Container from './Component/container';
 import Foot from './Component/footer';
+import Dialogs from "./Component/Dialogs";
 
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
 <div className="root">
     <Header />
     <Sidebar />
-    <Container />
+    {/* <Container /> */}
     <Foot />
+    <Dialogs />
 </div>
     
   );
