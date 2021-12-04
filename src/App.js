@@ -5,7 +5,9 @@ import Sidebar from './Component/Sidebar';
 import Container from './Component/container';
 import Foot from './Component/footer';
 import Dialogs from "./Component/Dialogs.jsx";
-import {BrowserRouter as Router, Routes ,Route} from "react-router-dom";
+import Settings from "./Component/Settings.jsx";
+import Statistics from "./Component/Statistics.jsx";
+import {BrowserRouter as Router, Routes ,Route, Link} from "react-router-dom";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         
         <Route path="/dialogs" element={<Dialogs />}/>
         <Route path="/tasks" element={<Container />}/>
+        <Route path="/Settings" element={<Settings />}/>
+        <Route path="/Statistics" element={<Statistics />}/>
 
       
       </Routes>

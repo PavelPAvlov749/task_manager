@@ -1,0 +1,16 @@
+
+.statistics_container{
+    background-color:rgba(39, 38, 38, 0.76);
+    width:100%;
+    height:700px;   
+}
+
+
+
+
+.statistics_container h2{
+    text-align:center;
+    font-weight:300;
+    font-size:30px;
+    color:white;
+}

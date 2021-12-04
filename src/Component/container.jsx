@@ -31,7 +31,7 @@ class Task_{
 
 let Task_01 = new Task_("Task one","Первая таска ждя отладки класса Task_");
 
-let task_list = Array();
+let task_list = [];
 task_list.unshift(Task_01);
 
 
@@ -57,8 +57,8 @@ function Container() {
             </div>
             <div className={styles.content_area}>
                 <Task name={Task_01.get_name()} date={Task_01.get_date()} description={Task_01.get_text()} />
-                You doesnt have any tasks yet , press the "+" to add new task.
-                <button type="button" id="add_btn">+</button>
+                {/* You doesnt have any tasks yet , press the "+" to add new task. */}
+                {/* <button type="button" id="add_btn">+</button> */}
                
             </div>
         </div>

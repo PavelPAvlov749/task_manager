@@ -1,4 +1,5 @@
 import styles from "../Styles/Sidebar.module.css"
+import {NavLink} from "react-router-dom"
 
 
 
@@ -8,23 +9,23 @@ const Sidebar = () =>
         <section className={styles.sidebar}>
             <ul className="side_list">
                 <li>
-                    <a href="/">Home</a>
+                    <NavLink  to="/">Home</NavLink>
                     <hr />
                 </li>
                 <li>
-                    <a href="/dialogs">Massages</a>
+                    <NavLink to="/dialogs">Massages</NavLink>
                     <hr />
                 </li>
                 <li>
-                    <a href="/tasks">Tasks</a>
+                    <NavLink to="/tasks">Tasks</NavLink>
+                    <hr />  
+                </li>
+                <li>
+                    <NavLink to="/Settings">Settings</NavLink>
                     <hr />
                 </li>
                 <li>
-                    <a href="#s">Settings</a>
-                    <hr />
-                </li>
-                <li>
-                    <a href="$s">Statisics</a>
+                    <NavLink to="/statistics">Statisics</NavLink>
                     <hr />
                 </li>
             </ul>
