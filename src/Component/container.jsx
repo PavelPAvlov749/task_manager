@@ -58,7 +58,7 @@ function Container() {
             <div className={styles.content_area}>
                 <Task name={Task_01.get_name()} date={Task_01.get_date()} description={Task_01.get_text()} />
                 {/* You doesnt have any tasks yet , press the "+" to add new task. */}
-                {/* <button type="button" id="add_btn">+</button> */}
+                {/* <button type="button" id="add_btn">+</button> */}s
                
             </div>
         </div>
