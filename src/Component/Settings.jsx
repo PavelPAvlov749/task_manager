@@ -6,30 +6,33 @@ import styles from "../Styles/Settings.module.css";
 const Settings = ()=> {
     return (
         <section className={styles.settings_container}>
-        <h2>Settings</h2>
-            <section className="settings_list">
-                <div className="setting_list_tittle">
+            <div className={styles.settings_title}>
+                <h2>Settings</h2>
+            </div>
+       
+            <section className={styles.settings_list}>
+                <div className={styles.settings_list}>
                     <ul>
                         <li>
-                            <NavLink to="/Interface">Interface</NavLink> 
+                            <NavLink to="#s" hoverClassName={styles.hover}>Interface</NavLink> 
                         </li>
                         <li>
-                            <NavLink to="/Acount">Acount</NavLink> 
+                            <NavLink to="#S" hoverClassName={styles.hover}>Acount</NavLink> 
                         </li>
                         <li>
-                            <NavLink to="/Privacy">Privacy</NavLink>
+                            <NavLink to="#S" hoverClassName={styles.hover}>Privacy</NavLink>
                         </li>
                           <li>
-                            <NavLink to="/Notifications">Notifications</NavLink> 
+                            <NavLink to="#S" hoverClassName={styles.hover}>Notifications</NavLink> 
                         </li>
                           <li>
-                            <NavLink to="/Language">Language</NavLink>
+                            <NavLink to="#S" hoverClassName={styles.hover}>Language</NavLink>
                         </li>
                           <li>
-                            <NavLink to="/Text">Text</NavLink> 
+                            <NavLink to="#S" hoverClassName={styles.hover}>Text</NavLink> 
                         </li>
                           <li>
-                            <NavLink to="/System">System</NavLink> 
+                            <NavLink to="#S" hoverClassName={styles.hover}>System</NavLink> 
                         </li>
                     </ul>
                 </div>

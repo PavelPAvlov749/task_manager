@@ -1,8 +1,9 @@
 .task_bar{
-    grid-area:"T";
+    /* grid-area:"T"; */
     background-color: rgb(34, 33, 33);
+    display: inline;
     width: 100%;
-    height: 100px;
+    height: 50px;
 
 }
 .task_bar ul{
@@ -10,5 +11,7 @@
 }
 .task_bar button{
     border-radius: 5px;
+    /* padding: 0%;
+    margin:0%; */
 
 }

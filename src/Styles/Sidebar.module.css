@@ -14,7 +14,7 @@
   a{
     text-decoration: none;
     color:white;
-    display: inline-block;
+    
   }
   a:hover{
     color: white;
@@ -22,7 +22,6 @@
     font-weight: 400;
     transform: translateX(20px);
     transition:transform 0.3s ease-in-out;
-
   }
   a:active{
     font-size: 27px;

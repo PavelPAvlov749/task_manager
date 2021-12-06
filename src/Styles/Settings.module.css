@@ -1,16 +1,32 @@
 .settings_container{
-    display:grid;
+    /* display:grid; */
     width :100%;
     height:700px;
     background-color:rgba(39, 38, 38, 0.76);
 }
-.h2{
+.setiings_title{
+    width: 100%;
+    height: 40px;
+    background-color: rgba(27, 26, 26, 0.918);
+}
+.settings_title h2{
     text-align:center;
-    background-color:
+    color: rgb(236, 209, 209);
+    height: 40px;
+    background-color:  rgba(27, 26, 26, 0.918);
+    margin:0;
+    padding: 0%;
+    border-color:rgb(83, 77, 77) ;
+    border-width: 1px;
+    border-style: solid;
+    font-weight: 400;
+    font-size: 30px;
+    
 }
 .settings_list{
-    font-size: 40px;
-    margin-left: 20px;
+    font-size: 25px;
+    margin-left: 0px;
     border-radius: 3px;
     font-weight: 300;
+    
 }

@@ -29,7 +29,7 @@ class Task_{
     
 }
 
-let Task_01 = new Task_("Task one","Первая таска ждя отладки класса Task_");
+let Task_01 = new Task_("Task one","Первая таска для отладки класса Task_");
 
 let task_list = [];
 task_list.unshift(Task_01);
