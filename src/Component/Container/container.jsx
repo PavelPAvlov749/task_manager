@@ -1,5 +1,5 @@
-import styles from "../Styles/Content.module.css";
-import Task from "./task.jsx";
+import styles from "./Content.module.css";
+import Task from "../Task_container/task";
 
 
 class Task_{

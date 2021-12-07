@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import User from "./js/User";
+import Task from "./js/Task_class";
 
+let a = new User("pavel",1234,"123124",9980798712);
 
 ReactDOM.render(
   <React.StrictMode>

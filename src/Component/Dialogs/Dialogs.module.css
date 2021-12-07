@@ -1,0 +1,57 @@
+.dialogs_list_container{
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 700px auto;
+    grid-template-areas: 
+    "l d";
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+    font-weight: 300;
+    margin-right: 10px;
+}
+.dialogs_container{
+    background-color: rgba(39, 38, 38, 0.76);
+    text-align: center;
+}
+
+.dialogs{
+    text-align: center;
+    background-color: rgba(39, 38, 38, 0.76);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(63, 62, 62, 0.993);
+    
+}
+.dialog_item_li{
+    list-style: none;
+    text-decoration: none;
+}
+.dialog_item {
+    list-style: none;
+}
+.dialog_item ul{
+    list-style: none;
+    text-decoration: none;
+}
+.text_content{
+    text-align: left;
+    font-size: 20px;
+    color: white;
+  
+
+
+}
+.dialog_list{
+    grid-area: l;
+    background-color: rgba(39, 38, 38, 0.76);
+    text-align: left;
+    border-color: rgba(100, 95, 95, 0.849);
+    border-style: solid;
+    border-width: 1px;
+}
+.dialog{
+    grid-area: d;
+    background-color: rgba(39, 38, 38, 0.76);
+}

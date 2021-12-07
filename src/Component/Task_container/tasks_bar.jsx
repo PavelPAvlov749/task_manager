@@ -1,4 +1,4 @@
-import "../Styles/task_bar.css";
+import "./task_bar.css";
 
 const Task_bar = () =>
 {

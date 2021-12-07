@@ -1,4 +1,4 @@
-import styles from "../Styles/Sidebar.module.css"
+import styles from "./Sidebar.module.css"
 import {NavLink} from "react-router-dom"
 
 
