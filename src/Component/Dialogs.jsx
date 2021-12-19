@@ -1,37 +1,14 @@
 import React from "react";
 import styles from "../Styles/Dialogs.module.css";
 import { new_user } from "./Redux/State";
+import { Add_User_action_creator } from "./Redux/Reducers";
+import { new_message_action } from "./Redux/Reducers";
+import { new_message_body } from "./Redux/Reducers";
 
 
 const Dialogs =  (props)=> {
 
-    let messages = props.messages;
-    let new_message_body = (_type,_text) =>
-    {
-        return (
-            {
-                type:_type,
-                text:_text
-            }
-        )
-    }
-    let new_message_action = (_type,_text) =>
-    {
-        return(
-            {
-                type:_type,
-                text:_text
-            }
-        )
-    }
-    let Add_User_action_creator = function (_type,_text){
-        return (
-            {
-                type:_type,
-                text:_text
-            }
-        )
-    }
+    let text_content = React.createRef();
     let user_list = props.users.map((el)=>
     {
         return (
@@ -50,9 +27,7 @@ const Dialogs =  (props)=> {
             </div>
         )
     })
-    let text_content = React.createRef();
-
-
+    
     return (
         <div className={styles.dialogs_container}>
             <div className={styles.dialog_list_container}>

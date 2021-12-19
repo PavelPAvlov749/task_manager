@@ -7,6 +7,8 @@ exports.store = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _Reducers = require("./Reducers");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var store = {
@@ -27,24 +29,9 @@ var store = {
     return this.state;
   },
   dispath: function dispath(action) {
-    if (action.type === "ADD-USER") {
-      this.state.users.push({
-        name: action.text,
-        surname: action.text
-      });
-    } else if (action.type === "ADD-MESSAGE") {
-      this.messages.push(action.text);
-    } else if (action.type === "NEW-MESSAGE") {
-      this.newMessage = action.text;
-    }
-
-    this.callSubscriber(this);
-  },
-  add_user: function add_user(_name, _surname) {
-    this.state.users.unshift({
-      name: _name,
-      surname: _surname
-    });
+    this.messages = (0, _Reducers.dialogs_reducer)(this.messages, action);
+    this.newMessage = (0, _Reducers.text_area_reducer)(this.newMessage, action);
+    this.users = (0, _Reducers.add_user)(this.users, action);
     this.callSubscriber(this);
   },
   callSubscriber: function callSubscriber() {

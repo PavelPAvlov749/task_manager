@@ -1,4 +1,7 @@
 import React from "react";
+import { dialogs_reducer } from "./Reducers";
+import { text_area_reducer } from "./Reducers";
+import { add_user } from "./Reducers";
 
 
 
@@ -23,35 +26,11 @@ export let store = {
         return this.state;
     },
     dispath(action){
-        if(action.type === "ADD-USER")
-        {
-            this.state.users.push(
-                {
-                    name:action.text,
-                    surname:action.text
-                }
-            )
-        }
-        else if(action.type === "ADD-MESSAGE")
-        {
-            this.messages.push(action.text);
-        }
-        else if (action.type === "NEW-MESSAGE")
-        {
-            this.newMessage = action.text;
-        }
+        this.messages = dialogs_reducer(this.messages,action);
+        this.newMessage = text_area_reducer(this.newMessage,action);
+        this.users = add_user(this.users,action);
+        
         this.callSubscriber(this)
-    },
-
-    add_user(_name,_surname){
-        this.state.users.unshift(
-            {
-                name:_name,
-                surname:_surname
-            }
-        );
-        this.callSubscriber(this);
-
     },
     callSubscriber(){
         console.log("text")
@@ -62,4 +41,5 @@ export let store = {
     }
 
 }
+
 
