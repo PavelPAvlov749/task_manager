@@ -1,14 +1,17 @@
 .dialogs_container{
     display: grid;
     display: -ms-grid;
-    grid-template-columns: 250px auto;
+    grid-template-columns: 200px auto 200px;
     grid-template-rows: 700px auto;
     grid-template-areas: 
-    "l d";
+    "l d S";
     font-size: 20px;
     color: white;
     font-weight: 300;
-    background-color: rgba(39, 38, 38, 0.76);;
+    background-color: rgba(39, 38, 38, 0.76);
+    text-align: left;
+    margin-right: 10px;
+    border-radius: 3px;
 
 }
 .dialogs_container hr{
@@ -17,6 +20,7 @@
 }
 .dialog_list_container{
     text-align: center;
+    margin-right: 10px;
 }
 .text_content{
     text-align: left;
@@ -24,6 +28,7 @@
     color: white;
     font-weight: 300;
     padding-left: 20px;
+    
 
 
 
@@ -39,10 +44,13 @@
     padding: 0%;
 }
 
-
+.side_bar{
+    grid-area: S;
+    width:200px;
+}
 .dialog{
     grid-area: d;
-    background-color: rgba(39, 38, 38, 0.76);
+    background-color: rgba(22, 21, 21, 0.76);
     text-align: center;
 }
 .dialogs{
@@ -66,4 +74,17 @@
     width: 20px;
     height: 20px;
     margin-left: 0px;
+}
+.textarea{
+    width: calc(100% - 10px);
+    height: 80px;
+    margin-top: 50%;
+    position: relative;
+}
+.button{
+    height: 40px;
+    width: 70px;
+    border-radius: 3px;
+    font-weight: 300;
+    font-size: 15px;
 }
