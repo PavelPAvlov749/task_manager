@@ -1,20 +1,15 @@
 
 import reportWebVitals from './reportWebVitals';
-import users from "./Component/Redux/State";
-import {update_new_user} from "./Component/Redux/State"
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { store } from './Component/Redux/State';
-import { add_user } from './Component/Redux/State';
-
-
 
 
 export let render = (_store) => ReactDOM.render(
     <React.StrictMode>
-      <App  store={_store} dispatch={store.dispath.bind(store)} />
+      <App />
     </React.StrictMode>,
     document.getElementById('root')
   );

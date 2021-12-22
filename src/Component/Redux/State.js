@@ -21,7 +21,7 @@ export let store = {
         ]
     },
     messages : [],
-    newMessage: "",
+    newMessage: "Type text",
     getState(){
         return this.state;
     },

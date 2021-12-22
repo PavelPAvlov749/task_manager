@@ -4,11 +4,11 @@ import Header from './Component/Header.jsx';
 import Sidebar from './Component/Sidebar';
 import Container from './Component/container';
 import Foot from './Component/footer';
-import Dialogs from "./Component/Dialogs.jsx";
 import Settings from "./Component/Settings.jsx";
 import Statistics from "./Component/Statistics.jsx";
 import {BrowserRouter as Router, Routes ,Route, Link} from "react-router-dom";
 import Task from "./Component/task";
+import Dialogs_container from './Component/Dialogs_container';
 
 ///////////////////////////////////// Rendering the main component   /////////////////////////////////
 
@@ -26,9 +26,7 @@ function App(props) {
 
       <Routes >
         
-        <Route path="/dialogs" element={<Dialogs users={props.store.state.users} dispatch={props.dispatch} 
-          messages={props.store.messages} newMessage={props.store.newMessage} />}/>
-          
+        <Route path="/dialogs" element={<Dialogs_container />}/>
         <Route path="/tasks" element={<Container />}/>
         <Route path="/Settings" element={<Settings />}/>
         <Route path="/Statistics" element={<Statistics />}/>

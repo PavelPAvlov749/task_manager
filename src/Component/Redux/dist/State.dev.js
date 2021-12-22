@@ -24,7 +24,7 @@ var store = {
     }]
   },
   messages: [],
-  newMessage: "",
+  newMessage: "Type text",
   getState: function getState() {
     return this.state;
   },
