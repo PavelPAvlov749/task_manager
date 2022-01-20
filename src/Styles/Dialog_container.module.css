@@ -55,6 +55,7 @@ color: whitesmoke;
     background-color:rgba(37, 37, 37, 0.863);
     margin-right: 10px;
     color: white;
+    grid-area: S;
 }
 .dialogs_sidebar h2{
     font-weight: 300;
@@ -73,5 +74,24 @@ color: whitesmoke;
     font-size: 25px;
 }
 .users_list li{
-    text-align: left;
+    
+margin-bottom: 10px;
+
+}
+.users_list li a{
+    font-weight: 400;
+    display: inline;
+    margin-left: 10%;
+    bottom: 10px;
+    position: relative;
+
+
+}
+.users_list li img{
+    width: 40px;
+    height: 40px;
+    margin-left: 0%;
+    margin-bottom: 0px;
+    display: inline;
+    
 }

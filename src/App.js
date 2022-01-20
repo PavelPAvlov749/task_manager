@@ -1,14 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './Component/Header.jsx';
-import Sidebar from './Component/Sidebar';
-import Container from './Component/container';
+import Sidebar from './Component/Sidebar/Sidebar';
+import Container from './Component/Tasks/container';
 import Foot from './Component/footer';
-import Settings from "./Component/Settings.jsx";
-import Statistics from "./Component/Statistics.jsx";
+import Settings from "./Component/Settings/Settings.jsx";
+import Statistics from "./Component/Statistic/Statistics.jsx";
 import {BrowserRouter as Router, Routes ,Route, Link} from "react-router-dom";
-import Task from "./Component/task";
-import Dialogs_container from './Component/Dialogs_container';
+import { Redux_container } from './Component/Dialogs/Dialogs_container';
+import { Users_container } from './Component/Users/Users_container.jsx';
+import Profile_container from './Component/Profile/Profile_container';
+import { Prof_container } from './Component/Profile/Prog_container';
+import { Header_heigh_container } from './Component/Header_container';
+import { Login } from './Component/Login';
+
 
 ///////////////////////////////////// Rendering the main component   /////////////////////////////////
 
@@ -17,19 +22,24 @@ import Dialogs_container from './Component/Dialogs_container';
 function App(props) {
 
 
+
   return (
     <Router>
       <div className="root ">
-      <Header />
+      <Header_heigh_container />
       <Sidebar />
       <Foot />
 
       <Routes >
+        {/* <Route path="/dialogs" element={<Dialogs_list_container />}/> */}
         
-        <Route path="/dialogs" element={<Dialogs_container />}/>
+        <Route path="/dialogs" element={<Redux_container />}/>
         <Route path="/tasks" element={<Container />}/>
         <Route path="/Settings" element={<Settings />}/>
         <Route path="/Statistics" element={<Statistics />}/>
+        <Route path="/users" element={<Users_container />}/>
+        <Route path="profile/:id" element={<Prof_container />}/>
+        <Route path="login/" element={<Login/>}/>
 
       
       </Routes>
@@ -37,7 +47,6 @@ function App(props) {
     </Router>
 
   )
-
 }
 
 

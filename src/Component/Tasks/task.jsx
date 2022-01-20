@@ -1,4 +1,4 @@
-import styles from "../Styles/Task.module.css";
+import styles from "../../Styles/Task.module.css";
 
 
 const Task = (props)=>

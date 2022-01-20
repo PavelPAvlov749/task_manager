@@ -1,4 +1,4 @@
-import styles from "../Styles/Content.module.css";
+import styles from "../../Styles/Content.module.css";
 import Task from "./task.jsx";
 
 

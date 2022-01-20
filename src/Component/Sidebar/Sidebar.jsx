@@ -1,4 +1,4 @@
-import styles from "../Styles/Sidebar.module.css"
+import styles from "../../Styles/Sidebar.module.css"
 import {NavLink} from "react-router-dom"
 
 
@@ -27,6 +27,9 @@ const Sidebar = () =>
                 <li>
                     <NavLink to="/statistics">Statisics</NavLink>
                     <hr />
+                </li>
+                <li>
+                    <NavLink to="/users">Users</NavLink>
                 </li>
             </ul>
         </section>

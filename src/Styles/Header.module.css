@@ -29,6 +29,8 @@
 .Profile_mini button{
   margin-top: 15px;
   margin-left: 50px;
+  float: right;
+  margin-right: 200px;
 }
 .Header input {
   height: 34px;
@@ -39,4 +41,11 @@
 }
 .Header .Profile_mini{
   grid-area: P;
+}
+.Header_avatar{
+  width:70px;
+  height: 70px;
+  display: inline;
+  margin-top: 5px;
+  margin-left: 10px;
 }
