@@ -1,12 +1,18 @@
 import { Navigate } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 
-
-export let Auth_redirect = (Component,props)=>{
-    if(props.isAuth == false)
+export const With_auth_redirrect = (Component) =>{
+    class Auth_redirect_comp extends React.Component
     {
-        return <Navigate to="login"/>
-    }else{
-        <Component props={...props}/>
+        render()
+        {
+            if(!this.props.isAuth)
+            {
+                return <Navigate to="/login"/>
+            }else{
+                return <Component {...this.props}/>
+            }
+        }
     }
+    return Auth_redirect_comp;
 }

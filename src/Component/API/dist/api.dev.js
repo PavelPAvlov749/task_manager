@@ -5,7 +5,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.usersAPI = void 0;
+exports.ProfileApi = exports.usersAPI = void 0;
 
 var axios = _interopRequireWildcard(require("axios"));
 
@@ -43,6 +43,47 @@ var usersAPI = {
     return instance["delete"]("https://social-network.samuraijs.com/api/1.0/follow/".concat(user_id)).then(function (response) {
       return response;
     });
+  },
+  set_my_id: function set_my_id() {
+    return instance.get("auth/me").then(function (response) {
+      return response;
+    });
+  },
+  login: function login(formData) {
+    return instance.post("auth/login", {
+      email: formData.Login,
+      password: formData.Password,
+      rememberMe: formData.Remember_me
+    }).then(function (response) {
+      console.log(response);
+      return response;
+    });
+  },
+  log_out: function log_out() {
+    return instance["delete"]("auth/login").then(function (response) {
+      return response;
+    });
   }
 };
 exports.usersAPI = usersAPI;
+var ProfileApi = {
+  get_profile: function get_profile(_id) {
+    return instance.get("profile/".concat(_id)).then(function (response) {
+      return response.data;
+    });
+  },
+  get_status: function get_status(_id) {
+    return instance.get("profile/status/".concat(_id)).then(function (response) {
+      return response;
+    });
+  },
+  update_status: function update_status(_text) {
+    return instance.put("profile/status", {
+      status: _text
+    });
+  },
+  set_avatar: function set_avatar(_path) {
+    return instance.put("profile/photo");
+  }
+};
+exports.ProfileApi = ProfileApi;

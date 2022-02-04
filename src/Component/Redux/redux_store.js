@@ -6,6 +6,7 @@ import users_reducer from "./users_reducers";
 import {Profile_reducer} from "./Profile_reducer";
 import {Auth_reducer} from "./auth_reducer";
 import thunk from "redux-thunk";
+import { reducer as formReducer } from 'redux-form'
 
 
 
@@ -19,7 +20,14 @@ let reducers = combineReducers({
     is_fetch:users_reducer,
     profile:Profile_reducer,
     auth: Auth_reducer,
-    is_follow_fetch: users_reducer
+    is_follow_fetch: users_reducer,
+    current_user:users_reducer,
+    status:users_reducer,
+    login:Auth_reducer,
+    email:Auth_reducer,
+    userID:Auth_reducer,
+    form:formReducer,
+    message:formReducer
 });
 
 export let  store = createStore(reducers,applyMiddleware(thunk));

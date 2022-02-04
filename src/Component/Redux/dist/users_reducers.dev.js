@@ -3,9 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.set_users_countAC = exports.set_current_pageAC = exports.set_usersAC = exports.unfollowAC = exports.followAC = exports.set_is_fetchAC = exports.follow_fetchAC = void 0;
-
-var _api = require("../API/api");
+exports["default"] = exports.update_statusAC = exports.set_statusAC = exports.set_current_userAC = exports.set_users_countAC = exports.set_current_pageAC = exports.set_usersAC = exports.unfollowAC = exports.followAC = exports.set_is_fetchAC = exports.follow_fetchAC = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -28,13 +26,18 @@ var SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 var SET_USERS_COUNT = "SET-USERS-COUNT";
 var TOOGLE_IS_FETCH = "TOOGLE_IS_FETCH";
 var FOLLOW_FETCH = "FOLLOW_FETCH";
+var SET_CURRENT_USER = "SET_CURRENT_USER";
+var SET_STATUS = "SET_STATUS";
+var UPDATE_STATUS = "UPDATE_STATUS";
 var initiaal_state = {
   users: [],
   paige_size: 8,
   total_users_count: 0,
   current_paige: 1,
   is_fetch: false,
-  is_follow_fetch: []
+  is_follow_fetch: [],
+  current_user: null,
+  status: ""
 };
 
 var users_reducer = function users_reducer() {
@@ -85,6 +88,16 @@ var users_reducer = function users_reducer() {
         current_paige: action.current_page
       });
 
+    case SET_STATUS:
+      return _objectSpread({}, state, {
+        status: action.status
+      });
+
+    case UPDATE_STATUS:
+      return _objectSpread({}, state, {
+        status: action.status
+      });
+
     case SET_USERS_COUNT:
       return _objectSpread({}, state, {
         total_users_count: action.users_count
@@ -93,6 +106,11 @@ var users_reducer = function users_reducer() {
     case TOOGLE_IS_FETCH:
       return _objectSpread({}, state, {
         is_fetch: action.is_fetch
+      });
+
+    case SET_CURRENT_USER:
+      return _objectSpread({}, state, {
+        current_user: action.current_user_id
       });
 
     default:
@@ -161,19 +179,35 @@ var set_users_countAC = function set_users_countAC(count) {
     type: "SET-USERS-COUNT",
     users_count: count
   };
-}; // export const get_users_thunkCreator = function(current_page,paige_size)
-// {
-//     return (dispatch) => {
-//         dispatch(is_fetch(true));
-//         usersAPI.get_users(current_page,paige_size).then((data) => {
-//                 dispatch(set_users(data.items));
-//                 dispatch(set_users_count(data.totalCount));
-//                 dipsatch(is_fetch(false));
-//             })
-//     }
-// }
-
+};
 
 exports.set_users_countAC = set_users_countAC;
+
+var set_current_userAC = function set_current_userAC(id) {
+  return {
+    type: "SET_CURRENT_USER",
+    current_user_id: id
+  };
+};
+
+exports.set_current_userAC = set_current_userAC;
+
+var set_statusAC = function set_statusAC(status) {
+  return {
+    type: "SET_STATUS",
+    status: status
+  };
+};
+
+exports.set_statusAC = set_statusAC;
+
+var update_statusAC = function update_statusAC(status_text) {
+  return {
+    type: "UPDATE_STATUS",
+    status: status_text
+  };
+};
+
+exports.update_statusAC = update_statusAC;
 var _default = users_reducer;
 exports["default"] = _default;

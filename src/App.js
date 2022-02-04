@@ -9,10 +9,10 @@ import Statistics from "./Component/Statistic/Statistics.jsx";
 import {BrowserRouter as Router, Routes ,Route, Link} from "react-router-dom";
 import { Redux_container } from './Component/Dialogs/Dialogs_container';
 import { Users_container } from './Component/Users/Users_container.jsx';
-import Profile_container from './Component/Profile/Profile_container';
 import { Prof_container } from './Component/Profile/Prog_container';
 import { Header_heigh_container } from './Component/Header_container';
-import { Login } from './Component/Login';
+import { Login, Login_container } from './Component/Login';
+import { My_profile_container } from './Component/Profile/My_Profile';
 
 
 ///////////////////////////////////// Rendering the main component   /////////////////////////////////
@@ -39,7 +39,8 @@ function App(props) {
         <Route path="/Statistics" element={<Statistics />}/>
         <Route path="/users" element={<Users_container />}/>
         <Route path="profile/:id" element={<Prof_container />}/>
-        <Route path="login/" element={<Login/>}/>
+        <Route path="login/" element={<Login_container/>}/>
+        <Route path="profile_me" element={<My_profile_container />}/>
 
       
       </Routes>

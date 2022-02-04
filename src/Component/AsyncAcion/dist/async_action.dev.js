@@ -3,13 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = void 0;
+exports.update_user_status = exports.Login_thunk = exports.get_users_status = exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = exports.set_current_user = void 0;
 
 var _users_reducers = require("../Redux/users_reducers");
 
+var _auth_reducer = require("../Redux/auth_reducer");
+
 var _api = require("../API/api");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+//Importing action creators
+//Impoerting Data Access Layer
+//Declaring the thunk creators :
+var set_current_user = function set_current_user() {
+  return function (dispatch) {
+    _api.usersAPI.set_my_id().then(function (response) {
+      dispatch((0, _users_reducers.set_current_userAC)(response.data.data.id));
+    });
+  };
+};
+
+exports.set_current_user = set_current_user;
 
 var Follow_async = function Follow_async(_id) {
   return function (dispatch) {
@@ -51,6 +64,33 @@ var Get_async_users = function Get_async_users(current_page, paige_size) {
 
 exports.Get_async_users = Get_async_users;
 
-var Data_access_layer = function Data_access_layer() {
-  _classCallCheck(this, Data_access_layer);
+var get_users_status = function get_users_status(id) {
+  return function (dispatch) {
+    _api.ProfileApi.get_status(id).then(function (response) {
+      dispatch((0, _users_reducers.set_statusAC)(response.data));
+    });
+  };
 };
+
+exports.get_users_status = get_users_status;
+
+var Login_thunk = function Login_thunk(formData) {
+  return function (dispatch) {
+    _api.usersAPI.login(formData).then(function (response) {
+      dispatch((0, _users_reducers.set_current_userAC)(response.data.data.userId));
+      dispatch((0, _auth_reducer.set_user_authAC)(true));
+    });
+  };
+};
+
+exports.Login_thunk = Login_thunk;
+
+var update_user_status = function update_user_status(_text) {
+  return function (dispatch) {
+    _api.ProfileApi.update_status(_text);
+
+    dispatch((0, _users_reducers.update_statusAC)(_text));
+  };
+};
+
+exports.update_user_status = update_user_status;

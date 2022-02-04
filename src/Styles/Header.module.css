@@ -1,6 +1,6 @@
 .Header{
     grid-area: H;
-    background-color: rgba(78, 76, 76, 0.712);
+    background-color: rgba(55, 90, 85, 0.712);
     margin-right: 10px;
     margin-top: 10px;
     grid-template-columns: 400px auto;
@@ -9,17 +9,18 @@
     "P N" ;
     display: grid;
     gap:700px;
-    margin-left: 10px;
+    margin-left: 20px;
+    
     border-radius: 3px;
 }
 
 .Head_nav_container li{
   display: inline;
 }
-/* /* .Header .nav {
+.Header .nav {
   margin-left: 70%;
   display: block;
-} */
+}
 
 .Header button{
   display: inline;
@@ -39,13 +40,17 @@
 .Header .Head_nav_container{
   grid-area: N;
 }
-.Header .Profile_mini{
-  grid-area: P;
-}
 .Header_avatar{
   width:70px;
   height: 70px;
   display: inline;
   margin-top: 5px;
   margin-left: 10px;
+}
+.logo{
+  margin-top: 3px;
+  margin-right: 10px;
+  grid-area: P;
+  width: 300px;
+  height: 100px;
 }

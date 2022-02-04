@@ -3,7 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.set_user_authAC = exports.Auth_reducer = void 0;
+exports.logout = exports.get_auth_user_data = exports.set_user_authAC = exports.Auth_reducer = void 0;
+
+var _api = require("../API/api");
+
+var _users_reducers = require("./users_reducers");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -14,7 +18,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var SET_USER_AUTH = "SET_USER_AUTH";
 var TOOGLE_IS_FETCH = "TOGLE_IS_FETCH";
 var initiaal_state = {
-  auth: 1
+  auth: false
 };
 
 var Auth_reducer = function Auth_reducer() {
@@ -23,15 +27,9 @@ var Auth_reducer = function Auth_reducer() {
 
   switch (action.type) {
     case SET_USER_AUTH:
-      if (action.auth == 0) {
-        return _objectSpread({}, state, {
-          auth: true
-        });
-      } else {
-        return _objectSpread({}, state, {
-          auth: false
-        });
-      }
+      return _objectSpread({}, state, {
+        auth: action.auth
+      });
 
     default:
       return state;
@@ -48,3 +46,31 @@ var set_user_authAC = function set_user_authAC(auth) {
 };
 
 exports.set_user_authAC = set_user_authAC;
+
+var get_auth_user_data = function get_auth_user_data() {
+  return function (dispatch) {
+    _api.usersAPI.set_my_id().then(function (response) {
+      if (response.data.resultCode === 0) {
+        var _response$data$data = response.data.data,
+            id = _response$data$data.id,
+            login = _response$data$data.login,
+            email = _response$data$data.email;
+        dispatch(set_user_authAC(id, login, email, true));
+      }
+    });
+  };
+};
+
+exports.get_auth_user_data = get_auth_user_data;
+
+var logout = function logout() {
+  return function (dispatch) {
+    _api.usersAPI.log_out().then(function (response) {
+      if (response.data.resultCode === 0) {
+        dispatch(set_user_authAC(false));
+      }
+    });
+  };
+};
+
+exports.logout = logout;

@@ -1,12 +1,29 @@
-import { follow_fetchAC, set_usersAC } from "../Redux/users_reducers";
+//Importing action creators
+import { follow_fetchAC, set_usersAC, update_statusAC } from "../Redux/users_reducers";
 import { set_is_fetchAC } from "../Redux/users_reducers";
+import { set_current_userAC } from "../Redux/users_reducers";
 import { set_users_countAC } from "../Redux/users_reducers";
-import { set_current_pageAC } from "../Redux/users_reducers";
 import { unfollowAC } from "../Redux/users_reducers";
 import { followAC } from "../Redux/users_reducers";
+import { set_statusAC } from "../Redux/users_reducers";
+import { set_user_authAC } from "../Redux/auth_reducer";
+
+//Impoerting Data Access Layer
 import { usersAPI } from "../API/api";
+import { ProfileApi } from "../API/api";
 
+//Declaring the thunk creators :
 
+export const set_current_user = function ()
+{
+    return function (dispatch)
+    {
+        usersAPI.set_my_id().then((response)=>{
+            
+            dispatch(set_current_userAC(response.data.data.id))
+        })
+    }
+}
 export const Follow_async = function (_id)
 {
     return function (dispatch)
@@ -40,16 +57,36 @@ export const Get_async_users = function (current_page,paige_size)
             dispatch(set_usersAC(data.items))
             dispatch(set_users_countAC(data.totalCount))
             dispatch(set_is_fetchAC(false))
-            
         })
     }
 };
 
-class Data_access_layer
+export const get_users_status = function (id)
 {
-    constructor()
+    return function(dispatch)
     {
-
+        ProfileApi.get_status(id).then((response)=>{
+            dispatch(set_statusAC(response.data))
+        })
     }
-     
+};
+
+export const Login_thunk = function (formData){
+
+    return function (dispatch){
+        usersAPI.login(formData).then((response)=>{
+            dispatch(set_current_userAC(response.data.data.userId))
+            dispatch(set_user_authAC(true))
+        })
+    }
+  
+}
+
+
+export const update_user_status = function (_text){
+    return function (dispatch)
+    {
+        ProfileApi.update_status(_text);
+        dispatch(update_statusAC(_text));
+    }
 }

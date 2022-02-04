@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "../../Styles/Profile.module.css";
 import { Navigate } from "react-router-dom";
+import { Profile_status } from "./Profile_status/Profile_status";
 
 
 export const Profile = (props) => {
 
-    console.log("Profile_props is:" + props)
-    window.props = props;
-    if(props.isAuth === true){
-        
-    }
     return (
         <div className={styles.Profile_container}>
 
@@ -21,6 +17,8 @@ export const Profile = (props) => {
                 alt="" />
             <h1>{props.profile.profile.fullName}</h1>
         </div>
+
+        <Profile_status status={props.status}/>
         </div>
     )
 }

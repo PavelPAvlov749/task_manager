@@ -1,8 +1,24 @@
 import React from "react";
 import styles from "../../Styles/Dialog_container.module.css";
-// import styles from "../Styles/Dialogs.module.css";
-import { NavLink,Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
+import { Field,reduxForm } from "redux-form";
+import { Min_lenght_creator } from "../../Validator/Vlidator";
+import { required } from "../../Validator/Vlidator";
+import { Textarea } from "../Form/Form";
 
+const min_lenght = Min_lenght_creator(1)
+
+const Textarea_form = (props)=>{
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name="message" component={Textarea} cols="30" rows="10" validate={[required,min_lenght]}/>
+            <button>Send</button>
+        </form>
+    )
+}
+
+const Textarea_redux_form = reduxForm ({form:"message",validate:required})(Textarea_form);
 
 const Dialog_list_item = (props) => {
     return (
@@ -20,8 +36,7 @@ const Dialog_list_item = (props) => {
             </li>
         </div>
     )
-}
-
+};
 
 
 const Dialogs_list = (props) => {
@@ -41,11 +56,10 @@ const Dialogs_list = (props) => {
             </ul>
         </section>
     )
-}
+};
 
 const Current_dialog_box = (props) => {
     let text_content = React.createRef();
-
     let message_list = props.messages.map((el) => {
         return (
             <div>
@@ -55,41 +69,23 @@ const Current_dialog_box = (props) => {
             </div>
         )
     })
-
+    const onSubmit = (formData)=>{
+        props.sendMessage("ADD-MESSAGE",formData.message)
+        formData.message = "";
+        console.log(formData)
+    }
     return (
         <section className={styles.curent_dialog_container}>
             <div className={styles.text_box}>
                 {message_list}
             </div>
             <section className={styles.textarea}>
-                <textarea cols="30" rows="10" className={styles.textarea} ref={text_content}
-                // onChange={()=>
-                //     {
-                //         props.dispatch(props.new_message_body("NEW-MESSAGE",text_content.current.value))
-                //     }
-                // }
-                >
-
-
-                </textarea>
-                <button type="buttnon"
-                    onClick={() => {
-                        if (text_content.current.value != "") {
-                            props.sendMessage("ADD-MESSAGE", text_content.current.value);
-                            text_content.current.value = "";
-                        }
-                        else {
-                            alert("Type text");
-                        }
-
-                    }}
-                >Send</button>
-                {/* <button type="button"></button> */}
+                <Textarea_redux_form onSubmit={onSubmit} new_message={props.newMessage}/>
             </section>
 
         </section>
     )
-}
+};
 
 const Dialogs_sidebar = (props) => {
     return (
@@ -111,20 +107,21 @@ const Dialogs_sidebar = (props) => {
             </ul>
         </section>
     )
-}
+};
+
 
 export const Dialogs_container_new = (props) => {
-    if (props.isAuth === false) {
-        return (
-            <Navigate to="/login"/>
-        )
-    } else {
-        return (
-            <div className={styles.Dialogs_container}>
-                <Dialogs_list users={props.users} />
-                <Current_dialog_box messages={props.messages} sendMessage={props.sendMessage} />
-                <Dialogs_sidebar />
-            </div>
-        )
-    }
-}
+
+    return (
+        <div className={styles.Dialogs_container}>
+            <Dialogs_list users={props.users} />
+            <Current_dialog_box messages={props.messages} sendMessage={props.sendMessage} />
+            <Dialogs_sidebar />
+        </div>
+
+    )
+};
+
+//Use HOC to redirrect if isAuth != true
+export let Auth_redirect = With_auth_redirrect(Dialogs_container_new);
+

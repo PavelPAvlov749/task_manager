@@ -4,20 +4,27 @@ import Header from "./Header";
 import { connect } from "react-redux";
 import {set_user_authAC} from "./Redux/auth_reducer";
 import {set_is_fetchAC} from "./Redux/users_reducers";
+import { set_current_user } from "./AsyncAcion/async_action";
+import { logout } from "./Redux/auth_reducer";
 
 class Header_container extends React.Component
 {
     componentDidMount(){
+        this.props.set_current_user();
         this.props.set_is_fetchAC(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
             withCredentials:true
         })
         .then((response) => {
-            window.auth = response;
-            window.my_auth = this.props.auth
-            this.props.set_user_authAC(response.data.resultCode)
-            console.log("response data :" + response.data.resultCode)
-            this.props.set_is_fetchAC(false);
+            if(response.data.resultCode === 0)
+            {
+                this.props.set_user_authAC(true)
+                this.props.set_is_fetchAC(false);
+            }else{
+                this.props.set_user_authAC(false)
+                this.props.set_is_fetchAC(false)
+            }
+           
         })
     }
     render()
@@ -32,7 +39,8 @@ class Header_container extends React.Component
 let MapStateToProps = (state) =>
 {
     return {
-        auth: state.auth
+        auth: state.auth,
+        current_user: state.current_user.me
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -42,6 +50,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         set_is_fetchAC: (is_fetch)=> {
             dispatch(set_is_fetchAC(is_fetch))
+        },
+        set_current_user:()=>{
+            dispatch(set_current_user())
+        },
+        logout: ()=>{
+            dispatch(logout())
         }
     }
 }

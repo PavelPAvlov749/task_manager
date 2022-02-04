@@ -1,6 +1,6 @@
 .task_bar{
     /* grid-area:"T"; */
-    background-color: rgb(34, 33, 33);
+    background-color: rgba(30, 66, 61, 0.712);
     display: inline;
     width: 100%;
     height: 50px;

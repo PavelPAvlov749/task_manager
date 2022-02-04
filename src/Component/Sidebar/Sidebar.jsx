@@ -9,7 +9,7 @@ const Sidebar = () =>
         <section className={styles.sidebar}>
             <ul className="side_list">
                 <li>
-                    <NavLink  to="/">Home</NavLink>
+                    <NavLink  to="/profile_me">Home</NavLink>
                     <hr />
                 </li>
                 <li>

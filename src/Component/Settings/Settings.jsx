@@ -8,6 +8,7 @@ const Settings = ()=> {
         <section className={styles.settings_container}>
             <div className={styles.settings_title}>
                 <h2>Settings</h2>
+                <hr />
             </div>
        
             <section className={styles.settings_list}>

@@ -1,16 +1,22 @@
 import classes from "../Styles/Header.module.css"
 import { NavLink } from "react-router-dom";
+import { set_current_user } from "./Redux/users_reducers";
+import logo from "../../src/img/Main_logo.png"
+import styles from "../Styles/Header.module.css"
 
+
+const path = logo;
 const Header_isAuthTrue = (props) => {
+    
     return (
     <section className={classes.Header}>
-    <div className={classes.Profile_mini}>
-        <img className={classes.Header_avatar} src="https://www.shareicon.net/data/2016/05/24/770124_man_512x512.png" alt="" />
-        <button type="button">Profile</button>
+    <div className={styles.Profile_mini}>
+    <img className={styles.logo} src={logo} alt="" />
     </div>
     <h1></h1>
     
-    <div className={classes.Head_nav_container}>
+    <div className={styles.Head_nav_container}>
+        
         <ul className="nav">
             <li>
                 <input type="text" placeholder="Find on page" id="Search"/>
@@ -18,7 +24,7 @@ const Header_isAuthTrue = (props) => {
             </li>
             <li>
                 <NavLink to="login/">
-                    <button type="button">Log Out</button>
+                    <button type="button" onClick={props.logout}>Log Out</button>
                 </NavLink>
                 
             </li>
@@ -33,8 +39,10 @@ const Header_isAuthFalse = (props) => {
     return (
         <section className={classes.Header}>
         <h1></h1>
-        
+        <img className={styles.logo} src={logo} alt="" />
         <div className={classes.Head_nav_container}>
+        
+       
             <ul className="nav">
                 <li>
                     <input type="text" placeholder="Find on page" id="Search"/>
@@ -55,12 +63,12 @@ const Header_isAuthFalse = (props) => {
 }
 
 const Header = (props) => {
-    console.log(props.auth)
+    console.log(props.auth.auth)
     window.header_auth = props;
 
     
-        if(props.auth.auth === 0){
-            return <Header_isAuthTrue />
+        if(props.auth.auth === true){
+            return <Header_isAuthTrue logout={props.logout} />
         }else{
             return <Header_isAuthFalse />
         }

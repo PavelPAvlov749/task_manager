@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 
-
-
 export const Users = (props) => {
 
     //Setting the number of users pages

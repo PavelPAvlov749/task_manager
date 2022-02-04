@@ -1,7 +1,7 @@
 /* /////////////////////////////////               Task Styles */
 .task{
     grid-area:T;
-    background-color:rgb(34, 33, 33);
+    background-color:rgba(30, 66, 61, 0.712);
     border-radius: 5px;
     border-width: 1px;
     border-color: rgb(128, 122, 122);
@@ -17,7 +17,7 @@
     box-shadow: 10px 10px 50px 0px rgba(121, 66, 121, 0.781);
   }
   .name_div{
-    background-color: rgb(22, 22, 22);
+    background-color: rgba(22, 46, 43, 0.712);
     margin:0%;
     padding: 0%;
     

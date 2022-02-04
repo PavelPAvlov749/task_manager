@@ -1,7 +1,7 @@
 /* /////////////////////////////////              footer styles */
 .footer{
     grid-area:F;
-    background-color: rgb(34, 33, 33);
+    background-color: rgba(3, 41, 36, 0.712);
     color: rgb(197, 194, 194);
   }
   .footer h2{

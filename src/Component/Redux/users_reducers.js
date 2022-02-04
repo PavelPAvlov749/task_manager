@@ -1,5 +1,3 @@
-import { usersAPI } from "../API/api";
-
 const FOLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
@@ -7,6 +5,9 @@ const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_USERS_COUNT = "SET-USERS-COUNT";
 const TOOGLE_IS_FETCH = "TOOGLE_IS_FETCH";
 const FOLLOW_FETCH = "FOLLOW_FETCH";
+const SET_CURRENT_USER = "SET_CURRENT_USER";
+const SET_STATUS = "SET_STATUS";
+const UPDATE_STATUS = "UPDATE_STATUS";
 
 
 
@@ -16,8 +17,10 @@ let initiaal_state = {
     total_users_count : 0,
     current_paige: 1,
     is_fetch: false,
-    is_follow_fetch: []
-}
+    is_follow_fetch: [],
+    current_user : null,
+    status : ""
+};
 
 const users_reducer = (state = initiaal_state,action)=>{
     switch(action.type)
@@ -45,16 +48,28 @@ const users_reducer = (state = initiaal_state,action)=>{
                 }
                 return el;
             })};
+
         case SET_USERS:
             return {...state,users: action.users};
 
         case SET_CURRENT_PAGE:
             return {...state,current_paige: action.current_page}
 
+        case SET_STATUS:
+            return {...state,status: action.status}
+
+        case UPDATE_STATUS:
+            return {...state,status:action.status}     
+
         case SET_USERS_COUNT:
             return {...state,total_users_count: action.users_count}
+
         case TOOGLE_IS_FETCH:
             return {...state,is_fetch: action.is_fetch}
+
+        case SET_CURRENT_USER:
+                return {...state,current_user : action.current_user_id}
+
         default:
             return state;
     }
@@ -105,17 +120,24 @@ export const set_users_countAC = (count)=>{
             users_count:count
         }
     }
+export const set_current_userAC = (id)=>
+{
+    return {
+        type : "SET_CURRENT_USER",
+        current_user_id: id
+    }
+}
+export const set_statusAC = (status) =>{
+    return {
+        type: "SET_STATUS",
+        status : status
+    }
+}
+export const update_statusAC = (status_text) => {
+    return {
+        type: "UPDATE_STATUS",
+        status: status_text
+    }
+}
 
-// export const get_users_thunkCreator = function(current_page,paige_size)
-// {
-//     return (dispatch) => {
-
-//         dispatch(is_fetch(true));
-//         usersAPI.get_users(current_page,paige_size).then((data) => {
-//                 dispatch(set_users(data.items));
-//                 dispatch(set_users_count(data.totalCount));
-//                 dipsatch(is_fetch(false));
-//             })
-//     }
-// }
 export default users_reducer;

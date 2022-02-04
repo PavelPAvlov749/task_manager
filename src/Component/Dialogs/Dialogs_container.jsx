@@ -1,5 +1,4 @@
 import React from "react";  
-import { Dialogs_container_new } from "./New_Dialogs";
 //Importing reducers :
 import { dialogs_reducer } from "../Redux/Reducers";
 import { text_area_reducer } from "../Redux/Reducers";
@@ -9,6 +8,7 @@ import { Add_User_action_creator } from "../Redux/Reducers";
 import { new_message_body } from "../Redux/Reducers";
 import { new_message_action } from "../Redux/Reducers";
 import { connect } from "react-redux";
+import { Auth_redirect } from "./New_Dialogs";
 
 //Export React-Redux-Store
 export const StoreContext = React.createContext(null);
@@ -28,8 +28,7 @@ let mapDispatchToProps = (dispatch) => {
 
     return {
         sendMessage: (action,text) => {
-        
-        dispatch(new_message_action(action,text))
+            dispatch(new_message_action(action,text))
         },
         add_user:(action,text) => {
             dispatch(Add_User_action_creator(action,text))
@@ -37,5 +36,5 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export const Redux_container = connect(mapStateToProps, mapDispatchToProps)(Dialogs_container_new);
+export const Redux_container = connect(mapStateToProps, mapDispatchToProps)(Auth_redirect);
 
