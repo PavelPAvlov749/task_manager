@@ -7,6 +7,7 @@ import { unfollowAC } from "../Redux/users_reducers";
 import { followAC } from "../Redux/users_reducers";
 import { set_statusAC } from "../Redux/users_reducers";
 import { set_user_authAC } from "../Redux/auth_reducer";
+import { stopSubmit } from "redux-form";
 
 //Impoerting Data Access Layer
 import { usersAPI } from "../API/api";
@@ -76,7 +77,17 @@ export const Login_thunk = function (formData){
     return function (dispatch){
         usersAPI.login(formData).then((response)=>{
             dispatch(set_current_userAC(response.data.data.userId))
-            dispatch(set_user_authAC(true))
+            if(response.data.resultCode === 0){
+                dispatch(set_user_authAC(true))
+            }else{
+                dispatch(set_user_authAC(false))
+                if(response.data.messages.length > 0){
+                    dispatch(stopSubmit("login",{_error: response.data.messages[0]}))
+                }else{
+                    dispatch(stopSubmit("login",{_error: "Unknown Error.Please try again."}))
+                }
+            }
+            
         })
     }
   

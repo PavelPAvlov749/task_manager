@@ -9,6 +9,8 @@ var _users_reducers = require("../Redux/users_reducers");
 
 var _auth_reducer = require("../Redux/auth_reducer");
 
+var _reduxForm = require("redux-form");
+
 var _api = require("../API/api");
 
 //Importing action creators
@@ -78,7 +80,22 @@ var Login_thunk = function Login_thunk(formData) {
   return function (dispatch) {
     _api.usersAPI.login(formData).then(function (response) {
       dispatch((0, _users_reducers.set_current_userAC)(response.data.data.userId));
-      dispatch((0, _auth_reducer.set_user_authAC)(true));
+
+      if (response.data.resultCode === 0) {
+        dispatch((0, _auth_reducer.set_user_authAC)(true));
+      } else {
+        dispatch((0, _auth_reducer.set_user_authAC)(false));
+
+        if (response.data.messages.length > 0) {
+          dispatch((0, _reduxForm.stopSubmit)("login", {
+            _error: response.data.messages[0]
+          }));
+        } else {
+          dispatch((0, _reduxForm.stopSubmit)("login", {
+            _error: "Unknown Error.Please try again."
+          }));
+        }
+      }
     });
   };
 };

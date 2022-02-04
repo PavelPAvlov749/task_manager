@@ -14,6 +14,10 @@
     height: 25px;
     margin-bottom: 10px;
 }
+.login_input_has_error{
+    border: rgb(184, 38, 38) 1px solid;
+    box-shadow: 2px 2px 20px rgb(182, 51, 51)
+}
 .checkbox{
     bottom: 25px;
     left: 90px;
@@ -38,4 +42,10 @@
 }
 .login button :active {
     border: solid 1px violet;
+}
+.common_error{
+    color:rgb(184, 38, 38);
+    text-align: center;
+    font-size: 15px;
+    font-weight: 200;
 }

@@ -13,41 +13,40 @@ const Login_form = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" placeholder="Login" name='Login' component="input" />
+                <Field type="text" placeholder="Login" name='Login' component="input" className={props.error && styles.login_input_has_error} />
             </div>
             <div>
-                <Field type="text" placeholder="password" name="Password" component="input" />
+                <Field type="text" placeholder="password" name="Password" component="input" className={props.error&& styles.login_input_has_error} />
             </div>
 
             <div>
                 <span>Remember me</span><Field type="checkbox" component="input" name="Remember_me" id="checkbox" className={styles.checkbox} />
             </div>
             <button>Login</button>
+            {props.error && <p className={styles.common_error}>{props.error}</p>}
         </form>
     )
 }
 const Login_redux_form = reduxForm({ form: "login" })(Login_form)
 
-export const Login = (props) =>
-{
-    let onSubmit = (formData) => 
-    {
+export const Login = (props) => {
+    let onSubmit = (formData) => {
         props.login_th(formData);
     }
     console.log(props.isAuth)
-    if(props.isAuth === false){
+    if (props.isAuth === false) {
         console.log(props.isAuth)
         return (
             <div className={styles.login}>
                 <h1>Login</h1>
                 <Login_redux_form onSubmit={onSubmit} />
             </div>)
-    }else {
+    } else {
         console.log(props.isAuth)
-        return <Navigate to="/profile_me"/>
-        
+        return <Navigate to="/profile_me" />
+
     }
-        
+
 }
 
 let MapStateToProps = (state) => {
