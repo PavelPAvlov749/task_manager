@@ -63,10 +63,6 @@ const Header_isAuthFalse = (props) => {
 }
 
 const Header = (props) => {
-    console.log(props.auth.auth)
-    window.header_auth = props;
-
-    
         if(props.auth.auth === true){
             return <Header_isAuthTrue logout={props.logout} />
         }else{

@@ -10,22 +10,7 @@ import { logout } from "./Redux/auth_reducer";
 class Header_container extends React.Component
 {
     componentDidMount(){
-        this.props.set_current_user();
-        this.props.set_is_fetchAC(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
-            withCredentials:true
-        })
-        .then((response) => {
-            if(response.data.resultCode === 0)
-            {
-                this.props.set_user_authAC(true)
-                this.props.set_is_fetchAC(false);
-            }else{
-                this.props.set_user_authAC(false)
-                this.props.set_is_fetchAC(false)
-            }
-           
-        })
+
     }
     render()
     {

@@ -25,12 +25,13 @@ export const set_user_authAC = (auth) =>
 }
 
 export const get_auth_user_data = ()=>(dispatch)=>{
-    usersAPI.set_my_id().then(response=>{
+    return usersAPI.set_my_id().then(response=>{
         if(response.data.resultCode === 0){
-            let {id,login,email}=response.data.data
-            dispatch(set_user_authAC(id,login,email,true))
+            console.log(response.data)
+            dispatch(set_user_authAC(true))
         }
     })
+    
 }
 
 export const logout = () =>(dispatch) =>{

@@ -9,6 +9,7 @@ import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
 import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
 import { Navigate } from "react-router-dom";
+import { Preloader } from "../Preloader/Preloader";
 
 const Short_description = function (props) {
     return (
@@ -129,6 +130,7 @@ export const My_profile_container_1 = function (props) {
         return (
             <section>
                 <My_profile {...props} />
+                
             </section>
         )
     }else {

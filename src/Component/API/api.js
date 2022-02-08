@@ -20,6 +20,7 @@ export const usersAPI = {
         })
     },
     get_profile(user_id){
+        
         return instance.get(`profile/${user_id}`).then(response =>{
             return response.data
         })
@@ -37,7 +38,9 @@ export const usersAPI = {
     },
     set_my_id(){
         return instance.get(`auth/me`).then((response)=> {
+            console.log("SET_MY_ID RETURNS : " + response)
             return response
+            
         })
     },
     login(formData){

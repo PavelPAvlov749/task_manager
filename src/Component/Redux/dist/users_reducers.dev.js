@@ -29,7 +29,8 @@ var FOLLOW_FETCH = "FOLLOW_FETCH";
 var SET_CURRENT_USER = "SET_CURRENT_USER";
 var SET_STATUS = "SET_STATUS";
 var UPDATE_STATUS = "UPDATE_STATUS";
-var initiaal_state = {
+
+var initiaal_state = _defineProperty({
   users: [],
   paige_size: 8,
   total_users_count: 0,
@@ -38,7 +39,7 @@ var initiaal_state = {
   is_follow_fetch: [],
   current_user: null,
   status: ""
-};
+}, "is_fetch", null);
 
 var users_reducer = function users_reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initiaal_state;

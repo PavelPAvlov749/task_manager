@@ -19,7 +19,8 @@ let initiaal_state = {
     is_fetch: false,
     is_follow_fetch: [],
     current_user : null,
-    status : ""
+    status : "",
+    is_fetch : null
 };
 
 const users_reducer = (state = initiaal_state,action)=>{

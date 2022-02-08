@@ -49,13 +49,10 @@ exports.set_user_authAC = set_user_authAC;
 
 var get_auth_user_data = function get_auth_user_data() {
   return function (dispatch) {
-    _api.usersAPI.set_my_id().then(function (response) {
+    return _api.usersAPI.set_my_id().then(function (response) {
       if (response.data.resultCode === 0) {
-        var _response$data$data = response.data.data,
-            id = _response$data$data.id,
-            login = _response$data$data.login,
-            email = _response$data$data.email;
-        dispatch(set_user_authAC(id, login, email, true));
+        console.log(response.data);
+        dispatch(set_user_authAC(true));
       }
     });
   };

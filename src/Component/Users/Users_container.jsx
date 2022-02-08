@@ -35,8 +35,7 @@ class UsersAPI extends React.Component {
 
     }
     on_page_change = (page_number) => {
-        // this.props.get_users(this.props.current_paige,this.props.paige_size);
-        
+        this.props.is_fetch(true)
         this.props.set_current_page(page_number);
         usersAPI.get_users(this.props.current_paige,this.props.paige_size).then((data) => {
                 this.props.is_fetch(false);
