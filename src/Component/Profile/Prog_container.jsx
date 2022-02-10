@@ -14,8 +14,6 @@ import { Preloader } from "../Preloader/Preloader";
 import { set_is_fetchAC } from "../Redux/users_reducers";
 
 export const Prof_container_API = (props) => {
-
-
     const params = useParams();
     const id = params.id;
 
@@ -36,7 +34,7 @@ let MapStateToProps = (state) => {
         profile: state.profile,
         isAuth: state.auth.auth,
         status: state.status.status,
-        // isFetch: state.is_fetch
+        isFetch: state.is_fetch
     }
 };
 

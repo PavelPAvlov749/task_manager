@@ -10,6 +10,7 @@ import { Get_async_users } from "../AsyncAcion/async_action";
 import { Follow_async } from "../AsyncAcion/async_action";
 import { Unfollow_async } from "../AsyncAcion/async_action";
 //Importing selectors:
+import { Get_users_reselect } from "../Redux/users-selectors";
 import { get_users } from "../Redux/users-selectors";
 import { get_paige_size } from "../Redux/users-selectors";
 import { get_current_paige } from "../Redux/users-selectors";
@@ -68,8 +69,9 @@ class UsersAPI extends React.Component {
 //Users upper level container
 
 let mapStateToProps = (state) => {
+
     return {
-        users: get_users(state),
+        users: Get_users_reselect(state),
         paige_size: get_paige_size(state),
         total_users_count: get_users_count(state),
         current_paige: get_current_paige(state),

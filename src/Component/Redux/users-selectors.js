@@ -1,7 +1,16 @@
+import { createSelector } from 'reselect';
 
-export const get_users = (state) => {
-    return state.users_paige.users;
+
+const get_users = (state)=> {
+    return state.users_paige.users
 };
+
+export const Get_users_reselect = createSelector(get_users,(users)=> {
+    return users.filter(u => true);
+})
+
+
+//......................
 export const get_paige_size = function (state){
     return state.current_page.paige_size;
 };
@@ -17,3 +26,4 @@ export const get_is_fetch = function (state){
 export const get_follow_fetch = function (state){
     return state.users_paige.is_follow_fetch;
 };
+
