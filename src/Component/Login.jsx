@@ -33,9 +33,7 @@ export const Login = (props) => {
     let onSubmit = (formData) => {
         props.login_th(formData);
     }
-    console.log(props.isAuth)
     if (props.isAuth === false) {
-        console.log(props.isAuth)
         return (
             <div className={styles.login}>
                 <h1>Login</h1>

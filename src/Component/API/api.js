@@ -38,7 +38,6 @@ export const usersAPI = {
     },
     set_my_id(){
         return instance.get(`auth/me`).then((response)=> {
-            console.log("SET_MY_ID RETURNS : " + response)
             return response
             
         })
@@ -49,7 +48,6 @@ export const usersAPI = {
             password : formData.Password,
             rememberMe : formData.Remember_me
         }).then((response)=>{
-            console.log(response)
             return response})
     },
     log_out () {

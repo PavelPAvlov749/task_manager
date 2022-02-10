@@ -6,6 +6,9 @@ import {App_container} from './App';
 import { store } from './Component/Redux/redux_store';
 import { Provider } from 'react-redux';
 
+const fake_disp = function (dispatch){
+   dispatch({type:"fake"})
+}
 export let render = () => ReactDOM.render(
 
     <React.StrictMode>

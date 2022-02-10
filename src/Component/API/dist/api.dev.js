@@ -46,7 +46,6 @@ var usersAPI = {
   },
   set_my_id: function set_my_id() {
     return instance.get("auth/me").then(function (response) {
-      console.log("SET_MY_ID RETURNS : " + response);
       return response;
     });
   },
@@ -56,7 +55,6 @@ var usersAPI = {
       password: formData.Password,
       rememberMe: formData.Remember_me
     }).then(function (response) {
-      console.log(response);
       return response;
     });
   },

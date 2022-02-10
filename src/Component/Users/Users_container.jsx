@@ -1,18 +1,21 @@
 //Imorting REACT,AXIOS and REDUX
 import React from "react";
 import { connect } from "react-redux";
-import * as axios from "axios";
 //Action creators import
-import { followAC } from "../Redux/users_reducers";
-import { unfollowAC } from "../Redux/users_reducers";
 import { set_usersAC } from "../Redux/users_reducers";
 import { set_current_pageAC } from "../Redux/users_reducers";
 import { set_users_countAC } from "../Redux/users_reducers";
 import { set_is_fetchAC } from "../Redux/users_reducers";
-import { follow_fetchAC } from "../Redux/users_reducers";
 import { Get_async_users } from "../AsyncAcion/async_action";
 import { Follow_async } from "../AsyncAcion/async_action";
 import { Unfollow_async } from "../AsyncAcion/async_action";
+//Importing selectors:
+import { get_users } from "../Redux/users-selectors";
+import { get_paige_size } from "../Redux/users-selectors";
+import { get_current_paige } from "../Redux/users-selectors";
+import { get_is_fetch } from "../Redux/users-selectors";
+import { get_users_count } from "../Redux/users-selectors";
+import { get_follow_fetch } from "../Redux/users-selectors";
 //Importing the Thunk creators
 // import { get_users_thunkCreator } from "../Redux/users_reducers";
 //Importing USers presentation component
@@ -66,12 +69,12 @@ class UsersAPI extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.users_paige.users,
-        paige_size: state.users_paige.paige_size,
-        total_users_count: state.users_paige.total_users_count,
-        current_paige: state.users_paige.current_paige,
-        is_fetch: state.users_paige.is_fetch,
-        is_follow_fetch : state.users_paige.is_follow_fetch
+        users: get_users(state),
+        paige_size: get_paige_size(state),
+        total_users_count: get_users_count(state),
+        current_paige: get_current_paige(state),
+        is_fetch: get_is_fetch(state),
+        is_follow_fetch : get_follow_fetch(state)
         
     }
 }

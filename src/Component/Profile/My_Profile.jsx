@@ -139,6 +139,7 @@ export const My_profile_container_1 = function (props) {
 };
 
 const MapStateToProps = (state) => {
+    console.log("Map state to props was called")
     return {
         me: state.current_user.current_user,
         profile: state.profile,
