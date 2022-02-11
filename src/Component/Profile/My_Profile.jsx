@@ -3,7 +3,7 @@ import styles from "../../Styles/my_profile.module.css";
 import { usersAPI } from "../API/api";
 import { ProfileApi } from "../API/api";
 import { connect } from "react-redux";
-import { Profile_status } from "./Profile_status/Profile_status";
+import { Profile_status_with_hooks } from "./Profile_status/Profile_status";
 import { Set_users_profileAC } from "../Redux/Profile_reducer";
 import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
@@ -91,7 +91,8 @@ class My_profile extends React.Component {
                 </div>
                 <div className={styles.info}>
                     <h2>{this.props.profile.profile.fullName}</h2>
-                    <Profile_status status={this.props.status} className={styles.status} update_status={this.props.update_status} />
+                    {/* <Profile_status status={this.props.status} className={styles.status} update_status={this.props.update_status} /> */}
+                    <Profile_status_with_hooks status={this.props.status} className={styles.status} update_status={this.props.update_status}/>
                 </div>
 
                 <section className={styles.description}>

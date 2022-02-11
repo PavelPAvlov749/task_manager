@@ -69,6 +69,7 @@ exports.Get_async_users = Get_async_users;
 var get_users_status = function get_users_status(id) {
   return function (dispatch) {
     _api.ProfileApi.get_status(id).then(function (response) {
+      console.log(response.data);
       dispatch((0, _users_reducers.set_statusAC)(response.data));
     });
   };

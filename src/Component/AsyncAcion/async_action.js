@@ -67,6 +67,7 @@ export const get_users_status = function (id)
     return function(dispatch)
     {
         ProfileApi.get_status(id).then((response)=>{
+            console.log(response.data)
             dispatch(set_statusAC(response.data))
         })
     }
