@@ -17,11 +17,13 @@ import { Header_heigh_container } from './Component/Header_container';
 import { Login_container } from './Component/Login';
 import { My_profile_container } from './Component/Profile/My_Profile';
 import { Redux_container } from './Component/Dialogs/Dialogs_container';
+import { Task_page } from './Component/Tasks/container';
 //Importing Thunks and Acion-creators :
 import { set_current_user } from './Component/AsyncAcion/async_action';
 import { set_user_authAC } from './Component/Redux/auth_reducer';
 import { set_is_fetchAC } from './Component/Redux/users_reducers';
 import { initialize } from './Component/Redux/App-reducer';
+import { Task_container_2 } from './Component/Tasks/container';
 //Importing Styles
 import './App.css';
 import { Preloader } from './Component/Preloader/Preloader';
@@ -45,7 +47,7 @@ class App extends React.Component
           <Foot />
           <Routes > 
             <Route path="/dialogs" element={<Redux_container />}/>
-            <Route path="/tasks" element={<Container />}/>
+            <Route path="/tasks" element={<Task_container_2 />}/>
             <Route path="/Settings" element={<Settings />}/>
             <Route path="/Statistics" element={<Statistics />}/>
             <Route path="/users" element={<Users_container />}/>

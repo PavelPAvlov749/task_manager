@@ -21,6 +21,8 @@ var _reduxForm = require("redux-form");
 
 var _AppReducer = require("./App-reducer");
 
+var _Task_reducer = require("./Task_reducer");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var reducers = (0, _redux.combineReducers)({
@@ -41,7 +43,8 @@ var reducers = (0, _redux.combineReducers)({
   userID: _auth_reducer.Auth_reducer,
   form: _reduxForm.reducer,
   message: _reduxForm.reducer,
-  initialized: _AppReducer.App_reducer
+  initialized: _AppReducer.App_reducer,
+  users_task: _Task_reducer.task_reducer
 });
 var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk["default"]));
 exports.store = store;

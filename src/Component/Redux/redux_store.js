@@ -8,6 +8,7 @@ import {Auth_reducer} from "./auth_reducer";
 import thunk from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
 import { App_reducer } from "./App-reducer";
+import {task_reducer} from "./Task_reducer";
 
 
 
@@ -29,7 +30,8 @@ let reducers = combineReducers({
     userID:Auth_reducer,
     form:formReducer,
     message:formReducer,
-    initialized:App_reducer
+    initialized:App_reducer,
+    users_task:task_reducer
 });
 
 export let  store = createStore(reducers,applyMiddleware(thunk));

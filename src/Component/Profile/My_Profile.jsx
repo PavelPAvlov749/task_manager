@@ -11,6 +11,7 @@ import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
 import { Navigate } from "react-router-dom";
 import { Preloader } from "../Preloader/Preloader";
 
+
 const Short_description = function (props) {
     return (
         <div>
@@ -97,8 +98,9 @@ class My_profile extends React.Component {
 
                 <section className={styles.description}>
                     <h2>Description :</h2>
-                    {this.state.description_hide ? <button onClick={this.show_description} type="button">Show</button> :
-                        <button onClick={this.hide_description} type="button">Hide</button>}
+                    {this.state.description_hide ? 
+                    <button onClick={this.show_description} type="button">Show</button> 
+                    :<button onClick={this.hide_description} type="button">Hide</button>}
                     <hr />
                     {this.state.description_hide ? <Short_description /> :
                         <Full_description />}

@@ -1,38 +1,41 @@
 import styles from "../../Styles/Task.module.css";
+import React from "react";
 
 
-const Task = (props)=>
+export class Task extends React.PureComponent
 {
-    return(
-    <section className={styles.task}>
-        <div id="task">
-            <div className={styles.name_div}>
-                <h2>{props.name}</h2>
+    render(){
+        return(
+            <section className={styles.task}>
+            <div id="task">
+                <div className={styles.name_div}>
+                    <h2>{this.props.name}</h2>
+                </div>
+                <ul className="task_props">
+                    <li>
+                        Begin : {this.props.date}
+                    </li>
+                    <li>
+                        Description : {this.props.description}
+                    </li>
+                    <li>
+                        Status :
+                    </li>
+                    <li>
+                        Progress :
+                    </li>
+                </ul>
+                <hr />
+                <div className={styles.btn_div}>
+                    <button type="button">Open</button>
+                    <button type="button">Rename</button>
+                    <button type="button">Delete task</button>
+                </div>
+                
             </div>
-            <ul className="task_props">
-                <li>
-                    Begin : {props.date}
-                </li>
-                <li>
-                    Description : {props.description}
-                </li>
-                <li>
-                    Status :
-                </li>
-                <li>
-                    Progress :
-                </li>
-            </ul>
-            <hr />
-            <div className={styles.btn_div}>
-                <button type="button">Open</button>
-                <button type="button">Rename</button>
-                <button type="button">Delete task</button>
-            </div>
-            
-        </div>
-    </section>
-    )
-}
+        </section>
+        )
+    }
+};
 
 export default Task;
