@@ -4,7 +4,9 @@ import React from "react";
 
 export class Task extends React.PureComponent
 {
+
     render(){
+        
         return(
             <section className={styles.task}>
             <div id="task">

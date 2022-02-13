@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "../../Styles/my_profile.module.css";
 import { usersAPI } from "../API/api";
-import { ProfileApi } from "../API/api";
 import { connect } from "react-redux";
 import { Profile_status_with_hooks } from "./Profile_status/Profile_status";
 import { Set_users_profileAC } from "../Redux/Profile_reducer";
 import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
-import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
 import { Navigate } from "react-router-dom";
-import { Preloader } from "../Preloader/Preloader";
 
 
 const Short_description = function (props) {

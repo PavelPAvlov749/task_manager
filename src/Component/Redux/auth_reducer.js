@@ -1,5 +1,4 @@
 import { usersAPI } from "../API/api";
-import { set_current_userAC } from "./users_reducers";
 const SET_USER_AUTH = "SET_USER_AUTH";
 const TOOGLE_IS_FETCH = "TOGLE_IS_FETCH";
 
@@ -27,7 +26,6 @@ export const set_user_authAC = (auth) =>
 export const get_auth_user_data = ()=>(dispatch)=>{
     return usersAPI.set_my_id().then(response=>{
         if(response.data.resultCode === 0){
-            console.log(response.data)
             dispatch(set_user_authAC(true))
         }
     })

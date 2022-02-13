@@ -34,7 +34,11 @@ var task_reducer = function task_reducer() {
       }));
 
     case DELETE_TASK:
-      return _objectSpread({}, state, {}, state.user_tasks.pop());
+      return _objectSpread({}, state, {
+        user_tasks: state.user_tasks.filter(function (t) {
+          t.id != action.id;
+        })
+      });
 
     default:
       return state;
@@ -57,7 +61,8 @@ exports.add_taskAC = add_taskAC;
 
 var delete_taskAC = function delete_taskAC(_task_id) {
   return {
-    type: "DELETE_TASK"
+    type: "DELETE_TASK",
+    id: _task_id
   };
 };
 

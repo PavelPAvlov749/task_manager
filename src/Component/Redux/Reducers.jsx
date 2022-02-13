@@ -77,7 +77,6 @@ export const dialogs_reducer = (state = initial_state.messages,action)=>{
         
         let stateCopy = [...state];
         stateCopy.push(action.text);
-        console.log("Dialogs reducer");
         return stateCopy;
     }
     else{
@@ -89,7 +88,6 @@ export const text_area_reducer = (state = initial_state.newMessage,action)=>{
     if(action.type === "NEW-MESSAGE")
     {
         state = action.text;
-        console.log("I am reducer text area");
     }
     return state;
 }

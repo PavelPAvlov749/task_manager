@@ -18,7 +18,7 @@ import { get_is_fetch } from "../Redux/users-selectors";
 import { get_users_count } from "../Redux/users-selectors";
 import { get_follow_fetch } from "../Redux/users-selectors";
 //Importing the Thunk creators
-// import { get_users_thunkCreator } from "../Redux/users_reducers";
+ import { get_users_thunkCreator } from "../Redux/users_reducers";
 //Importing USers presentation component
 import { Users } from "./Users";
 import preloader from "../../img/preloader.svg"

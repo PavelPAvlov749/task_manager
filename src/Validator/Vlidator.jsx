@@ -1,8 +1,7 @@
-import { updateSyncErrors } from "redux-form"
+
 
 export const required = (value) => {
     if(value){
-        console.log(value)
         return undefined
     }else
     return "Field is reqired"

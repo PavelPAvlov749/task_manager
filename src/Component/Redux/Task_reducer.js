@@ -19,7 +19,7 @@ export const task_reducer = function (state = initial_state,action)
         })
     };
         case DELETE_TASK:
-            return {...state,...state.user_tasks.pop()} 
+            return {...state,user_tasks:state.user_tasks.filter((t)=>{t.id != action.id})} 
         default:
             return state;
     }
@@ -37,6 +37,7 @@ export const add_taskAC = function (Begin,Description,Status,Progress)
 };
 export const delete_taskAC = function (_task_id){
     return {
-        type: "DELETE_TASK"
+        type: "DELETE_TASK",
+        id: _task_id
     }
 }

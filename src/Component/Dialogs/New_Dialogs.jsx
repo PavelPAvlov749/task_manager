@@ -39,7 +39,41 @@ const Dialog_list_item = (props) => {
 };
 
 
-const Dialogs_list = (props) => {
+class Dialog_list_class_component extends React.PureComponent
+{
+
+    componentDidUpdate()
+    {
+        
+        console.log("RENDER UPDATE");
+    };
+    // shouldComponentUpdate(nextProps,nextState)
+    // {
+    //     return nextState != this.state || nextProps != this.props;
+    // }
+    render ()
+    {
+        console.log("RENDER")
+        let users_list = this.props.users.users.map((el) => {
+            return (
+                <Dialog_list_item name={el.name} surname={el.surname} />
+            )
+        })
+    
+        return (
+            <section className={styles.container_list}>
+                <h2>List of dialogs</h2>
+                <ul className={styles.users_list}>
+    
+                    {users_list}
+    
+                </ul>
+            </section>
+        )
+    }
+};
+
+const Dialogs_list = React.memo(props => {
     let users_list = props.users.users.map((el) => {
         return (
             <Dialog_list_item name={el.name} surname={el.surname} />
@@ -56,7 +90,7 @@ const Dialogs_list = (props) => {
             </ul>
         </section>
     )
-};
+});
 
 const Current_dialog_box = (props) => {
     let text_content = React.createRef();
@@ -72,7 +106,6 @@ const Current_dialog_box = (props) => {
     const onSubmit = (formData)=>{
         props.sendMessage("ADD-MESSAGE",formData.message)
         formData.message = "";
-        console.log(formData)
     }
     return (
         <section className={styles.curent_dialog_container}>
@@ -114,6 +147,7 @@ export const Dialogs_container_new = (props) => {
 
     return (
         <div className={styles.Dialogs_container}>
+            {/* <Dialog_list_class_component users={props.users}/> */}
             <Dialogs_list users={props.users} />
             <Current_dialog_box messages={props.messages} sendMessage={props.sendMessage} />
             <Dialogs_sidebar />
