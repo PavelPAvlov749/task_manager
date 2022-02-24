@@ -9,6 +9,7 @@ import thunk from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
 import { App_reducer } from "./App-reducer";
 import {task_reducer} from "./Task_reducer";
+import {compose} from "redux"
 
 
 
@@ -31,9 +32,12 @@ let reducers = combineReducers({
     form:formReducer,
     message:formReducer,
     initialized:App_reducer,
-    users_task:task_reducer
+    user_task:task_reducer
 });
 
-export let  store = createStore(reducers,applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(reducers,composeEnhancers(applyMiddleware(thunk)));
+
+//export let  store = createStore(reducers,applyMiddleware(thunk));
 window.store = store;
 

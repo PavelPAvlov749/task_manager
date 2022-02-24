@@ -46,10 +46,26 @@ var set_user_authAC = function set_user_authAC(auth) {
 exports.set_user_authAC = set_user_authAC;
 
 var get_auth_user_data = function get_auth_user_data() {
-  return function (dispatch) {
-    return _api.usersAPI.set_my_id().then(function (response) {
-      if (response.data.resultCode === 0) {
-        dispatch(set_user_authAC(true));
+  return function _callee(dispatch) {
+    var response;
+    return regeneratorRuntime.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return regeneratorRuntime.awrap(_api.usersAPI.set_my_id());
+
+          case 2:
+            response = _context.sent;
+
+            if (response.data.resultCode === 0) {
+              dispatch(set_user_authAC(true));
+            }
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
       }
     });
   };

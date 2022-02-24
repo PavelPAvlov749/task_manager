@@ -6,6 +6,7 @@ import { Field,reduxForm } from "redux-form";
 import { Min_lenght_creator } from "../../Validator/Vlidator";
 import { required } from "../../Validator/Vlidator";
 import { Textarea } from "../Form/Form";
+import {compose} from "redux";
 
 const min_lenght = Min_lenght_creator(1)
 
@@ -37,7 +38,6 @@ const Dialog_list_item = (props) => {
         </div>
     )
 };
-
 
 class Dialog_list_class_component extends React.PureComponent
 {
@@ -157,5 +157,15 @@ export const Dialogs_container_new = (props) => {
 };
 
 //Use HOC to redirrect if isAuth != true
-export let Auth_redirect = With_auth_redirrect(Dialogs_container_new);
+//Custom compose HOC
+let My_func = function (fn){
+    return (Comp)=>{
+        return fn(Comp)
+    }
+}
+
+export let Auth_redirect = My_func(With_auth_redirrect)(Dialogs_container_new);
+// export let Auth_redirect = compose(
+//     With_auth_redirrect
+// )(Dialogs_container_new)
 

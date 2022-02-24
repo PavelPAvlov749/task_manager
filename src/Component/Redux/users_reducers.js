@@ -13,7 +13,7 @@ const UPDATE_STATUS = "UPDATE_STATUS";
 
 let initiaal_state = {
     users:[],
-    paige_size : 8,
+    paige_size : 5,
     total_users_count : 0,
     current_paige: 1,
     is_fetch: false,

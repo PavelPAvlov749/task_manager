@@ -3,13 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.update_user_status = exports.Login_thunk = exports.get_users_status = exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = exports.set_current_user = void 0;
+exports.update_user_status = exports.get_async_user_profile = exports.Login_thunk = exports.get_users_status = exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = exports.set_current_user = void 0;
 
 var _users_reducers = require("../Redux/users_reducers");
 
 var _auth_reducer = require("../Redux/auth_reducer");
 
 var _reduxForm = require("redux-form");
+
+var _Profile_reducer = require("../Redux/Profile_reducer");
 
 var _api = require("../API/api");
 
@@ -53,13 +55,27 @@ var Unfollow_async = function Unfollow_async(_id) {
 exports.Unfollow_async = Unfollow_async;
 
 var Get_async_users = function Get_async_users(current_page, paige_size) {
-  return function (dispatch) {
-    dispatch((0, _users_reducers.set_is_fetchAC)(true));
+  return function _callee(dispatch) {
+    var data;
+    return regeneratorRuntime.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            dispatch((0, _users_reducers.set_is_fetchAC)(true));
+            _context.next = 3;
+            return regeneratorRuntime.awrap(_api.usersAPI.get_users());
 
-    _api.usersAPI.get_users().then(function (data) {
-      dispatch((0, _users_reducers.set_usersAC)(data.items));
-      dispatch((0, _users_reducers.set_users_countAC)(data.totalCount));
-      dispatch((0, _users_reducers.set_is_fetchAC)(false));
+          case 3:
+            data = _context.sent;
+            dispatch((0, _users_reducers.set_usersAC)(data.items));
+            dispatch((0, _users_reducers.set_users_countAC)(data.totalCount));
+            dispatch((0, _users_reducers.set_is_fetchAC)(false));
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
     });
   };
 };
@@ -102,6 +118,19 @@ var Login_thunk = function Login_thunk(formData) {
 };
 
 exports.Login_thunk = Login_thunk;
+
+var get_async_user_profile = function get_async_user_profile(id) {
+  debugger;
+  return function (dispatch) {
+    // dispatch(set_is_fetchAC(true))
+    _api.usersAPI.get_profile(id).then(function (data) {
+      dispatch((0, _Profile_reducer.Set_users_profileAC)(data));
+      debugger; // dispatch(set_is_fetchAC(false))
+    });
+  };
+};
+
+exports.get_async_user_profile = get_async_user_profile;
 
 var update_user_status = function update_user_status(_text) {
   return function (dispatch) {

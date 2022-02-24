@@ -8,6 +8,7 @@ import { followAC } from "../Redux/users_reducers";
 import { set_statusAC } from "../Redux/users_reducers";
 import { set_user_authAC } from "../Redux/auth_reducer";
 import { stopSubmit } from "redux-form";
+import { Set_users_profileAC } from "../Redux/Profile_reducer";
 
 //Impoerting Data Access Layer
 import { usersAPI } from "../API/api";
@@ -27,7 +28,7 @@ export const set_current_user = function ()
 }
 export const Follow_async = function (_id)
 {
-    return function (dispatch)
+    return function  (dispatch)
     {
         dispatch(follow_fetchAC(true));
         usersAPI.follow(_id).then((response)=>{
@@ -50,15 +51,15 @@ export const Unfollow_async = function (_id)
 
 export const Get_async_users = function (current_page,paige_size)
 {
-    return function (dispatch)
+    return async function (dispatch)
     {
         dispatch(set_is_fetchAC(true))
     
-        usersAPI.get_users().then((data)=>{
-            dispatch(set_usersAC(data.items))
-            dispatch(set_users_countAC(data.totalCount))
-            dispatch(set_is_fetchAC(false))
-        })
+        let data = await usersAPI.get_users();
+            dispatch(set_usersAC(data.items));
+            dispatch(set_users_countAC(data.totalCount));
+            dispatch(set_is_fetchAC(false));
+        
     }
 };
 
@@ -93,6 +94,18 @@ export const Login_thunk = function (formData){
     }
   
 }
+
+export const get_async_user_profile = (id) => {
+    debugger;   
+    return (dispatch) => {
+        // dispatch(set_is_fetchAC(true))
+        usersAPI.get_profile(id).then((data)=>{
+            dispatch(Set_users_profileAC(data));
+            debugger;
+            // dispatch(set_is_fetchAC(false))
+        })
+    }
+};
 
 
 export const update_user_status = function (_text){

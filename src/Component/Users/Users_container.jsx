@@ -26,9 +26,61 @@ import styles from "../../Styles/Users.module.css"
 //importing the DataAcsessLayer Object
 import {usersAPI} from "../API/api.js";
 
+// {
+// const users_api = function(props)
+// {
+//     return (
+//         <div>
+//             {props.is_fetch === true ? <img src={preloader} className={styles.preloader}></img>:
+//             <Users props={...props}/>}
+//         </div>
+//     )
+// }
+// let MapStateToProps = (state)=> {
+//     return {
+//         users: Get_users_reselect(state),
+//         paige_size: get_paige_size(state),
+//         total_users_count: get_users_count(state),
+//         current_paige: get_current_paige(state),
+//         is_fetch: get_is_fetch(state),
+//         is_follow_fetch : get_follow_fetch(state)
+//     }
+// };
+// let MapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userID) => {
+//             dispatch(Follow_async(userID))
+//         },
+//         unfollow: (userID) => {
+//             dispatch(Unfollow_async(userID))
+//         },
+//         set_users: (users) => {
+//             dispatch(set_usersAC(users))
+//         },
+//         set_current_page: (paige) => {
+//             dispatch(set_current_pageAC(paige))
+//         },
+//         set_users_count: (count) => {
+//             dispatch(set_users_countAC(count))
+//         },
+//         is_fetch: (is_fetch) => {
+//             dispatch(set_is_fetchAC(is_fetch))
+//         },
+//         follow_fetch: (is_follow_fetch) => {
+//             dispatch((is_follow_fetch))
+//         },
+//         get_users: (current_paige,paige_size) => {
+//             dispatch(Get_async_users(current_paige,paige_size))
+//         }
+//     }
+// }
+// export const Users_container_2 = connect(MapStateToProps,MapDispatchToProps)(users_api);
+// }
+
 
 
 //Declaring Users API container component
+
 class UsersAPI extends React.Component {
     constructor(props) {
         super(props);

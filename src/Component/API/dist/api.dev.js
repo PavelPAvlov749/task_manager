@@ -31,6 +31,7 @@ var usersAPI = {
   },
   get_profile: function get_profile(user_id) {
     return instance.get("profile/".concat(user_id)).then(function (response) {
+      console.log(response.data);
       return response.data;
     });
   },

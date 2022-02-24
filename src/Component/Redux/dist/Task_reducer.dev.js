@@ -25,18 +25,19 @@ var task_reducer = function task_reducer() {
 
   switch (action.type) {
     case ADD_TASK:
+      console.log(state.user_tasks.length);
       return _objectSpread({}, state, {}, state.user_tasks.push({
         Begin: action.begin,
         Description: action.description,
         Status: action.status,
-        Progress: action.progress // task_id: state.user_tasks.length()
-
+        Progress: action.progress,
+        id: state.user_tasks.length
       }));
 
     case DELETE_TASK:
       return _objectSpread({}, state, {
         user_tasks: state.user_tasks.filter(function (t) {
-          t.id != action.id;
+          return t.id != action.id;
         })
       });
 

@@ -1,14 +1,26 @@
-import React from "react";
-import styles from "../../Styles/my_profile.module.css";
-import { usersAPI } from "../API/api";
-import { connect } from "react-redux";
+//Importing React components :
 import { Profile_status_with_hooks } from "./Profile_status/Profile_status";
+//Importing ReactLib
+import React from "react";
+import { Navigate } from "react-router-dom";
+//importing redux
+import { connect } from "react-redux";
+//Importing action creators andf thunks
 import { Set_users_profileAC } from "../Redux/Profile_reducer";
 import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
-import { Navigate } from "react-router-dom";
+//Importing styles
+import styles from "../../Styles/my_profile.module.css";
+import { usersAPI } from "../API/api";
+//Another imports:
+import axios from "axios";
 
 
+//If avatar photo in unset use this photo instead
+const PHOTO_AVATAR_UNSET = "https://sun9-27.userapi.com/impg/_2g-5c4XtZP0olYTnhZtULcmGaHOsTRblWkgXw/-hzr7We1P_I.jpg?size=604x604&quality=96&sign=02e418d5ed10b576fc20461f6bccfbfc&type=album";
+
+
+//Short description,show when state.description_hide === true
 const Short_description = function (props) {
     return (
         <div>
@@ -22,6 +34,7 @@ const Short_description = function (props) {
         </div>
     )
 }
+//Full description show when state.description_hide === false
 const Full_description = function (props) {
     return (
         <div>
@@ -60,15 +73,27 @@ const Full_description = function (props) {
         </div>
     )
 }
-
+//Declarin Profile Component
 class My_profile extends React.Component {
     state = {
+        //Show/hide description
         description_hide: 1
     }
     componentDidMount() {
         return null;
     }
-
+    getUsers()
+    {
+        const instance = axios.create(
+            {
+                withCredentials:false,
+                baseURL: "localhost:5000",
+            }
+        )
+        instance.get("/users").then((response)=>{
+            console.log(response)
+        })
+    }
 
     render() {
         console.error(this.state.description_hide)
@@ -76,11 +101,11 @@ class My_profile extends React.Component {
 
             <section className={styles.me_container}>
                 <div className={styles.avatar}>
-                    <img src={this.props.profile.profile.photos.large ? this.props.profile.profile.photos.large : "https://sun9-27.userapi.com/impg/_2g-5c4XtZP0olYTnhZtULcmGaHOsTRblWkgXw/-hzr7We1P_I.jpg?size=604x604&quality=96&sign=02e418d5ed10b576fc20461f6bccfbfc&type=album"}
+                    <img src={this.props.profile.profile.photos.large 
+                    ? this.props.profile.profile.photos.large : PHOTO_AVATAR_UNSET}
                         alt="" />
-                    <button type="button" onClick={
-                        () => {
-                        }}>Edit</button>
+                    <button type="button" 
+                    onClick={() => {}}>Edit</button>
                 </div>
                 <div className={styles.control_list}>
 
@@ -101,7 +126,8 @@ class My_profile extends React.Component {
                     <hr />
                     {this.state.description_hide ? <Short_description /> :
                         <Full_description />}
-                    <button type="button">Edit profile</button>
+                    <button type="button" 
+                    onClick={this.getUsers}>Edit profile</button>
                 </section>
             </section>
         )
@@ -120,7 +146,7 @@ class My_profile extends React.Component {
     }
 }
 
-
+//Container Component for Profile Class Component
 export const My_profile_container_1 = function (props) {
     usersAPI.get_profile(props.me).then((data) => {
         props.set_profile(data)
@@ -137,7 +163,6 @@ export const My_profile_container_1 = function (props) {
         return <Navigate to="/login"/>
     }
 };
-
 const MapStateToProps = (state) => {
     return {
         me: state.current_user.current_user,
@@ -147,7 +172,6 @@ const MapStateToProps = (state) => {
 
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         set_profile: (_id) => {
@@ -161,6 +185,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-
 
 export const My_profile_container = connect(MapStateToProps, mapDispatchToProps)(My_profile_container_1);

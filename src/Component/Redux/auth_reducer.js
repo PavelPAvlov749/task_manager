@@ -23,12 +23,12 @@ export const set_user_authAC = (auth) =>
     }
 }
 
-export const get_auth_user_data = ()=>(dispatch)=>{
-    return usersAPI.set_my_id().then(response=>{
+export const get_auth_user_data = ()=>async(dispatch)=>{
+    let response = await usersAPI.set_my_id()
         if(response.data.resultCode === 0){
             dispatch(set_user_authAC(true))
         }
-    })
+    
     
 }
 

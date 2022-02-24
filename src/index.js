@@ -5,12 +5,13 @@ import './index.css';
 import {App_container} from './App';
 import { store } from './Component/Redux/redux_store';
 import { Provider } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const fake_disp = function (dispatch){
    dispatch({type:"fake"})
-}
-export let render = () => ReactDOM.render(
+};
 
+export let render = () => ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
         <App_container />

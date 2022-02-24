@@ -6,8 +6,9 @@ import { Preloader } from "../Preloader/Preloader";
 
 
 export const Profile = (props) => {
-    if(props.isFetch === false)
+    if(true)
     {
+        console.log(props.profile.profile.fullName)
         return (
             <div className={styles.Profile_container}>
     
@@ -25,7 +26,6 @@ export const Profile = (props) => {
             </div>
         )
     }else{
-        console.log(props.isFetch)
         return <Preloader/>
     }
 

@@ -3,6 +3,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import { useEffect } from "react";
 
 //Another imports
 import { Set_users_profileAC } from "../Redux/Profile_reducer";
@@ -12,16 +13,19 @@ import { ProfileApi } from "../API/api";
 import { get_users_status } from "../AsyncAcion/async_action";
 import { Preloader } from "../Preloader/Preloader";
 import { set_is_fetchAC } from "../Redux/users_reducers";
+import { get_async_user_profile } from "../AsyncAcion/async_action";
+
 
 export const Prof_container_API = (props) => {
     const params = useParams();
     const id = params.id;
+  
 
-    props.set_fetch(true);
+    // props.set_fetch(true);
     usersAPI.get_profile(id).then((data) => {
         props.Set_users_profileAC(data)
+        // props.set_fetch(false)
     })
-    props.set_fetch(false)
     props.Get_async_status(id);
     return (
         <Profile {...props} />
@@ -48,6 +52,9 @@ let MapDispatchToProps = (dispatch) => {
         },
         set_fetch: (value) => {
             dispatch(set_is_fetchAC(value))
+        },
+        get_async_user:(id)=>{
+            dispatch(get_async_user_profile(id))
         }
     }
 };

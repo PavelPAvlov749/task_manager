@@ -44,8 +44,10 @@ var reducers = (0, _redux.combineReducers)({
   form: _reduxForm.reducer,
   message: _reduxForm.reducer,
   initialized: _AppReducer.App_reducer,
-  users_task: _Task_reducer.task_reducer
+  user_task: _Task_reducer.task_reducer
 });
-var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk["default"]));
+var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
+var store = (0, _redux.createStore)(reducers, composeEnhancers((0, _redux.applyMiddleware)(_reduxThunk["default"]))); //export let  store = createStore(reducers,applyMiddleware(thunk));
+
 exports.store = store;
 window.store = store;

@@ -13,13 +13,14 @@ export const task_reducer = function (state = initial_state,action)
     switch(action.type)
     {
         case ADD_TASK:
+            console.log(state.user_tasks.length)
            return {...state,...state.user_tasks.push({Begin:action.begin,Description:action.description,
             Status:action.status,Progress:action.progress,
-            // task_id: state.user_tasks.length()
+            id: state.user_tasks.length
         })
     };
         case DELETE_TASK:
-            return {...state,user_tasks:state.user_tasks.filter((t)=>{t.id != action.id})} 
+             return {...state,user_tasks: state.user_tasks.filter((t)=>{return t.id != action.id})}
         default:
             return state;
     }

@@ -7,11 +7,13 @@
     border-color: rgb(128, 122, 122);
     border-style: solid;
     width: 350px;
-    height: 300px;
+    height: 270px;
     text-align: left;
     font-size: 15px;
-    margin: 10px 0 0 10px;
+    margin: 10px 30px 0px 30px;
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.781);
+    display: inline-block;
+    float: left;
   }
   .task:hover{
     box-shadow: 10px 10px 50px 0px rgba(121, 66, 121, 0.781);

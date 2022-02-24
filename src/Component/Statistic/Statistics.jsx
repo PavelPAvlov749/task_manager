@@ -1,5 +1,6 @@
 import react  from "react";
 import styles from "../../Styles/Statistics.module.css";
+import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
 
 const Statistics = ()=> {
     return (
@@ -11,5 +12,4 @@ const Statistics = ()=> {
             </div>
     )
 }
-
-export default Statistics;
+export const Statistics_with_redirrect = With_auth_redirrect(Statistics);

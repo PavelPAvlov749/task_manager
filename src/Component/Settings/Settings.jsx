@@ -1,6 +1,7 @@
 import react from "react";
 import {NavLink} from "react-router-dom";
 import styles from "../../Styles/Settings.module.css";
+import { With_auth_redirrect } from "../AsyncAcion/hoc/Auth_redirect";
 
 
 const Settings = ()=> {
@@ -40,6 +41,5 @@ const Settings = ()=> {
             </section>
         </section>
     )
-}
-
-export default Settings;
+};
+export const Settings_with_reddirect = With_auth_redirrect(Settings);

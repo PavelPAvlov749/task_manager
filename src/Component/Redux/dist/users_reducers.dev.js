@@ -32,7 +32,7 @@ var UPDATE_STATUS = "UPDATE_STATUS";
 
 var initiaal_state = _defineProperty({
   users: [],
-  paige_size: 8,
+  paige_size: 5,
   total_users_count: 0,
   current_paige: 1,
   is_fetch: false,
