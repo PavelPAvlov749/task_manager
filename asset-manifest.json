@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Task_manager_demo/static/css/main.01fc7f5a.chunk.css",
-    "main.js": "/Task_manager_demo/static/js/main.8acf3387.chunk.js",
-    "main.js.map": "/Task_manager_demo/static/js/main.8acf3387.chunk.js.map",
-    "runtime-main.js": "/Task_manager_demo/static/js/runtime-main.dc61be6d.js",
-    "runtime-main.js.map": "/Task_manager_demo/static/js/runtime-main.dc61be6d.js.map",
-    "static/js/2.79123005.chunk.js": "/Task_manager_demo/static/js/2.79123005.chunk.js",
-    "static/js/2.79123005.chunk.js.map": "/Task_manager_demo/static/js/2.79123005.chunk.js.map",
-    "static/js/3.b117f64c.chunk.js": "/Task_manager_demo/static/js/3.b117f64c.chunk.js",
-    "static/js/3.b117f64c.chunk.js.map": "/Task_manager_demo/static/js/3.b117f64c.chunk.js.map",
-    "index.html": "/Task_manager_demo/index.html",
-    "static/css/main.01fc7f5a.chunk.css.map": "/Task_manager_demo/static/css/main.01fc7f5a.chunk.css.map",
-    "static/js/2.79123005.chunk.js.LICENSE.txt": "/Task_manager_demo/static/js/2.79123005.chunk.js.LICENSE.txt",
-    "static/media/Main_logo.bd336707.png": "/Task_manager_demo/static/media/Main_logo.bd336707.png",
-    "static/media/preloader.ad686aaf.svg": "/Task_manager_demo/static/media/preloader.ad686aaf.svg"
+    "main.css": "/task_manager/static/css/main.01fc7f5a.chunk.css",
+    "main.js": "/task_manager/static/js/main.7a7a18f8.chunk.js",
+    "main.js.map": "/task_manager/static/js/main.7a7a18f8.chunk.js.map",
+    "runtime-main.js": "/task_manager/static/js/runtime-main.1cdcb6d2.js",
+    "runtime-main.js.map": "/task_manager/static/js/runtime-main.1cdcb6d2.js.map",
+    "static/js/2.79123005.chunk.js": "/task_manager/static/js/2.79123005.chunk.js",
+    "static/js/2.79123005.chunk.js.map": "/task_manager/static/js/2.79123005.chunk.js.map",
+    "static/js/3.b117f64c.chunk.js": "/task_manager/static/js/3.b117f64c.chunk.js",
+    "static/js/3.b117f64c.chunk.js.map": "/task_manager/static/js/3.b117f64c.chunk.js.map",
+    "index.html": "/task_manager/index.html",
+    "static/css/main.01fc7f5a.chunk.css.map": "/task_manager/static/css/main.01fc7f5a.chunk.css.map",
+    "static/js/2.79123005.chunk.js.LICENSE.txt": "/task_manager/static/js/2.79123005.chunk.js.LICENSE.txt",
+    "static/media/Main_logo.bd336707.png": "/task_manager/static/media/Main_logo.bd336707.png",
+    "static/media/preloader.ad686aaf.svg": "/task_manager/static/media/preloader.ad686aaf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.dc61be6d.js",
+    "static/js/runtime-main.1cdcb6d2.js",
     "static/js/2.79123005.chunk.js",
     "static/css/main.01fc7f5a.chunk.css",
-    "static/js/main.8acf3387.chunk.js"
+    "static/js/main.7a7a18f8.chunk.js"
   ]
 }
