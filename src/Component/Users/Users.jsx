@@ -5,6 +5,12 @@ import axios from "axios";
 import { useState } from "react";
 
 
+const fn_1 = function (n)
+{
+    return n*2;
+}
+console.log(fn_1(10));
+
 export const Users = (props) => {
 
     //Setting the number of users pages

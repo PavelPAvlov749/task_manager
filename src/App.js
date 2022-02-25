@@ -1,6 +1,7 @@
 //Importing React,Redux,React-Redux,Axios :
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
 //Importing React-Routing:
 import {BrowserRouter as Router, Routes ,Route} from "react-router-dom";
@@ -46,7 +47,7 @@ class App extends React.Component
       return <Preloader/>
     }else {
       return (
-        <Router>
+        <HashRouter >
           <div className="root ">
           <Header_heigh_container />
           <Sidebar />
@@ -77,7 +78,7 @@ class App extends React.Component
             <Route path="profile_me" element={<My_profile_container />}/>
           </Routes>
           </div>
-        </Router>
+        </HashRouter>
     
       )
     }
