@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Set_users_profileAC = exports.Profile_reducer = void 0;
+exports.Set_photoAC = exports.Set_users_profileAC = exports.Profile_reducer = void 0;
+
+var _api = require("../API/api");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -12,6 +14,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var SET_USERS_PROFILE = "SET_USERS_PROFILE";
+var SET_PHOTO = "SET_PHOTO";
 var initial_state = {
   profile: {
     profile: null,
@@ -31,6 +34,13 @@ var Profile_reducer = function Profile_reducer() {
         profile: action.profile
       });
 
+    case SET_PHOTO:
+      return _objectSpread({}, state, {
+        profile: _objectSpread({}, state.profile, {
+          photos: action.photo
+        })
+      });
+
     default:
       return state;
   }
@@ -46,3 +56,12 @@ var Set_users_profileAC = function Set_users_profileAC(profile) {
 };
 
 exports.Set_users_profileAC = Set_users_profileAC;
+
+var Set_photoAC = function Set_photoAC(photo) {
+  return {
+    type: "SET_PHOTO",
+    photo: photo
+  };
+};
+
+exports.Set_photoAC = Set_photoAC;

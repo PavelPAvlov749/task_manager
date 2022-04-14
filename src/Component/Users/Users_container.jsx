@@ -24,7 +24,7 @@ import { Users } from "./Users";
 import preloader from "../../img/preloader.svg"
 import styles from "../../Styles/Users.module.css"
 //importing the DataAcsessLayer Object
-import {usersAPI} from "../API/api.js";
+import {usersAPI} from "../API/api";
 
 // {
 // const users_api = function(props)
@@ -80,7 +80,7 @@ import {usersAPI} from "../API/api.js";
 
 
 //Declaring Users API container component
-
+//To add types to class component use this syntax "class My_class ectends React.Compoinent <PropsType,StateType>"
 class UsersAPI extends React.Component {
     constructor(props) {
         super(props);

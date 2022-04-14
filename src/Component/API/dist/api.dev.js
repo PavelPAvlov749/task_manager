@@ -63,6 +63,19 @@ var usersAPI = {
     return instance["delete"]("auth/login").then(function (response) {
       return response;
     });
+  },
+  set_photo: function set_photo(photo) {
+    var formData = new FormData();
+    formData.append("image", photo);
+    return instance.put('profile/photo', formData, {
+      headers: {
+        "Content-Type": "multipart/form=data"
+      }
+    }).then(function (response) {
+      console.log("PHOTO API RESPONSE : ");
+      console.log(response);
+      return response;
+    });
   }
 };
 exports.usersAPI = usersAPI;

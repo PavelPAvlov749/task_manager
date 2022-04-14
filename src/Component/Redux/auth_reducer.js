@@ -1,6 +1,8 @@
+import {result_codes} from "../API/api";
 import { usersAPI } from "../API/api";
 const SET_USER_AUTH = "SET_USER_AUTH";
 const TOOGLE_IS_FETCH = "TOGLE_IS_FETCH";
+
 
 let initiaal_state = {
     auth: false,
@@ -24,8 +26,8 @@ export const set_user_authAC = (auth) =>
 }
 
 export const get_auth_user_data = ()=>async(dispatch)=>{
-    let response = await usersAPI.set_my_id()
-        if(response.data.resultCode === 0){
+    let response = await (await usersAPI.set_my_id())
+        if(response.resultCode === result_codes.Success){
             dispatch(set_user_authAC(true))
         }
     

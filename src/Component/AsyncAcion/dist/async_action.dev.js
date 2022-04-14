@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.update_user_status = exports.get_async_user_profile = exports.Login_thunk = exports.get_users_status = exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = exports.set_current_user = void 0;
+exports.update_photo_thunk = exports.update_user_status = exports.get_async_user_profile = exports.Login_thunk = exports.get_users_status = exports.Get_async_users = exports.Unfollow_async = exports.Follow_async = exports.set_current_user = void 0;
 
 var _users_reducers = require("../Redux/users_reducers");
 
@@ -124,8 +124,7 @@ var get_async_user_profile = function get_async_user_profile(id) {
   return function (dispatch) {
     // dispatch(set_is_fetchAC(true))
     _api.usersAPI.get_profile(id).then(function (data) {
-      dispatch((0, _Profile_reducer.Set_users_profileAC)(data));
-      debugger; // dispatch(set_is_fetchAC(false))
+      dispatch((0, _Profile_reducer.Set_users_profileAC)(data)); // dispatch(set_is_fetchAC(false))
     });
   };
 };
@@ -141,3 +140,33 @@ var update_user_status = function update_user_status(_text) {
 };
 
 exports.update_user_status = update_user_status;
+
+var update_photo_thunk = function update_photo_thunk(photo) {
+  return function _callee2(dispatch) {
+    var response;
+    return regeneratorRuntime.async(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return regeneratorRuntime.awrap(_api.usersAPI.set_photo(photo));
+
+          case 2:
+            response = _context2.sent;
+            debugger;
+
+            if (response.data.resultCode === 0) {
+              dispatch((0, _Profile_reducer.Set_photoAC)(response.data.data.photos.large));
+              console.log(response);
+            }
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    });
+  };
+};
+
+exports.update_photo_thunk = update_photo_thunk;

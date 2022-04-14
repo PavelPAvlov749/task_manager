@@ -5,10 +5,12 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 //importing redux
 import { connect } from "react-redux";
-//Importing action creators andf thunks
+//Importing action creators and thunks
 import { Set_users_profileAC } from "../Redux/Profile_reducer";
 import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
+import {Set_photoAC} from "../Redux/Profile_reducer";
+import {update_photo_thunk} from "../AsyncAcion/async_action"
 //Importing styles
 import styles from "../../Styles/my_profile.module.css";
 import { usersAPI } from "../API/api";
@@ -79,9 +81,8 @@ class My_profile extends React.Component {
         //Show/hide description
         description_hide: 1
     }
-    componentDidMount() {
-        return null;
-    }
+    
+    
     getUsers()
     {
         const instance = axios.create(
@@ -94,7 +95,10 @@ class My_profile extends React.Component {
             console.log(response)
         })
     }
-
+    onPhotoUpdate (e){
+    
+    this.props.set_photo(e.target.files[0])
+    }
     render() {
         console.error(this.state.description_hide)
         return (
@@ -104,8 +108,7 @@ class My_profile extends React.Component {
                     <img src={this.props.profile.profile.photos.large 
                     ? this.props.profile.profile.photos.large : PHOTO_AVATAR_UNSET}
                         alt="" />
-                    <button type="button" 
-                    onClick={() => {}}>Edit</button>
+                    <input type="file" onClick={this.onPhotoUpdate.bind(this)} />
                 </div>
                 <div className={styles.control_list}>
 
@@ -182,6 +185,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         get_users_status: (_id) => {
             dispatch(get_users_status(_id))
+        },
+        set_photo :(photo)=>{
+            dispatch(update_photo_thunk(photo))
         }
     }
 }

@@ -50,7 +50,7 @@ class App extends React.Component
         <HashRouter >
           <div className="root ">
           <Header_heigh_container />
-          <Sidebar />
+          <Sidebar  />
           <Foot />
           <Routes >
             {/* <Route path="/dialogs">
@@ -73,7 +73,7 @@ class App extends React.Component
             <Route path="/Settings" element={<Settings_with_reddirect />}/>
             <Route path="/Statistics" element={<Statistics_with_redirrect />}/>
             <Route path="/users" element={<Users_container />}/>
-            <Route path="profile/:id" element={<Prof_container />}/>
+            <Route path="profile/:id" element={<Prof_container page_title = "Page_title" />}/>
             <Route path="login/" element={<Login_container/>}/>
             <Route path="profile_me" element={<My_profile_container />}/>
           </Routes>
