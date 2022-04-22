@@ -7,7 +7,6 @@ const TOOGLE_IS_FETCH = "TOGLE_IS_FETCH";
 let initiaal_state = {
     auth: false,
 }
-
 export const Auth_reducer = (state = initiaal_state,action) => {
     switch(action.type){
         case SET_USER_AUTH:

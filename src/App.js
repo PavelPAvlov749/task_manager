@@ -22,9 +22,9 @@ import {Redux_container} from "./Component/Dialogs/Dialogs_container";
 import { Task_page } from './Component/Tasks/container';
 import { Settings_with_reddirect } from './Component/Settings/Settings.jsx';
 //Importing Thunks and Acion-creators :
+import { actions } from './Component/Redux/users_reducers';
 import { set_current_user } from './Component/AsyncAcion/async_action';
 import { set_user_authAC } from './Component/Redux/auth_reducer';
-import { set_is_fetchAC } from './Component/Redux/users_reducers';
 import { initialize } from './Component/Redux/App-reducer';
 import { Task_container_2 } from './Component/Tasks/container';
 //Importing Styles
@@ -98,7 +98,7 @@ const MapDispatchToProps = (dispatch) => {
       dispatch(set_user_authAC(auth));
   },
   set_is_fetchAC: (is_fetch)=> {
-      dispatch(set_is_fetchAC(is_fetch))
+      dispatch(actions.set_is_fetchAC(is_fetch))
   },
     set_current_user: () =>{
       dispatch(set_current_user())

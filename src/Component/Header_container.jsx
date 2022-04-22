@@ -6,6 +6,7 @@ import {set_user_authAC} from "./Redux/auth_reducer";
 import {set_is_fetchAC} from "./Redux/users_reducers";
 import { set_current_user } from "./AsyncAcion/async_action";
 import { logout } from "./Redux/auth_reducer";
+import {actions} from "../Component/Redux/users_reducers";
 
 class Header_container extends React.Component
 {
@@ -34,7 +35,7 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(set_user_authAC(auth));
         },
         set_is_fetchAC: (is_fetch)=> {
-            dispatch(set_is_fetchAC(is_fetch))
+            dispatch(actions.set_is_fetchAC(is_fetch))
         },
         set_current_user:()=>{
             dispatch(set_current_user())
