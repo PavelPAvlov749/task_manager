@@ -32,7 +32,7 @@ let MapStateToProps = (state) =>
 let mapDispatchToProps = (dispatch) => {
     return {
         set_user_authAC: (auth) => {
-            dispatch(set_user_authAC(auth));
+            dispatch(actions.set_user_authAC(auth));
         },
         set_is_fetchAC: (is_fetch)=> {
             dispatch(actions.set_is_fetchAC(is_fetch))

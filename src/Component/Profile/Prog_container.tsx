@@ -9,7 +9,7 @@ import useState from "react"
 import {Global_state_type} from "../Redux/redux_store";
 //Another imports
 import { actions } from "../Redux/users_reducers";
-import { Set_users_profileAC } from "../Redux/Profile_reducer";
+import { profile_actions } from "../Redux/Profile_reducer";
 import { usersAPI } from "../API/api";
 import { Profile } from "./Profile";
 import { ProfileApi } from "../API/api";
@@ -90,7 +90,7 @@ let MapStateToProps = (state:State_props_type):MapStateProps_type => {
 let MapDispatchToProps = (dispatch:any) => {
     return {
         Set_users_profileAC: (profile:any) => {
-            dispatch(Set_users_profileAC(profile))
+            dispatch(profile_actions.Set_users_profileAC(profile))
         },
         Get_async_status: (id:number) => {
             dispatch(get_users_status(id))

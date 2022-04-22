@@ -1,7 +1,7 @@
 import { get_auth_user_data } from "./auth_reducer";
 import { set_current_user } from "../AsyncAcion/async_action";
-import { set_user_authAC } from "./auth_reducer";
 import { usersAPI } from "../API/api";
+import { InferActionType } from "./redux_store";
 
 const SET_INITIALIZE = "TM/APP/SET_INITIALIZE";
 
@@ -11,9 +11,9 @@ let initial_state = {
 }
 
 export type Initial_State_Type = typeof initial_state;
+type Action_Type = InferActionType<typeof actions>
 
-
-export const App_reducer = (state = initial_state,action:any) : Initial_State_Type =>
+export const App_reducer = (state = initial_state,action:Action_Type) : Initial_State_Type =>
 {
     switch(action.type){
         case SET_INITIALIZE :
@@ -23,22 +23,12 @@ export const App_reducer = (state = initial_state,action:any) : Initial_State_Ty
     }
 }
 export const actions = {
-    initialize_sucsessAC : (): Action_Type => {
+    initialize_sucsessAC : () => {
         return {
             type: "TM/APP/SET_INITIALIZE",
         }
     }
 }
-let Set_Initialize_Action_Type = "TM/APP/SET_INITIALIZE";
-
-type Action_Type = {
-    type : typeof SET_INITIALIZE
-}
-
-
-//Creating the action types and action function types
-
-
 
 export const initialize = () => (dispatch:any) => {
     let propmise = dispatch(get_auth_user_data())

@@ -2,10 +2,7 @@
 import { result_codes } from "../API/api";
 //Importing action creators
 import { Users_action_type as Action_users_type } from "../Redux/users_reducers";
-import { set_user_authAC } from "../Redux/auth_reducer";
 import { stopSubmit } from "redux-form";
-import { Set_users_profileAC } from "../Redux/Profile_reducer";
-import { Set_photoAC } from "../Redux/Profile_reducer";
 import { actions } from "../Redux/users_reducers";
 //Impoerting Data Access Layer
 import { usersAPI } from "../API/api";
@@ -92,7 +89,7 @@ export const Login_thunk = function (formData:any):Thunk_type
             dispatch(actions.set_current_userAC(response.data.data.userId))
             if(response.data.resultCode === result_codes.Success){
                 // @ts-ignore
-                dispatch(set_user_authAC(true))
+                dispatch(actions.set_user_authAC(true))
             }else{
                 // @ts-ignore
                 dispatch(set_user_authAC(false))
@@ -108,7 +105,7 @@ export const Login_thunk = function (formData:any):Thunk_type
             
         })
     }
-}
+};
     
 export const get_async_user_profile = (id:number):Thunk_type => {
     debugger;   

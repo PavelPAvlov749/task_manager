@@ -24,7 +24,6 @@ import { Settings_with_reddirect } from './Component/Settings/Settings.jsx';
 //Importing Thunks and Acion-creators :
 import { actions } from './Component/Redux/users_reducers';
 import { set_current_user } from './Component/AsyncAcion/async_action';
-import { set_user_authAC } from './Component/Redux/auth_reducer';
 import { initialize } from './Component/Redux/App-reducer';
 import { Task_container_2 } from './Component/Tasks/container';
 //Importing Styles
@@ -95,7 +94,7 @@ const MapStateToProps = (state)=>{
 const MapDispatchToProps = (dispatch) => {
   return {
     set_user_authAC: (auth) => {
-      dispatch(set_user_authAC(auth));
+      dispatch(actions.set_user_authAC(auth));
   },
   set_is_fetchAC: (is_fetch)=> {
       dispatch(actions.set_is_fetchAC(is_fetch))

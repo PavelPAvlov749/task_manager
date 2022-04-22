@@ -108,7 +108,7 @@ export const usersAPI = {
             }).then((response)=>{return response;})
     }
 };
-type ProfileType = {
+export type ProfileType = {
     userID : number,
     lookingForAJob : boolean
     lookingForAJobDescription : string,

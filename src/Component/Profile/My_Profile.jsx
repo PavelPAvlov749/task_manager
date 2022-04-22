@@ -6,10 +6,10 @@ import { Navigate } from "react-router-dom";
 //importing redux
 import { connect } from "react-redux";
 //Importing action creators and thunks
-import { Set_users_profileAC } from "../Redux/Profile_reducer";
+import { profile_actions} from "../Redux/Profile_reducer";
+import { actions } from "../Redux/users_reducers";
 import { update_user_status } from "../AsyncAcion/async_action";
 import { get_users_status } from "../AsyncAcion/async_action";
-import {Set_photoAC} from "../Redux/Profile_reducer";
 import {update_photo_thunk} from "../AsyncAcion/async_action"
 //Importing styles
 import styles from "../../Styles/my_profile.module.css";
@@ -178,10 +178,10 @@ const MapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         set_profile: (_id) => {
-            dispatch(Set_users_profileAC(_id))
+            dispatch(profile_actions.Set_users_profileAC(_id))
         },
         update_status: (_text) => {
-            dispatch(update_user_status(_text))
+            dispatch(actions.update_user_status(_text))
         },
         get_users_status: (_id) => {
             dispatch(get_users_status(_id))
