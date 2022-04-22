@@ -15,6 +15,7 @@ import { ThunkAction} from "redux-thunk";
 import { Dispatch } from "redux";
 import {Global_state_type} from "../Redux/redux_store";
 import { Action } from "history";
+import { User_type } from "../Redux/Reducers";
 //Declaring the thunk creators :
 
 //Declaring the type to getState function
@@ -65,11 +66,10 @@ export const Get_async_users = function (current_page:number,paige_size:number):
     {
         dispatch(actions.set_is_fetchAC(true))
     
-        let data = await usersAPI.get_users();
+        let data = await usersAPI.get_users(current_page,paige_size);
             dispatch(actions.set_usersAC(data.items));
             dispatch(actions.set_users_countAC(data.totalCount));
-            dispatch(actions.set_is_fetchAC(false));
-        
+            dispatch(actions.set_is_fetchAC(false)); 
     }
 };
 
@@ -79,7 +79,7 @@ export const get_users_status = function (id:number):Thunk_type
     {
         ProfileApi.get_status(id).then((response:any)=>{
             console.log(response.data)
-            dispatch(actions.set_statusAC(response.data))
+            dispatch(actions.set_statusAC(response.data));
         })
     }
 };

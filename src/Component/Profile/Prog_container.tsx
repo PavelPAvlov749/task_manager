@@ -54,8 +54,10 @@ type State_props_type = MapStateProps_type & MapDispatchProps_type & OwnStatePro
 
 
 export const Prof_container_API : React.FC<State_props_type> = (props: State_props_type) => {
-    const params = useParams();
-    const id = params.id;
+
+    const params= useParams();
+  
+    const id = Number(params.id);
     let [photo,set_photo] = React.useState(props.profile.profile.photos.large);
     useEffect(()=>{
         usersAPI.get_profile(id).then((data:any)=>{

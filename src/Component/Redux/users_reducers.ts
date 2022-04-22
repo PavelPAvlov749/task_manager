@@ -11,17 +11,26 @@ const SET_CURRENT_USER = "SET_CURRENT_USER";
 const SET_STATUS = "SET_STATUS";
 const UPDATE_STATUS = "UPDATE_STATUS";
 
-type photos_type = {
+export type photos_type = {
     small: string,
     large: string
 }
-
+export type contacts_type = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
 type User_type = {
     id: number,
     name: string,
-    status: string,
-    photos: photos_type,
-    followed: boolean,
+    status?: string,
+    photos?: photos_type,
+    followed?: boolean,
 }
 
 
@@ -94,46 +103,49 @@ const users_reducer = (state = initiaal_state, action: Users_action_type) => {
 }
 
 export const actions = {
-    follow_fetchAC : (_is_follow_fetch: boolean, _userID: number) => ({
-            type: "FOLLOW_FETCH",
-            is_follow_fetch: _is_follow_fetch,
-            userID: _userID
-        }as const),
+    follow_fetchAC: (_is_follow_fetch: boolean, _userID: number) => ({
+        type: "FOLLOW_FETCH",
+        is_follow_fetch: _is_follow_fetch,
+        userID: _userID
+    } as const),
     set_is_fetchAC: (_is_fetch: boolean) => ({
-            type: "TOOGLE_IS_FETCH",
-            is_fetch: _is_fetch} as const),
+        type: "TOOGLE_IS_FETCH",
+        is_fetch: _is_fetch
+    } as const),
 
     followAC: (_userID: number) => ({
-            type: "FOLLOW",
-            userID: _userID} as const ),
+        type: "FOLLOW",
+        userID: _userID
+    } as const),
     unfollowAC: (_userID: number) => ({
 
-            type: "UNFOLLOW",
-            userID: _userID} as const ),
+        type: "UNFOLLOW",
+        userID: _userID
+    } as const),
     set_usersAC: (users: Array<User_type>) => ({
-            type: "SET-USERS",
-            users: users
-        } as const ),
+        type: "SET-USERS",
+        users: users
+    } as const),
     set_current_pageAC: (page: User_type) => ({
-            type: "SET-CURRENT-PAGE",
-            current_page: page
-        } as const ),
+        type: "SET-CURRENT-PAGE",
+        current_page: page
+    } as const),
     set_users_countAC: (count: number) => ({
-            type: "SET-USERS-COUNT",
-            users_count: count
-        }  as const ),
+        type: "SET-USERS-COUNT",
+        users_count: count
+    } as const),
     set_current_userAC: (id: number) => ({
-            type: "SET_CURRENT_USER",
-            current_user_id: id
-        } as const ),
-    set_statusAC:(status: string) => ({
-            type: "SET_STATUS",
-            status: status
-        } as const ),
+        type: "SET_CURRENT_USER",
+        current_user_id: id
+    } as const),
+    set_statusAC: (status: string) => ({
+        type: "SET_STATUS",
+        status: status
+    } as const),
     update_statusAC: (status_text: string) => ({
-            type: "UPDATE_STATUS",
-            status: status_text
-        } as const ),
+        type: "UPDATE_STATUS",
+        status: status_text
+    } as const),
 }
 
 

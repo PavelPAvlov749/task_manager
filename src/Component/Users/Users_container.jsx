@@ -23,6 +23,7 @@ import preloader from "../../img/preloader.svg"
 import styles from "../../Styles/Users.module.css"
 //importing the DataAcsessLayer Object
 import {usersAPI} from "../API/api";
+import { Preloader } from "../Preloader/Preloader";
 
 
 //Declaring Users API container component
@@ -47,19 +48,26 @@ class UsersAPI extends React.Component {
     }
 
     render() {
-        return (<>
-            {this.props.is_fetch === true ? <img src={preloader} className={styles.preloader}></img> :
-                <Users total_users_count={this.props.total_users_count}
-                    paige_size={this.props.paige_size}
-                    current_paige={this.props.current_paige}
-                    on_page_change={this.on_page_change} users={this.props.users}
-                    follow_fetch={this.props.follow_fetch}
-                    is_follow_fetch={this.props.is_follow_fetch}
-                    follow = {this.props.follow}
-                    unfollow = {this.props.unfollow} />
-                    
-            }
-        </>)
+        //If data is fetch (this.props.is_fetch) now component will return <Preloader> else will return <Users> component
+        if(this.props.is_fetch === true)
+        {
+            return (
+                <Preloader/>
+            )
+        }else{
+            return (<>
+                {this.props.is_fetch === true ? <img src={preloader} className={styles.preloader}></img> :
+                    <Users total_users_count={this.props.total_users_count}
+                        paige_size={this.props.paige_size}
+                        current_paige={this.props.current_paige}
+                        on_page_change={this.on_page_change} users={this.props.users}
+                        follow_fetch={this.props.follow_fetch}
+                        is_follow_fetch={this.props.is_follow_fetch}
+                        follow = {this.props.follow}
+                        unfollow = {this.props.unfollow} />
+                }
+            </>)
+        }
     }
 }
 

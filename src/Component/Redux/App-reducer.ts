@@ -3,15 +3,14 @@ import { set_current_user } from "../AsyncAcion/async_action";
 import { set_user_authAC } from "./auth_reducer";
 import { usersAPI } from "../API/api";
 
-const SET_INITIALIZE = "SET_INITIALIZE";
+const SET_INITIALIZE = "TM/APP/SET_INITIALIZE";
 
-export type Initial_State_Type = {
-    initialized : boolean
-};
 
-let initial_state: Initial_State_Type = {
+let initial_state = {
     initialized : false
 }
+
+export type Initial_State_Type = typeof initial_state;
 
 
 export const App_reducer = (state = initial_state,action:any) : Initial_State_Type =>
@@ -23,18 +22,20 @@ export const App_reducer = (state = initial_state,action:any) : Initial_State_Ty
             return state;
     }
 }
-
-let Set_Initialize_Action_Type = "SET_INITIALIZE";
+export const actions = {
+    initialize_sucsessAC : (): Action_Type => {
+        return {
+            type: "TM/APP/SET_INITIALIZE",
+        }
+    }
+}
+let Set_Initialize_Action_Type = "TM/APP/SET_INITIALIZE";
 
 type Action_Type = {
     type : typeof SET_INITIALIZE
 }
 
-export const initialize_sucsessAC = (): Action_Type => {
-    return {
-        type: "SET_INITIALIZE",
-    }
-}
+
 //Creating the action types and action function types
 
 
@@ -46,7 +47,7 @@ export const initialize = () => (dispatch:any) => {
     //When all promises has resolved,then dispatch will call "initialize_sucsessAC" :
     Promise.all([propmise,propmise_2]).then(()=>{
         //setTimeout(2000,()=>{})
-        dispatch(initialize_sucsessAC())
+        dispatch(actions.initialize_sucsessAC())
     })
 }
 
