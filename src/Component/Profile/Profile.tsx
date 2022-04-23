@@ -19,7 +19,7 @@ type Props_type = {
     profile : Profile_type,
     status: string,
 }
-export const Profile : React.FC<Props_type> = (props:Props_type) => {
+export const Profile : React.FC<Props_type> = (props) => {
     if(true)
     {
         console.log(props.profile.profile.fullName )
@@ -28,15 +28,46 @@ export const Profile : React.FC<Props_type> = (props:Props_type) => {
     
             
             <div className={styles.Profile}>
-    
                 <img
-                    src={props.profile.profile.photos.large ? props.profile.profile.photos.large : "https://www.shareicon.net/data/2016/05/24/770124_man_512x512.png"}
+                    src={props.profile.profile.photos.large ? props.profile.profile.photos.large : "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"}
                     alt="" />
                 <h1>{props.profile.profile.fullName}</h1>
+                <div className={styles.about}>
+                <h3>About me :</h3>
+                <h3>Contacts :</h3>
+                <h3>Looking for a Job :</h3>
+                <h3>Show/Hide Description</h3>
+                <ul>
+                    <li>
+                        <span>Facebook : </span>
+                    </li>
+                    <li>
+                        <span>
+                            Intsagramm :
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            Twitter : 
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            LinkedIN :
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            VK :
+                        </span>
+                    </li>
+                </ul>
+                </div>
+
             </div>
     
             {/* <Profile_status status={props.status}/> */}
-            <Profile_status_with_hooks status={props.status}/>
+            <Profile_status_with_hooks status={props.profile.profile.status}/>
             </div>
         )
     }else{

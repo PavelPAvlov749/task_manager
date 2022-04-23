@@ -120,13 +120,13 @@ type save_photo_type = {
     photos : photos_type
 }
 export const ProfileApi = {
-    get_profile(_id:any)
+    get_profile(_id:string | undefined)
     {
         return instance.get<ProfileType>(`profile/${_id}`).then((response)=>{
             return response.data;
         })
     },
-    get_status(_id:number){
+    get_status(_id:any){
 
         return instance.get<string>(`profile/status/${_id}`).then(response => response)
     },

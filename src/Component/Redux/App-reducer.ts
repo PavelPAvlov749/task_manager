@@ -23,11 +23,9 @@ export const App_reducer = (state = initial_state,action:Action_Type) : Initial_
     }
 }
 export const actions = {
-    initialize_sucsessAC : () => {
-        return {
+    initialize_sucsessAC : () => ({
             type: "TM/APP/SET_INITIALIZE",
-        }
-    }
+        }as const)
 }
 
 export const initialize = () => (dispatch:any) => {

@@ -19,8 +19,7 @@ import axios from "axios";
 
 
 //If avatar photo in unset use this photo instead
-const PHOTO_AVATAR_UNSET = "https://sun9-27.userapi.com/impg/_2g-5c4XtZP0olYTnhZtULcmGaHOsTRblWkgXw/-hzr7We1P_I.jpg?size=604x604&quality=96&sign=02e418d5ed10b576fc20461f6bccfbfc&type=album";
-
+const PHOTO_AVATAR_UNSET = "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"
 
 //Short description,show when state.description_hide === true
 const Short_description = function (props) {
@@ -192,4 +191,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+export const My_comp = (props)=>{
+    return (
+        <div>
+            <h1>blablsblssdfsagseh</h1>
+        </div>
+    )
+}
 export const My_profile_container = connect(MapStateToProps, mapDispatchToProps)(My_profile_container_1);

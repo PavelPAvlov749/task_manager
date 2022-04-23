@@ -7,7 +7,7 @@ import {Action} from "redux";
 
 //Declaring types
 type initiaal_state_type = typeof initiaal_state;
-type Action_Type = InferActionType<typeof actions>;
+type Action_Type = InferActionType<typeof auth_actions>;
 type Dispatch_type = Dispatch<Action_Type>;
 type Thunk_type = ThunkAction<void,Global_state_type,unknown,Action_Type>;
 //Base Thunk generic type for all Thunk Craetors
@@ -22,14 +22,13 @@ let initiaal_state = {
     auth: false,
 }
 
-export const actions = {
-    set_user_authAC : (auth:boolean) =>
-    {
-        return {
+export const auth_actions = {
+    set_user_authAC : (auth:boolean) =>(
+        {
             type: "SET_USER_AUTH",
             auth: auth
-        }
-    }
+        }as const)
+
 }
 
 export const Auth_reducer = (state = initiaal_state,action:Action_Type) => {
@@ -46,7 +45,7 @@ export const Auth_reducer = (state = initiaal_state,action:Action_Type) => {
 export const get_auth_user_data = () :CommonThunkType<Action_Type> =>async(dispatch:Dispatch_type)=>{
     let response = await usersAPI.set_my_id()
         if(response.resultCode === result_codes.Success){
-            dispatch(actions.set_user_authAC(true))
+            dispatch(auth_actions.set_user_authAC(true))
         }
     
     
@@ -56,7 +55,7 @@ export const logout = ():CommonThunkType<Action_Type> => async(dispatch:Dispatch
     let response = await usersAPI.log_out().then((response)=>{
         if(response.data.resultCode === 0)
         {
-            dispatch(actions.set_user_authAC(false))
+            dispatch(auth_actions.set_user_authAC(false))
         }
     })
 }

@@ -4,6 +4,7 @@ import { result_codes } from "../API/api";
 import { Users_action_type as Action_users_type } from "../Redux/users_reducers";
 import { stopSubmit } from "redux-form";
 import { actions } from "../Redux/users_reducers";
+import { auth_actions } from "../Redux/auth_reducer";
 //Impoerting Data Access Layer
 import { usersAPI } from "../API/api";
 import { ProfileApi } from "../API/api";
@@ -13,6 +14,7 @@ import { Dispatch } from "redux";
 import {Global_state_type} from "../Redux/redux_store";
 import { Action } from "history";
 import { User_type } from "../Redux/Reducers";
+import {profile_actions} from "../Redux/Profile_reducer";
 //Declaring the thunk creators :
 
 //Declaring the type to getState function
@@ -70,7 +72,7 @@ export const Get_async_users = function (current_page:number,paige_size:number):
     }
 };
 
-export const get_users_status = function (id:number):Thunk_type
+export const get_users_status = function (id:string | undefined):Thunk_type
 {
     return function(dispatch)
     {
@@ -89,7 +91,7 @@ export const Login_thunk = function (formData:any):Thunk_type
             dispatch(actions.set_current_userAC(response.data.data.userId))
             if(response.data.resultCode === result_codes.Success){
                 // @ts-ignore
-                dispatch(actions.set_user_authAC(true))
+                dispatch(auth_actions.set_user_authAC(true))
             }else{
                 // @ts-ignore
                 dispatch(set_user_authAC(false))
@@ -135,7 +137,7 @@ export const update_photo_thunk = function (photo:string):Thunk_type
         debugger;
         if(response.data.resultCode === 0){
             // @ts-ignore
-            dispatch(Set_photoAC(response.data.data.photos.large))
+            dispatch(profile_actions.Set_photoAC(response.data.data.photos.large))
             console.log(response)
         }
      

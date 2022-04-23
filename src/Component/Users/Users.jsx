@@ -53,7 +53,7 @@ export const Users = (props) => {
                     <div className={styles.users_list}>
                         <section className={styles.users}>
                             <NavLink to={"/profile/" + el.id}>
-                                <img src={el.photos.small != null ? el.photos.small : "https://www.shareicon.net/data/2016/05/24/770124_man_512x512.png"} alt="" />
+                                <img src={el.photos.small != null ? el.photos.small : "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"} alt="https://avatars.githubusercontent.com/u/91758623?s=40&v=4" />
                             </NavLink>
                             <div className={styles.user_data}>
                                 {"NAME: " + el.name}<br />

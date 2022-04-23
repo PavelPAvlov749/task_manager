@@ -55,7 +55,7 @@ type State_props_type = MapStateProps_type & MapDispatchProps_type & OwnStatePro
 
 export const Prof_container_API : React.FC<State_props_type> = (props: State_props_type) => {
 
-    const params= useParams();
+    const params = useParams();
   
     const id = Number(params.id);
     let [photo,set_photo] = React.useState(props.profile.profile.photos.large);
@@ -70,9 +70,9 @@ export const Prof_container_API : React.FC<State_props_type> = (props: State_pro
     //     props.Set_users_profileAC(data)
     //     // props.set_fetch(false)
     // })
-    props.Get_async_status(id);
+    //props.Get_async_status(id);
     return (
-        <Profile {...props} />
+       <Profile {...props}/>
 
     )
 };
@@ -92,7 +92,7 @@ let MapDispatchToProps = (dispatch:any) => {
         Set_users_profileAC: (profile:any) => {
             dispatch(profile_actions.Set_users_profileAC(profile))
         },
-        Get_async_status: (id:number) => {
+        Get_async_status: (id:string) => {
             dispatch(get_users_status(id))
         },
         set_fetch: (value:any) => {

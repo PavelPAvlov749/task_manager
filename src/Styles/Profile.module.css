@@ -1,18 +1,26 @@
 .Profile_container{
-    background-color: rgb(116, 174, 182);;
+    background-color: rgba(30, 66, 61, 0.712);
     margin-right: 10px;
+    color: aliceblue;
 }
-
+.about {
+    top: 50px;
+    margin-left: 50px;
+    font-weight: 400;
+}
 .Profile h1{
+
     color: cornsilk;
     font-weight: 400;
     font-size: 30px;
-    float: right;
-    margin:0 850px 0 0;
+    display: inline;
+    margin-bottom: 100px;
 }
 .Profile img {
+    display: inline-block;
     margin-top: 10px;
     margin-left: 50px;
     width: 200px;
     height: 200px;
+    border-radius: 180px;
 }

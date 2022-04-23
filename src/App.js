@@ -1,7 +1,7 @@
 //Importing React,Redux,React-Redux,Axios :
 import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter,BrowserRouter } from 'react-router-dom';
 
 //Importing React-Routing:
 import {BrowserRouter as Router, Routes ,Route} from "react-router-dom";
@@ -29,7 +29,7 @@ import { Task_container_2 } from './Component/Tasks/container';
 //Importing Styles
 import './App.css';
 import { Preloader } from './Component/Preloader/Preloader';
-
+import {My_comp} from "../src/Component/Profile/My_Profile";
 
 ///////////////////////////////////// Rendering the main component   /////////////////////////////////
 
@@ -46,12 +46,13 @@ class App extends React.Component
       return <Preloader/>
     }else {
       return (
-        <HashRouter >
+        <BrowserRouter >
           <div className="root ">
           <Header_heigh_container />
           <Sidebar  />
           <Foot />
           <Routes >
+            
             {/* <Route path="/dialogs">
              
             </Route> */}
@@ -77,7 +78,7 @@ class App extends React.Component
             <Route path="profile_me" element={<My_profile_container />}/>
           </Routes>
           </div>
-        </HashRouter>
+        </BrowserRouter>
     
       )
     }
