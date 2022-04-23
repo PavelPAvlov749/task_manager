@@ -3,14 +3,75 @@ import styles from "../../Styles/Users.module.css"
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import {Formik} from "formik";
 
 
 const fn_1 = function (n)
 {
     return n*2;
 }
-console.log(fn_1(10));
+const Users_search_form = (props)=>{
+    return (
+        <div className={styles.users_search_container}>
+            <h3>Search users : </h3>
+            <Formik className={styles.formik}
+       initialValues={{ email: '', password: '' }}
+       validate={values => {
+         const errors = {};
+         if (!values.email) {
+           errors.email = 'Required';
+         } else if (
+           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+         ) {
+           errors.email = 'Invalid email address';
+         }
+         return errors;
+       }}
+       onSubmit={(values, { setSubmitting }) => {
+         setTimeout(() => {
+           alert(JSON.stringify(values, null, 2));
+           setSubmitting(false);
+         }, 400);
+       }}
+     >
+       {({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+         /* and other goodies */
+       }) => (
+         <form onSubmit={handleSubmit}>
+           <input
+             type="email"
+             name="email"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.email}
+           />
+           {errors.email && touched.email && errors.email}
+           <input
+             type="password"
+             name="password"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.password}
+           />
+           {errors.password && touched.password && errors.password}
+           <button type="submit" disabled={isSubmitting}>
+             Submit
+           </button>
+         </form>
+       )}
+     </Formik>
+        </div>
+    )
+}
 
+console.log(fn_1(10));
 export const Users = (props) => {
 
     //Setting the number of users pages
@@ -30,6 +91,7 @@ export const Users = (props) => {
     return (
 
         <div className={styles.users_container}>
+             <Users_search_form {...props}/>
             <div className={styles.paginator_container}>
                 <div className={styles.paginator}>
                     <button className={styles.paginator_btn} disabled={!portion_number >= 1 }
@@ -51,6 +113,7 @@ export const Users = (props) => {
             {props.users.map((el) => {
                 return (
                     <div className={styles.users_list}>
+                        
                         <section className={styles.users}>
                             <NavLink to={"/profile/" + el.id}>
                                 <img src={el.photos.small != null ? el.photos.small : "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"} alt="https://avatars.githubusercontent.com/u/91758623?s=40&v=4" />

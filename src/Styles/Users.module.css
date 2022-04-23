@@ -75,3 +75,15 @@
     margin-top: 30px;
     
 }
+.users_search_container {
+    color: aliceblue;
+    font-weight: 400;
+    display: inline-block;
+}
+.users_search_container h3 {
+    font-size: 25px;
+    font-weight: 500;
+}
+.formik {
+    display: inline-block;
+}
