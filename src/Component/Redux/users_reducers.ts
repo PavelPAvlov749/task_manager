@@ -25,7 +25,7 @@ export type contacts_type = {
     youtube: string
     mainLink: string
 }
-type User_type = {
+export type User_type = {
     id: number,
     name: string,
     status?: string,

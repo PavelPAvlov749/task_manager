@@ -3,22 +3,28 @@ import styles from "../../Styles/Users.module.css"
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import { Formik,Field,Form } from "formik";
+import { Formik, Field, Form } from "formik";
+import {User_type} from "../Redux/users_reducers";
 
 
 
 //Declarong componentr for serching users with redux formik lib.
-const Users_search_form = (props) => {
-    const set_submit = (values, { setSubmitting} )=> {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 400);
+type users_search_props_type = {
+    
+}
+
+type users_serach_type = {
+    term : string
+}
+const Users_search_form :React.FC<users_search_props_type> = (props) => {
+    const set_submit = (values:users_search_props_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
+        alert(JSON.stringify(values, null, 2));
+        setSubmitting(false);
     }
     return (
         <div className={styles.users_search_container}>
             <h3>Search users : </h3>
-            <Formik className={styles.formik} initialValues={{ term: '',}} onSubmit = {set_submit}>
+            <Formik className={styles.formik} initialValues={{ term: '', }} onSubmit={set_submit}>
                 <Form>
                     <Field type="text" name="term"></Field>
                     <button type="submit" className={styles.submit_button}>Search</button>
@@ -26,11 +32,21 @@ const Users_search_form = (props) => {
             </Formik>
         </div>
     )
+};
+
+type Props_type = {
+    total_users_count: number,
+    paige_size: number,
+    current_paige: number,
+    follow_fetch: (value:boolean)=>void,
+    is_follow_fetch:  Array<number>,
+    follow : (_id:number)=> void,
+    unfollow : (_id:number)=>void,
+    on_page_change : (e:any)=>void,
+    users : Array<User_type>,
 }
-
-
 //Main users container Component ,takin parametrs users<Array>,
-export const Users = (props) => {
+export const Users :React.FC<Props_type>= (props) => {
 
     //Setting the number of users pages
 
@@ -52,7 +68,7 @@ export const Users = (props) => {
             <Users_search_form {...props} />
             <div className={styles.paginator_container}>
                 <div className={styles.paginator}>
-                    <button className={styles.paginator_btn} disabled={!portion_number >= 1}
+                    <button className={styles.paginator_btn} disabled={portion_number >= 1? true : false}
                         onClick={() => { set_portion_number(portion_number - 1) }}>Back</button>
 
 
@@ -68,7 +84,7 @@ export const Users = (props) => {
                 </div>
             </div>
 
-            {props.users.map((el) => {
+            {props.users.map((el:any) => {
                 return (
                     <div className={styles.users_list}>
 
@@ -85,7 +101,7 @@ export const Users = (props) => {
 
                             {el.followed ? <button type="button"
                                 //DISABLING BUTTOM FUNCTION
-                                disabled={props.is_follow_fetch.some(id => id === el.id)}
+                                disabled={props.is_follow_fetch.some((id:number) => id === el.id)}
                                 onClick={() => {
                                     // props.follow_fetch(true, el.id)
 
@@ -102,7 +118,7 @@ export const Users = (props) => {
                                             // props.follow_fetch(false, el.id)
                                         }
                                     })
-                                }}>Unfollow</button> : <button disabled={props.is_follow_fetch.some(id => id === el.id)} type="button"
+                                }}>Unfollow</button> : <button disabled={props.is_follow_fetch.some((id:number) => id === el.id)} type="button"
                                     onClick={() => {
                                         // props.follow_fetch(true, el.id)
                                         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
@@ -111,7 +127,6 @@ export const Users = (props) => {
                                                 "API-KEY": "eb25692d-120e-4f50-87e4-23bbda95a3fe"
                                             }
                                         }).then((response) => {
-                                            window.follow = response;
                                             if (response.status === 200) {
 
                                                 props.follow(el.id)
