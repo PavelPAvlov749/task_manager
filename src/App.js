@@ -12,7 +12,7 @@ import Container from './Component/Tasks/container';
 import Foot from './Component/footer';
 import { Statistics_with_redirrect } from './Component/Statistic/Statistics.jsx';
 import Statistics from "./Component/Statistic/Statistics.jsx";
-import { Users_container } from './Component/Users/Users_container.jsx';
+import { Users_container } from './Component/Users/Users_container';
 import { Prof_container } from './Component/Profile/Prog_container';
 import { Header_heigh_container } from './Component/Header_container';
 import { Login_container } from './Component/Login';

@@ -3,8 +3,6 @@ import React from "react";
 import { connect } from "react-redux";
 //Action creators import
 import { actions } from "../Redux/users_reducers";
-import { set_usersAC } from "../Redux/users_reducers";
-import { set_users_countAC } from "../Redux/users_reducers";
 import { Get_async_users } from "../AsyncAcion/async_action";
 import { Follow_async } from "../AsyncAcion/async_action";
 import { Unfollow_async } from "../AsyncAcion/async_action";
@@ -16,63 +14,81 @@ import { get_is_fetch } from "../Redux/users-selectors";
 import { get_users_count } from "../Redux/users-selectors";
 import { get_follow_fetch } from "../Redux/users-selectors";
 //Importing the Thunk creators
- import { get_users_thunkCreator } from "../Redux/users_reducers";
 //Importing USers presentation component
 import { Users } from "./Users";
 import preloader from "../../img/preloader.svg"
 import styles from "../../Styles/Users.module.css"
 //importing the DataAcsessLayer Object
-import {usersAPI} from "../API/api";
+import { ProfileType, usersAPI } from "../API/api";
 import { Preloader } from "../Preloader/Preloader";
-import {Filter_type} from "../Redux/users_reducers";
+import { Filter_type } from "../Redux/users_reducers";
+import { User_type } from "../Redux/Reducers";
 
 
 //Declaring Users API container component
 //To add types to class component use this syntax "class My_class ectends React.Compoinent <PropsType,StateType>"
-class UsersAPI extends React.Component {
-    constructor(props) {
+type Props_type = {
+    follow: (_id: number) => void,
+    unfollow: (_id: number) => void,
+    set_users: (users: any) => void,
+    set_current_page: (paige: any) => void,
+    set_users_count: (count: number) => void,
+    is_fetch: (is_fetch: boolean) => void,
+    follow_fetch: (is_follow_fetch: boolean) => void,
+    get_users: (current_paige: number, paige_size: number, term: string) => void,
+    users : Array<User_type>,
+    paige_size : number,
+    total_users_count : number,
+    current_paige : number,
+    is_follow_fetch : Array<number>,
+    is_fetch_state : boolean
+};
+
+class UsersAPI extends React.Component<Props_type> {
+    constructor(props: Props_type) {
         super(props);
 
     }
     componentDidMount() {
-        this.props.get_users(this.props.current_paige,this.props.paige_size);
+        this.props.is_fetch(true);
+        this.props.get_users(this.props.current_paige, this.props.paige_size,"");
+        this.props.is_fetch(false);
 
     }
-    on_page_change = (page_number) => {
+    on_page_change = (page_number:number) => {
         this.props.is_fetch(true)
         this.props.set_current_page(page_number);
-        usersAPI.get_users(this.props.current_paige,this.props.paige_size,"").then((data) => {
-                this.props.is_fetch(false);
-                this.props.set_users(data.items);
-            })
+        usersAPI.get_users(this.props.current_paige, this.props.paige_size, "").then((data) => {
+            this.props.set_users(data.items);
+            this.props.is_fetch(false);
+        })
 
     }
-    on_filter_changed = (filter) => {
+    on_filter_changed = (filter:Filter_type) => {
         this.props.is_fetch(true);
-        usersAPI.get_users(this.props.current_paige,this.props.paige_size,filter.term).then((data) => {
+        usersAPI.get_users(this.props.current_paige, this.props.paige_size, filter.term).then((data) => {
             this.props.set_users(data.items);
             this.props.is_fetch(false);
         })
     }
     render() {
         //If data is fetch (this.props.is_fetch) now component will return <Preloader> else will return <Users> component
-        if(this.props.is_fetch === true)
-        {
+        if (this.props.is_fetch_state) {
             return (
-                <Preloader/>
+                <Preloader />
             )
-        }else{
+        } else {
             return (<>
-                {this.props.is_fetch === true ? <img src={preloader} className={styles.preloader}></img> :
+                {this.props.is_fetch_state ? <img src={preloader} className={styles.preloader} alt="#"></img> :
                     <Users total_users_count={this.props.total_users_count}
                         paige_size={this.props.paige_size}
                         current_paige={this.props.current_paige}
                         on_page_change={this.on_page_change} users={this.props.users}
                         follow_fetch={this.props.follow_fetch}
                         is_follow_fetch={this.props.is_follow_fetch}
-                        follow = {this.props.follow}
-                        unfollow = {this.props.unfollow}
-                        on_filter_changed = {this.on_filter_changed} />
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
+                        on_filter_changed={this.on_filter_changed} />
                 }
             </>)
         }
@@ -81,45 +97,45 @@ class UsersAPI extends React.Component {
 
 //Users upper level container
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state:any) => {
 
     return {
         users: Get_users_reselect(state),
         paige_size: get_paige_size(state),
         total_users_count: get_users_count(state),
         current_paige: get_current_paige(state),
-        is_fetch: get_is_fetch(state),
-        is_follow_fetch : get_follow_fetch(state)
-        
+        is_fetch_state: get_is_fetch(state),
+        is_follow_fetch: get_follow_fetch(state)
+
     }
 }
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: any) => {
     return {
-        follow: (userID) => {
+        follow: (userID: number) => {
             dispatch(Follow_async(userID))
         },
-        unfollow: (userID) => {
+        unfollow: (userID: number) => {
             dispatch(Unfollow_async(userID))
         },
-        set_users: (users) => {
+        set_users: (users: any) => {
             dispatch(actions.set_usersAC(users))
         },
-        set_current_page: (paige) => {
+        set_current_page: (paige: User_type) => {
             dispatch(actions.set_current_pageAC(paige))
         },
-        set_users_count: (count) => {
+        set_users_count: (count: number) => {
             dispatch(actions.set_users_countAC(count))
         },
-        is_fetch: (is_fetch) => {
+        is_fetch: (is_fetch: boolean) => {
             dispatch(actions.set_is_fetchAC(is_fetch))
         },
-        follow_fetch: (is_follow_fetch) => {
+        follow_fetch: (is_follow_fetch: boolean) => {
             dispatch((is_follow_fetch))
         },
-        get_users: (current_paige,paige_size,term) => {
-            dispatch(Get_async_users(current_paige,paige_size,term))
+        get_users: (current_paige: number, paige_size: number, term: string) => {
+            dispatch(Get_async_users(current_paige, paige_size, term))
         }
     }
 }
 
-export const Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);
+export const Users_container = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
