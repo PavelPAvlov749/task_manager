@@ -24,6 +24,7 @@ import styles from "../../Styles/Users.module.css"
 //importing the DataAcsessLayer Object
 import {usersAPI} from "../API/api";
 import { Preloader } from "../Preloader/Preloader";
+import {Filter_type} from "../Redux/users_reducers";
 
 
 //Declaring Users API container component
@@ -40,13 +41,19 @@ class UsersAPI extends React.Component {
     on_page_change = (page_number) => {
         this.props.is_fetch(true)
         this.props.set_current_page(page_number);
-        usersAPI.get_users(this.props.current_paige,this.props.paige_size).then((data) => {
+        usersAPI.get_users(this.props.current_paige,this.props.paige_size,"").then((data) => {
                 this.props.is_fetch(false);
                 this.props.set_users(data.items);
             })
 
     }
-
+    on_filter_changed = (filter) => {
+        this.props.is_fetch(true);
+        usersAPI.get_users(this.props.current_paige,this.props.paige_size,filter.term).then((data) => {
+            this.props.set_users(data.items);
+            this.props.is_fetch(false);
+        })
+    }
     render() {
         //If data is fetch (this.props.is_fetch) now component will return <Preloader> else will return <Users> component
         if(this.props.is_fetch === true)
@@ -64,13 +71,13 @@ class UsersAPI extends React.Component {
                         follow_fetch={this.props.follow_fetch}
                         is_follow_fetch={this.props.is_follow_fetch}
                         follow = {this.props.follow}
-                        unfollow = {this.props.unfollow} />
+                        unfollow = {this.props.unfollow}
+                        on_filter_changed = {this.on_filter_changed} />
                 }
             </>)
         }
     }
-}
-
+};
 
 //Users upper level container
 
@@ -109,8 +116,8 @@ let mapDispatchToProps = (dispatch) => {
         follow_fetch: (is_follow_fetch) => {
             dispatch((is_follow_fetch))
         },
-        get_users: (current_paige,paige_size) => {
-            dispatch(Get_async_users(current_paige,paige_size))
+        get_users: (current_paige,paige_size,term) => {
+            dispatch(Get_async_users(current_paige,paige_size,term))
         }
     }
 }

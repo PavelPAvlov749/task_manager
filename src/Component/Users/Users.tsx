@@ -5,21 +5,22 @@ import axios from "axios";
 import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import {User_type} from "../Redux/users_reducers";
+import {Filter_type} from "../Redux/users_reducers";
 
 
 
 //Declarong componentr for serching users with redux formik lib.
 type users_search_props_type = {
-    
+    on_filter_changed : (filter:Filter_type)=> void
 }
 
 type users_serach_type = {
     term : string
 }
 const Users_search_form :React.FC<users_search_props_type> = (props) => {
-    const set_submit = (values:users_search_props_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
+
+    const set_submit = (values:Filter_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
+        props.on_filter_changed(values)
     }
     return (
         <div className={styles.users_search_container}>
@@ -44,6 +45,7 @@ type Props_type = {
     unfollow : (_id:number)=>void,
     on_page_change : (e:any)=>void,
     users : Array<User_type>,
+    on_filter_changed : (filter:Filter_type)=> void
 }
 //Main users container Component ,takin parametrs users<Array>,
 export const Users :React.FC<Props_type>= (props) => {

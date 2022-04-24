@@ -54,9 +54,9 @@ type get_users_items_type = {
 };
 
 export const usersAPI = {
-    get_users(current_paige:number = 1,page_size:number = 8)
+    get_users(current_paige:number = 1,page_size:number = 8,term:string = "")
     {
-        return instance.get<get_users_items_type>(`users?page=${current_paige}&count=${page_size}`).then(response => {
+        return instance.get<get_users_items_type>(`users?page=${current_paige}&count=${page_size}&term=${term}`).then(response => {
             return response.data;
         })
     },

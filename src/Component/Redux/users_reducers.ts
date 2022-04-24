@@ -10,6 +10,7 @@ const FOLLOW_FETCH = "FOLLOW_FETCH";
 const SET_CURRENT_USER = "SET_CURRENT_USER";
 const SET_STATUS = "SET_STATUS";
 const UPDATE_STATUS = "UPDATE_STATUS";
+const SET_FILTER = "SET_FILTER";
 
 export type photos_type = {
     small: string,
@@ -32,7 +33,9 @@ export type User_type = {
     photos?: photos_type,
     followed?: boolean,
 }
-
+export type Filter_type = {
+    term : string
+}
 
 let initiaal_state = {
     users: [] as Array<User_type>,
@@ -43,6 +46,9 @@ let initiaal_state = {
     is_follow_fetch: [] as Array<number>,
     current_user: null,
     status: "" as string,
+    filter: {
+        term : ""
+    }
 };
 
 export type Users_action_type = InferActionType<typeof actions>;
@@ -96,7 +102,8 @@ const users_reducer = (state = initiaal_state, action: Users_action_type) => {
 
         case SET_CURRENT_USER:
             return { ...state, current_user: action.current_user_id }
-
+        case SET_FILTER : 
+            return {...state,filter :{...state.filter,term : action.term}}
         default:
             return state;
     }
@@ -146,6 +153,10 @@ export const actions = {
         type: "UPDATE_STATUS",
         status: status_text
     } as const),
+    set_filterAC: (_term:string) => ({
+        type : "SET_FILTER",
+        term: _term
+    }as const)
 }
 
 
