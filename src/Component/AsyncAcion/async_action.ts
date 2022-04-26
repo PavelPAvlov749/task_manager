@@ -65,11 +65,10 @@ export const Get_async_users = function (current_page:number,paige_size:number,t
     return async function (dispatch)
     {
         dispatch(actions.set_is_fetchAC(true))
-    
-        let data = await usersAPI.get_users(current_page,paige_size);
+        dispatch(actions.set_filterAC(term));
+        let data = await usersAPI.get_users(current_page,paige_size,term);
             dispatch(actions.set_usersAC(data.items));
             dispatch(actions.set_users_countAC(data.totalCount));
-            dispatch(actions.set_filterAC(term));
             dispatch(actions.set_is_fetchAC(false)); 
     }
 };

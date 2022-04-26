@@ -6,20 +6,23 @@
 }
 
 .root{
-  background:url("https://img4.goodfon.ru/original/2880x1800/5/77/triangle-steel-background-texture-design-abstract-wall-tre-5.jpg");
-  background-color: rgb(233, 227, 227);
+  
   background-size: cover;
   background-repeat: no-repeat;
   display: -ms-grid;
   display: grid;
    /* -ms-grid-rows: 400px auto;
   -ms-grid-columns: 400px auto; */
-  grid-template-columns: 250px auto;
-  grid-template-rows: 100px 700px;
+  margin-left: 20%;
+  grid-template-columns: 1000px;
+  grid-template-rows: auto;
   grid-template-areas:
-  "H H"
-  "S C"
-  "F F";
-  gap: 20px;
+  "H"
+  "S"
+  "C"
+  "F";
+  gap: 5px;
+  align-items: center;
+  
 }
 

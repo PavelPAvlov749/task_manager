@@ -25,13 +25,7 @@ const PHOTO_AVATAR_UNSET = "https://avatars.githubusercontent.com/u/91758623?s=4
 const Short_description = function (props) {
     return (
         <div>
-            <ul className={styles.short_description}>
-                <li>
-                    <span>
-                        <h4>Self information:</h4> Altermann
-                    </span>
-                </li>
-            </ul>
+
         </div>
     )
 }
@@ -95,7 +89,6 @@ class My_profile extends React.Component {
         })
     }
     onPhotoUpdate (e){
-    
     this.props.set_photo(e.target.files[0])
     }
     render() {
@@ -104,10 +97,15 @@ class My_profile extends React.Component {
 
             <section className={styles.me_container}>
                 <div className={styles.avatar}>
+                    <label for="file_input">
                     <img src={this.props.profile.profile.photos.large 
                     ? this.props.profile.profile.photos.large : PHOTO_AVATAR_UNSET}
                         alt="" />
-                    <input type="file" onClick={this.onPhotoUpdate.bind(this)} />
+                    </label>
+
+                    <input type="file" id="file_input" onClick={this.onPhotoUpdate.bind(this)} />
+                    <button type="button" 
+                    onClick={this.getUsers}>Edit profile</button>
                 </div>
                 <div className={styles.control_list}>
 
@@ -115,21 +113,19 @@ class My_profile extends React.Component {
 
                 </div>
                 <div className={styles.info}>
+               
                     <h2>{this.props.profile.profile.fullName}</h2>
+
                     {/* <Profile_status status={this.props.status} className={styles.status} update_status={this.props.update_status} /> */}
                     <Profile_status_with_hooks status={this.props.status} className={styles.status} update_status={this.props.update_status}/>
                 </div>
 
                 <section className={styles.description}>
-                    <h2>Description :</h2>
                     {this.state.description_hide ? 
-                    <button onClick={this.show_description} type="button">Show</button> 
+                    <button onClick={this.show_description} type="button">Description</button> 
                     :<button onClick={this.hide_description} type="button">Hide</button>}
-                    <hr />
                     {this.state.description_hide ? <Short_description /> :
                         <Full_description />}
-                    <button type="button" 
-                    onClick={this.getUsers}>Edit profile</button>
                 </section>
             </section>
         )

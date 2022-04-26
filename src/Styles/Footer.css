@@ -3,6 +3,8 @@
     grid-area:F;
     background-color: rgba(3, 41, 36, 0.712);
     color: rgb(197, 194, 194);
+    height: 200px;
+    border-radius: 5px;
   }
   .footer h2{
     text-align: center;
@@ -15,4 +17,8 @@
   .footer ul{
     list-style: none;
     text-align: center;
+    display: inline;
+  }
+  .footer li{
+    display: inline;
   }

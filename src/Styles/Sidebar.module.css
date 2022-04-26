@@ -1,11 +1,10 @@
 .sidebar{
     grid-area: S;
     background-color: rgba(55, 90, 85, 0.712);
-    font-size: 25px;
-    margin-left: 20px;
+    font-size: 20px;
     border-radius: 3px;
     font-weight: 300;
-  
+   
   }
   .sidebar hr{
     margin: 0%;
@@ -14,28 +13,26 @@
   a{
     text-decoration: none;
     color:white;
-    
   }
   a:hover{
     color: white;
-    text-shadow: 4px 4px 10px rgba(238, 107, 183, 0.884);
-    font-weight: 400;
-    transform: translateX(20px);
-    transition:transform 0.3s ease-in-out;
-  }
-  a:active{
-    font-size: 27px;
+    text-shadow: 5px 5px 10px rgba(233, 38, 152, 0.884);
     
   }
-  .side_list{
-    margin-right: 10px;;
+  a:active{
+    font-size: 20px;
+    
   }
+  
   .sidebar ul{
-    margin-right: 50px;
+    margin-left: 140px;
+    display: inline;
     list-style-type:none;
     list-style: none;
+    text-align: center;
   }
   .sidebar li{
-    padding:5px 10px 20px 10px;
+    display: inline;
+    margin-left: 25px;
   } 
 

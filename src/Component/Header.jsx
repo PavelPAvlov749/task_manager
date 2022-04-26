@@ -1,7 +1,7 @@
 import classes from "../Styles/Header.module.css"
 import { NavLink } from "react-router-dom";
 import { set_current_user } from "./Redux/users_reducers";
-import logo from "../../src/img/Main_logo.png"
+import logo from "../../src/img/Titile_logo.png"
 import styles from "../Styles/Header.module.css"
 
 

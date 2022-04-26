@@ -32,7 +32,8 @@ let reducers = combineReducers({
     form:formReducer,
     message:formReducer,
     initialized:App_reducer,
-    user_task:task_reducer
+    user_task:task_reducer,
+    term: users_reducer
 });
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;
 export type InferActionType<T extends {[key:string]: (...args:any)=> any}> = ReturnType<PropertieTypes<T>>;

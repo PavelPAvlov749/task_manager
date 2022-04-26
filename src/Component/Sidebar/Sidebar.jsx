@@ -10,23 +10,23 @@ const Sidebar = () =>
             <ul className="side_list">
                 <li>
                     <NavLink  to="/profile_me">Home</NavLink>
-                    <hr />
+                   
                 </li>
                 <li>
                     <NavLink to="/dialogs">Massages</NavLink>
-                    <hr />
+                    
                 </li>
                 <li>
                     <NavLink to="/tasks">Tasks</NavLink>
-                    <hr />  
+                    
                 </li>
                 <li>
                     <NavLink to="/Settings">Settings</NavLink>
-                    <hr />
+                    
                 </li>
                 <li>
                     <NavLink to="/statistics">Statisics</NavLink>
-                    <hr />
+                    
                 </li>
                 <li>
                     <NavLink to="/users">Users</NavLink>

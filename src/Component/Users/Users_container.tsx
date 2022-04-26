@@ -23,6 +23,7 @@ import { ProfileType, usersAPI } from "../API/api";
 import { Preloader } from "../Preloader/Preloader";
 import { Filter_type } from "../Redux/users_reducers";
 import { User_type } from "../Redux/Reducers";
+import { Global_state_type } from "../Redux/redux_store";
 
 
 //Declaring Users API container component
@@ -58,7 +59,7 @@ class UsersAPI extends React.Component<Props_type> {
     on_page_change = (page_number:number) => {
         this.props.is_fetch(true)
         this.props.set_current_page(page_number);
-        usersAPI.get_users(this.props.current_paige, this.props.paige_size, "").then((data) => {
+        usersAPI.get_users(this.props.current_paige, this.props.paige_size,"").then((data) => {
             this.props.set_users(data.items);
             this.props.is_fetch(false);
         })
@@ -97,7 +98,7 @@ class UsersAPI extends React.Component<Props_type> {
 
 //Users upper level container
 
-let mapStateToProps = (state:any) => {
+let mapStateToProps = (state:Global_state_type) => {
 
     return {
         users: Get_users_reselect(state),
@@ -105,8 +106,8 @@ let mapStateToProps = (state:any) => {
         total_users_count: get_users_count(state),
         current_paige: get_current_paige(state),
         is_fetch_state: get_is_fetch(state),
-        is_follow_fetch: get_follow_fetch(state)
-
+        is_follow_fetch: get_follow_fetch(state),
+        term : state.term
     }
 }
 let mapDispatchToProps = (dispatch: any) => {
