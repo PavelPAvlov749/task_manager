@@ -17,23 +17,33 @@ type users_search_props_type = {
 type users_serach_type = {
     term : string
 }
+type Form_type = {
+    term : string,
+    friend: "true" | "fasle" | "null"
+}
 const Users_search_form :React.FC<users_search_props_type> = React.memo((props) => {
 
-    const set_submit = (values:Filter_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
-        props.on_filter_changed(values)
+    //Formik uses string by default values of select,so we convert Formik values type to boolean or null,
+    //Then puting them into on_filter_changed function
+    const set_submit = (values:Form_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
+        const filter : Filter_type = {
+            term : values.term,
+            friend : values.friend === "null" ? null : values.friend === "true" ? true : false
+        }
+        props.on_filter_changed(filter)
         console.log(values)
     }
     return (
         <div className={styles.users_search_container}>
             <h3>Search users : </h3>
-            <Formik className={styles.formik} initialValues={{ term: '', }} onSubmit={set_submit}>
+            <Formik className={styles.formik} initialValues={{ term: '',friend:"null"}} onSubmit={set_submit}>
                 <Form>
                     <Field type="text" name="term"></Field>
-                    {/* <Field type="select">
-                        <option value="red">All users</option>
-                        <option value="green">Only followed</option>
-                        <option value="blue">Only unfollowed</option>
-                    </Field> */}
+                    <Field as="select" name="friend">
+                        <option value="null">All users</option>
+                        <option value="true">Only followed</option>
+                        <option value="false">Only unfollowed</option>
+                    </Field>
                     <button type="submit" className={styles.submit_button}>Search</button>
                 </Form>
             </Formik>

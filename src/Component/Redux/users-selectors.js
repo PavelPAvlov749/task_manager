@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 
-const get_users = (state)=> {
+export const get_users = (state)=> {
     return state.users_paige.users
 };
 

@@ -24,6 +24,7 @@ import { Preloader } from "../Preloader/Preloader";
 import { Filter_type } from "../Redux/users_reducers";
 import { User_type } from "../Redux/Reducers";
 import { Global_state_type } from "../Redux/redux_store";
+import { threadId } from "worker_threads";
 
 
 //Declaring Users API container component
@@ -36,7 +37,7 @@ type Props_type = {
     set_users_count: (count: number) => void,
     is_fetch: (is_fetch: boolean) => void,
     follow_fetch: (is_follow_fetch: boolean) => void,
-    get_users: (current_paige: number, paige_size: number, term: string) => void,
+    get_users: (current_paige: number, paige_size: number, filter:Filter_type) => void,
     users : Array<User_type>,
     paige_size : number,
     total_users_count : number,
@@ -53,15 +54,16 @@ class UsersAPI extends React.Component<Props_type> {
     }
     componentDidMount() {
         this.props.is_fetch(true);
-        this.props.get_users(this.props.current_paige, this.props.paige_size,this.props.filter.term);
+        this.props.get_users(this.props.current_paige, this.props.paige_size,this.props.filter);
+        console.log("COMPONENT DID MOUNT TERM IS : " + this.props.filter.term);
         this.props.is_fetch(false);
 
     }
     on_page_change = (page_number:number) => {
         this.props.is_fetch(true)
         this.props.set_current_page(page_number);
-        this.props.get_users(this.props.current_paige,this.props.paige_size,this.props.filter.term)
-        actions.set_filterAC(this.props.filter.term)
+        this.props.get_users(this.props.current_paige,this.props.paige_size,this.props.filter)
+        actions.set_filterAC(this.props.filter)
         console.log(this.props.filter.term)
         // usersAPI.get_users(this.props.current_paige, this.props.paige_size,filter.term).then((data) => {
         //     this.props.set_users(data.items);
@@ -72,8 +74,8 @@ class UsersAPI extends React.Component<Props_type> {
     }
     on_filter_changed = (filter:Filter_type) => {
         this.props.is_fetch(true);
-        actions.set_filterAC(filter.term);
-        usersAPI.get_users(this.props.current_paige, this.props.paige_size, filter.term).then((data) => {
+        actions.set_filterAC(filter);
+        usersAPI.get_users(this.props.current_paige, this.props.paige_size, filter).then((data) => {
             actions.set_users_countAC(data.totalCount);
             this.props.set_users(data.items);
             this.props.is_fetch(false);
@@ -141,8 +143,8 @@ let mapDispatchToProps = (dispatch: any) => {
         follow_fetch: (is_follow_fetch: boolean) => {
             dispatch((is_follow_fetch))
         },
-        get_users: (current_paige: number, paige_size: number, term: string) => {
-            dispatch(Get_async_users(current_paige, paige_size, term))
+        get_users: (current_paige: number, paige_size: number, filter: Filter_type) => {
+            dispatch(Get_async_users(current_paige, paige_size, filter))
         }
     }
 }

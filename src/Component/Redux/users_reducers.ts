@@ -35,7 +35,7 @@ export type User_type = {
 }
 export type Filter_type = {
     term : string,
-    friend : boolean
+    friend : null | boolean
 }
 
 let initiaal_state = {
@@ -49,7 +49,7 @@ let initiaal_state = {
     status: "" as string,
     filter: {
         term : "" as string,
-        friend : null as null | boolean,
+        friend : null as null | boolean
     }
 };
 
@@ -105,7 +105,7 @@ const users_reducer = (state = initiaal_state, action: Users_action_type) => {
         case SET_CURRENT_USER:
             return { ...state, current_user: action.current_user_id }
         case SET_FILTER : 
-            return {...state,filter :{...state.filter,term : action.payload}}
+            return {...state,filter :{...state,filter: action.payload}}
         default:
             return state;
     }

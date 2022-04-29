@@ -1,7 +1,7 @@
 import  axios from "axios";
 import { AxiosResponse } from "axios";
 import { User_type } from "../Redux/Reducers";
-import { photos_type } from "../Redux/users_reducers";
+import { Filter_type, photos_type } from "../Redux/users_reducers";
 import { contacts_type } from "../Redux/users_reducers";
 
 const API_KEY = "eb25692d-120e-4f50-87e4-23bbda95a3fe";
@@ -54,9 +54,10 @@ type get_users_items_type = {
 };
 
 export const usersAPI = {
-    get_users(current_paige:number = 1,page_size:number = 8,term:string = "")
+    get_users(current_paige:number = 1,page_size:number = 8,filter: Filter_type)
     {
-        return instance.get<get_users_items_type>(`users?page=${current_paige}&count=${page_size}&term=${term}`).then(response => {
+        return instance.get<get_users_items_type>(`users?page=${current_paige}&count=${page_size}&term=${filter.term}`+ (filter.friend === null ? "" : `&friend=${filter.friend}`))
+        .then(response => {
             return response.data;
         })
     },
