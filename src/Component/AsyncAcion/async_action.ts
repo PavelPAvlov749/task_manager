@@ -16,6 +16,7 @@ import { Action } from "history";
 import { User_type } from "../Redux/Reducers";
 import {profile_actions} from "../Redux/Profile_reducer";
 import { displayPartsToString } from "typescript";
+import {Filter_type} from "../Redux/users_reducers"
 //Declaring the thunk creators :
 
 //Declaring the type to getState function
@@ -60,13 +61,13 @@ export const Unfollow_async = function (_id:number):Thunk_type
     }
 }
 
-export const Get_async_users = function (current_page:number,paige_size:number,term:string):Thunk_type
+export const Get_async_users = function (current_page:number,paige_size:number,filter:Filter_type):Thunk_type
 {
     return async function (dispatch)
     {
         dispatch(actions.set_is_fetchAC(true))
-        dispatch(actions.set_filterAC(term));
-        let data = await usersAPI.get_users(current_page,paige_size,term);
+        dispatch(actions.set_filterAC(filter));
+        let data = await usersAPI.get_users(current_page,paige_size,filter);
             dispatch(actions.set_usersAC(data.items));
             dispatch(actions.set_users_countAC(data.totalCount));
             dispatch(actions.set_is_fetchAC(false)); 

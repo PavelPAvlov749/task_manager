@@ -14,19 +14,15 @@ const Sidebar = () =>
                 </li>
                 <li>
                     <NavLink to="/dialogs">Massages</NavLink>
-                    
                 </li>
                 <li>
                     <NavLink to="/tasks">Tasks</NavLink>
-                    
                 </li>
                 <li>
                     <NavLink to="/Settings">Settings</NavLink>
-                    
                 </li>
                 <li>
                     <NavLink to="/statistics">Statisics</NavLink>
-                    
                 </li>
                 <li>
                     <NavLink to="/users">Users</NavLink>

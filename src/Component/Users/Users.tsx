@@ -17,10 +17,11 @@ type users_search_props_type = {
 type users_serach_type = {
     term : string
 }
-const Users_search_form :React.FC<users_search_props_type> = (props) => {
+const Users_search_form :React.FC<users_search_props_type> = React.memo((props) => {
 
     const set_submit = (values:Filter_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
         props.on_filter_changed(values)
+        console.log(values)
     }
     return (
         <div className={styles.users_search_container}>
@@ -28,12 +29,17 @@ const Users_search_form :React.FC<users_search_props_type> = (props) => {
             <Formik className={styles.formik} initialValues={{ term: '', }} onSubmit={set_submit}>
                 <Form>
                     <Field type="text" name="term"></Field>
+                    {/* <Field type="select">
+                        <option value="red">All users</option>
+                        <option value="green">Only followed</option>
+                        <option value="blue">Only unfollowed</option>
+                    </Field> */}
                     <button type="submit" className={styles.submit_button}>Search</button>
                 </Form>
             </Formik>
         </div>
     )
-};
+});
 
 type Props_type = {
     total_users_count: number,
@@ -45,7 +51,8 @@ type Props_type = {
     unfollow : (_id:number)=>void,
     on_page_change : (e:any)=>void,
     users : Array<User_type>,
-    on_filter_changed : (filter:Filter_type)=> void
+    on_filter_changed : (filter:Filter_type)=> void,
+    filter: Filter_type
 }
 //Main users container Component ,takin parametrs users<Array>,
 export const Users :React.FC<Props_type>= (props) => {
@@ -62,8 +69,6 @@ export const Users :React.FC<Props_type>= (props) => {
     let [portion_number, set_portion_number] = useState(1);
     let left_portion_page_number = (portion_number - 1) * portion_size + 1;
     let right_portion_page_number = portion_number * portion_size;
-    console.log(props.current_paige);
-    console.log(right_portion_page_number);
     return (
 
         <div className={styles.users_container}>
@@ -95,8 +100,8 @@ export const Users :React.FC<Props_type>= (props) => {
                                 <img src={el.photos.small != null ? el.photos.small : "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"} alt="https://avatars.githubusercontent.com/u/91758623?s=40&v=4" />
                             </NavLink>
                             <div className={styles.user_data}>
-                                {"NAME: " + el.name}<br />
-                                {"STATUS: " + el.status}<br />
+                                {el.name}<br />
+                                {"STATUS: " + el.status ? el.status:""}<br />
                             </div>
 
                             {/* FOLLOW UNFOLLOW BUTTONS TOOGLE */}
