@@ -1,6 +1,6 @@
 //Imorting REACT,AXIOS and REDUX
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 //Action creators import
 import { actions } from "../Redux/users_reducers";
 import { Get_async_users } from "../AsyncAcion/async_action";
@@ -37,15 +37,47 @@ type Props_type = {
     set_users_count: (count: number) => void,
     is_fetch: (is_fetch: boolean) => void,
     follow_fetch: (is_follow_fetch: boolean) => void,
-    get_users: (current_paige: number, paige_size: number, filter:Filter_type) => void,
-    users : Array<User_type>,
-    paige_size : number,
-    total_users_count : number,
-    current_paige : number,
-    is_follow_fetch : Array<number>,
-    is_fetch_state : boolean,
-    filter : Filter_type
+    get_users: (current_paige: number, paige_size: number, filter: Filter_type) => void,
+    users: Array<User_type>,
+    paige_size: number,
+    total_users_count: number,
+    current_paige: number,
+    is_follow_fetch: Array<number>,
+    is_fetch_state: boolean,
+    filter: Filter_type
 };
+
+
+const Users_page: React.FC<Props_type> = (props) => {
+    const users = useSelector(Get_users_reselect);
+    const page_size = useSelector(get_paige_size);
+    const on_page_change = function (){
+        return null;
+    }
+    const on_filter_changed = function (filter:Filter_type){
+        return filter;
+    }
+    //If data is fetch (this.props.is_fetch) now component will return <Preloader> else will return <Users> component
+    if (props.is_fetch_state) {
+        return (
+            <Preloader />
+        )
+    } else {
+        return (<>
+            {props.is_fetch_state ? <img src={preloader} className={styles.preloader} alt="#"></img> :
+                <Users
+                    current_paige={props.current_paige}
+                    on_page_change={on_page_change} users={props.users}
+                    follow_fetch={props.follow_fetch}
+                    is_follow_fetch={props.is_follow_fetch}
+                    follow={props.follow}
+                    unfollow={props.unfollow}
+                    on_filter_changed={on_filter_changed}
+                    filter={props.filter} />
+            }
+        </>)
+    }
+}
 
 class UsersAPI extends React.Component<Props_type> {
     constructor(props: Props_type) {
@@ -54,15 +86,15 @@ class UsersAPI extends React.Component<Props_type> {
     }
     componentDidMount() {
         this.props.is_fetch(true);
-        this.props.get_users(this.props.current_paige, this.props.paige_size,this.props.filter);
+        this.props.get_users(this.props.current_paige, this.props.paige_size, this.props.filter);
         console.log("COMPONENT DID MOUNT TERM IS : " + this.props.filter.term);
         this.props.is_fetch(false);
 
     }
-    on_page_change = (page_number:number) => {
+    on_page_change = (page_number: number) => {
         this.props.is_fetch(true)
         this.props.set_current_page(page_number);
-        this.props.get_users(this.props.current_paige,this.props.paige_size,this.props.filter)
+        this.props.get_users(this.props.current_paige, this.props.paige_size, this.props.filter)
         actions.set_filterAC(this.props.filter)
         console.log(this.props.filter.term)
         // usersAPI.get_users(this.props.current_paige, this.props.paige_size,filter.term).then((data) => {
@@ -72,7 +104,7 @@ class UsersAPI extends React.Component<Props_type> {
 
 
     }
-    on_filter_changed = (filter:Filter_type) => {
+    on_filter_changed = (filter: Filter_type) => {
         this.props.is_fetch(true);
         actions.set_filterAC(filter);
         usersAPI.get_users(this.props.current_paige, this.props.paige_size, filter).then((data) => {
@@ -90,8 +122,7 @@ class UsersAPI extends React.Component<Props_type> {
         } else {
             return (<>
                 {this.props.is_fetch_state ? <img src={preloader} className={styles.preloader} alt="#"></img> :
-                    <Users total_users_count={this.props.total_users_count}
-                        paige_size={this.props.paige_size}
+                    <Users
                         current_paige={this.props.current_paige}
                         on_page_change={this.on_page_change} users={this.props.users}
                         follow_fetch={this.props.follow_fetch}
@@ -108,7 +139,7 @@ class UsersAPI extends React.Component<Props_type> {
 
 //Users upper level container
 
-let mapStateToProps = (state:Global_state_type) => {
+let mapStateToProps = (state: Global_state_type) => {
 
     return {
         users: Get_users_reselect(state),
@@ -117,7 +148,7 @@ let mapStateToProps = (state:Global_state_type) => {
         current_paige: get_current_paige(state),
         is_fetch_state: get_is_fetch(state),
         is_follow_fetch: get_follow_fetch(state),
-        filter : get_users_filter(state)
+        filter: get_users_filter(state)
     }
 }
 let mapDispatchToProps = (dispatch: any) => {

@@ -29,4 +29,3 @@ export const get_follow_fetch = function (state){
 export const get_users_filter = function (state){
     return state.users_paige.filter
 }
-

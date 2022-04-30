@@ -6,8 +6,10 @@ import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import {User_type} from "../Redux/users_reducers";
 import {Filter_type} from "../Redux/users_reducers";
-
-
+import { useSelector } from "react-redux";
+//Importing slectors
+import { get_users_count } from "../Redux/users-selectors";
+import {get_paige_size} from "../Redux/users-selectors";
 
 //Declarong componentr for serching users with redux formik lib.
 type users_search_props_type = {
@@ -21,6 +23,7 @@ type Form_type = {
     term : string,
     friend: "true" | "fasle" | "null"
 }
+//Users search form field by Formik
 const Users_search_form :React.FC<users_search_props_type> = React.memo((props) => {
 
     //Formik uses string by default values of select,so we convert Formik values type to boolean or null,
@@ -30,8 +33,8 @@ const Users_search_form :React.FC<users_search_props_type> = React.memo((props) 
             term : values.term,
             friend : values.friend === "null" ? null : values.friend === "true" ? true : false
         }
+        //Puttong data from form value to on_fiter_chanced function from Users_Container component
         props.on_filter_changed(filter)
-        console.log(values)
     }
     return (
         <div className={styles.users_search_container}>
@@ -52,8 +55,6 @@ const Users_search_form :React.FC<users_search_props_type> = React.memo((props) 
 });
 
 type Props_type = {
-    total_users_count: number,
-    paige_size: number,
     current_paige: number,
     follow_fetch: (value:boolean)=>void,
     is_follow_fetch:  Array<number>,
@@ -65,11 +66,12 @@ type Props_type = {
     filter: Filter_type
 }
 //Main users container Component ,takin parametrs users<Array>,
-export const Users :React.FC<Props_type>= (props) => {
-
+export const Users :React.FC<Props_type>= React.memo((props) => {
+    //useSelector hook will recive selector function that returns any value frim state in this case will return total_users_count
+    const total_users_count = useSelector(get_users_count);
+    const page_size = useSelector(get_paige_size);
     //Setting the number of users pages
-
-    let paiges_count = Math.ceil(props.total_users_count / props.paige_size);
+    let paiges_count = Math.ceil(total_users_count / page_size);
     let paiges = [];
     for (let i = 1; i <= paiges_count; ++i) {
         paiges.push(i);
@@ -158,4 +160,4 @@ export const Users :React.FC<Props_type>= (props) => {
         </div>
     )
 
-}
+})
