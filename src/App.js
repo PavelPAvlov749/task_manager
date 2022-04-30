@@ -18,6 +18,7 @@ import { Header_heigh_container } from './Component/Header_container';
 import { Login_container } from './Component/Login';
 import { My_profile_container } from './Component/Profile/My_Profile';
 import {Redux_container} from "./Component/Dialogs/Dialogs_container";
+import { Users_page } from './Component/Users/Users_container';
 //import { Redux_container } from './Component/Dialogs/Dialogs_container';
 import { Task_page } from './Component/Tasks/container';
 import { Settings_with_reddirect } from './Component/Settings/Settings.jsx';
@@ -72,7 +73,7 @@ class App extends React.Component
             <Route path="/tasks" element={<Task_container_2 />}/>
             <Route path="/Settings" element={<Settings_with_reddirect />}/>
             <Route path="/Statistics" element={<Statistics_with_redirrect />}/>
-            <Route path="/users" element={<Users_container />}/>
+            <Route path="/users" element={<Users_page />}/>
             <Route path="profile/:id" element={<Prof_container page_title = "Page_title" />}/>
             <Route path="login/" element={<Login_container/>}/>
             <Route path="profile_me" element={<My_profile_container />}/>

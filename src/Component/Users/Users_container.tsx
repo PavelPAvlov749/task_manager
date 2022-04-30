@@ -1,6 +1,7 @@
 //Imorting REACT,AXIOS and REDUX
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //Action creators import
 import { actions } from "../Redux/users_reducers";
 import { Get_async_users } from "../AsyncAcion/async_action";
@@ -25,6 +26,7 @@ import { Filter_type } from "../Redux/users_reducers";
 import { User_type } from "../Redux/Reducers";
 import { Global_state_type } from "../Redux/redux_store";
 import { threadId } from "worker_threads";
+import { followAC } from "../Redux/dist/users_reducers";
 
 
 //Declaring Users API container component
@@ -48,14 +50,40 @@ type Props_type = {
 };
 
 
-const Users_page: React.FC<Props_type> = (props) => {
+export const Users_page: React.FC<Props_type> = (props) => {
+
+    //useDispatch hook using insead functions from MapDispatchToProps
+    const dispatch = useDispatch();
+    //useSelector insead MapStateToProps
     const users = useSelector(Get_users_reselect);
     const page_size = useSelector(get_paige_size);
-    const on_page_change = function (){
-        return null;
+    const is_fetch = useSelector(get_is_fetch)
+    const filter = useSelector(get_users_filter);
+    const current_page = useSelector(get_current_paige);
+    const is_follow_fetch = useSelector(get_follow_fetch);
+
+    //Request users when Component did mount
+    useEffect(() => {
+        dispatch(Get_async_users(current_page, page_size, filter))
+    }, []);
+    //Request users if page was changed
+    const on_page_change = function (page_number: number) {
+        dispatch(Get_async_users(page_number, page_size, filter))
     }
-    const on_filter_changed = function (filter:Filter_type){
-        return filter;
+    //Request users if filter parametr has been changed and set page_number parametr to 1
+    const on_filter_changed = function (filter: Filter_type) {
+        dispatch(dispatch(Get_async_users(1, page_size, filter)))
+    }
+    //Set follow fetch if follow/unfollow button was clicked
+    const follow_fetch = (is_follow_fetch:boolean)=>{
+        dispatch((is_follow_fetch))
+    }
+    //Follow unfollow request function 
+    const follow = function (userID:number){
+        dispatch(followAC(userID))
+    }
+    const unfollow = function (userID:number){
+        dispatch(unfollow(userID))
     }
     //If data is fetch (this.props.is_fetch) now component will return <Preloader> else will return <Users> component
     if (props.is_fetch_state) {
@@ -66,14 +94,14 @@ const Users_page: React.FC<Props_type> = (props) => {
         return (<>
             {props.is_fetch_state ? <img src={preloader} className={styles.preloader} alt="#"></img> :
                 <Users
-                    current_paige={props.current_paige}
-                    on_page_change={on_page_change} users={props.users}
-                    follow_fetch={props.follow_fetch}
-                    is_follow_fetch={props.is_follow_fetch}
-                    follow={props.follow}
-                    unfollow={props.unfollow}
+                    current_paige={current_page}
+                    on_page_change={on_page_change} users={users}
+                    follow_fetch={follow_fetch}
+                    is_follow_fetch={is_follow_fetch}
+                    follow={follow}
+                    unfollow={unfollow}
                     on_filter_changed={on_filter_changed}
-                    filter={props.filter} />
+                    filter={filter} />
             }
         </>)
     }

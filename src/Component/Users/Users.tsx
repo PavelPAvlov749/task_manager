@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import {User_type} from "../Redux/users_reducers";
 import {Filter_type} from "../Redux/users_reducers";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //Importing slectors
 import { get_users_count } from "../Redux/users-selectors";
 import {get_paige_size} from "../Redux/users-selectors";
@@ -67,6 +67,7 @@ type Props_type = {
 }
 //Main users container Component ,takin parametrs users<Array>,
 export const Users :React.FC<Props_type>= React.memo((props) => {
+
     //useSelector hook will recive selector function that returns any value frim state in this case will return total_users_count
     const total_users_count = useSelector(get_users_count);
     const page_size = useSelector(get_paige_size);
