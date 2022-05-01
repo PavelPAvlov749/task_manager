@@ -21,9 +21,10 @@ type users_search_props_type = {
 type users_serach_type = {
     term : string
 }
+type FriedType = "true" | "fasle" | "null";
 type Form_type = {
     term : string,
-    friend: "true" | "fasle" | "null"
+    friend: FriedType
 }
 //Users search form field by Formik
 const Users_search_form :React.FC<users_search_props_type> = React.memo((props) => {
@@ -42,8 +43,10 @@ const Users_search_form :React.FC<users_search_props_type> = React.memo((props) 
         <div className={styles.users_search_container}>
             <h3>Search users : </h3>
             <Formik
-                enableReinitialize={true} 
-                className={styles.formik} initialValues={{ term: actual_filter.term,friend:"null"}} onSubmit={set_submit}>
+            
+                enableReinitialize={true} //<= If true Form will reinitialize after reciving new initial value from state 
+                className={styles.formik} 
+                initialValues={{ term: actual_filter.term,friend: String(actual_filter.friend) as FriedType}} onSubmit={set_submit}>
                 <Form>
                     <Field type="text" name="term"></Field>
                     <Field as="select" name="friend">

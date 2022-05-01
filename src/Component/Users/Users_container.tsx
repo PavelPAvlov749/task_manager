@@ -53,7 +53,7 @@ type Props_type = {
 };
 
 
-export const Users_page: React.FC<Props_type> = (props) => {
+export const Users_page: React.FC<Props_type> = React.memo((props) => {
 
     //useDispatch hook using insead functions from MapDispatchToProps
     const dispatch = useDispatch();
@@ -126,7 +126,7 @@ export const Users_page: React.FC<Props_type> = (props) => {
             }
         </>)
     }
-}
+})
 
 class UsersAPI extends React.Component<Props_type> {
     constructor(props: Props_type) {
