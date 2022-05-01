@@ -27,7 +27,10 @@ import { User_type } from "../Redux/Reducers";
 import { Global_state_type } from "../Redux/redux_store";
 import { threadId } from "worker_threads";
 import { followAC } from "../Redux/dist/users_reducers";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import { parse } from "path";
+import { isParseTreeNode } from "typescript";
+const queryString = require("querystring")
 
 //Declaring Users API container component
 //To add types to class component use this syntax "class My_class ectends React.Compoinent <PropsType,StateType>"
@@ -62,18 +65,27 @@ export const Users_page: React.FC<Props_type> = (props) => {
     const current_page = useSelector(get_current_paige);
     const is_follow_fetch = useSelector(get_follow_fetch);
     let history = useNavigate();
-
+    //Set serach query parametrs
     useEffect(()=>{
-        history(`?term=${filter.term}&friend=${filter.friend}`)
-    },[filter])
+        history(`?term=${filter.term}&friend=${filter.friend}&page=${current_page}`)
+    },[filter,current_page])
     //Request users when Component did mount
+    const location = useLocation();
     useEffect(() => {
+        const parsed = queryString.parse(location.search.substring(1))
+        let actual_page = current_page;
+        let actual_filter = filter;
+        if(!!parsed.page) {actual_page = Number(parsed.page)}
+        if(!!parsed.term) {actual_filter = {...actual_filter,term : parsed.term}};
+        if(!!parsed.friend) {actual_filter = {...actual_filter,friend : parsed.friend === "true" ? true : false}};
+        console.log(parsed)
+        
         dispatch(Get_async_users(current_page, page_size, filter))
     }, []);
     //Request users if page was changed
     const on_page_change = function (page_number: number) {
         dispatch(Get_async_users(page_number, page_size, filter))
-        
+        dispatch(actions.set_current_pageAC(page_number));
     }
     //Request users if filter parametr has been changed and set page_number parametr to 1
     const on_filter_changed = function (filter: Filter_type) {
@@ -195,7 +207,7 @@ let mapDispatchToProps = (dispatch: any) => {
         set_users: (users: any) => {
             dispatch(actions.set_usersAC(users))
         },
-        set_current_page: (paige: User_type) => {
+        set_current_page: (paige: number) => {
             dispatch(actions.set_current_pageAC(paige))
         },
         set_users_count: (count: number) => {

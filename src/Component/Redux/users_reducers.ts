@@ -135,7 +135,7 @@ export const actions = {
         type: "SET-USERS",
         users: users
     } as const),
-    set_current_pageAC: (page: User_type) => ({
+    set_current_pageAC: (page: number) => ({
         type: "SET-CURRENT-PAGE",
         current_page: page
     } as const),
