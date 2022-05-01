@@ -8,7 +8,7 @@ import {User_type} from "../Redux/users_reducers";
 import {Filter_type} from "../Redux/users_reducers";
 import { useDispatch, useSelector } from "react-redux";
 //Importing slectors
-import { get_users_count } from "../Redux/users-selectors";
+import { get_users_count, get_users_filter } from "../Redux/users-selectors";
 import {get_paige_size} from "../Redux/users-selectors";
 
 
@@ -27,7 +27,7 @@ type Form_type = {
 }
 //Users search form field by Formik
 const Users_search_form :React.FC<users_search_props_type> = React.memo((props) => {
-
+    const actual_filter = useSelector(get_users_filter);
     //Formik uses string by default values of select,so we convert Formik values type to boolean or null,
     //Then puting them into on_filter_changed function
     const set_submit = (values:Form_type, { setSubmitting }:{setSubmitting : (isSubmitting:boolean)=> void}) => {
@@ -41,7 +41,9 @@ const Users_search_form :React.FC<users_search_props_type> = React.memo((props) 
     return (
         <div className={styles.users_search_container}>
             <h3>Search users : </h3>
-            <Formik className={styles.formik} initialValues={{ term: '',friend:"null"}} onSubmit={set_submit}>
+            <Formik
+                enableReinitialize={true} 
+                className={styles.formik} initialValues={{ term: actual_filter.term,friend:"null"}} onSubmit={set_submit}>
                 <Form>
                     <Field type="text" name="term"></Field>
                     <Field as="select" name="friend">

@@ -71,16 +71,19 @@ export const Users_page: React.FC<Props_type> = (props) => {
     },[filter,current_page])
     //Request users when Component did mount
     const location = useLocation();
+    //Set query parametr in first render
     useEffect(() => {
         const parsed = queryString.parse(location.search.substring(1))
         let actual_page = current_page;
         let actual_filter = filter;
+        //Converting query parametrs from string to number in parsed.page
+        //And from string to boolean in parsed.friend
         if(!!parsed.page) {actual_page = Number(parsed.page)}
         if(!!parsed.term) {actual_filter = {...actual_filter,term : parsed.term}};
-        if(!!parsed.friend) {actual_filter = {...actual_filter,friend : parsed.friend === "true" ? true : false}};
+        if(!!parsed.friend) {actual_filter = {...actual_filter,friend : parsed.friend === "null" ? null : parsed.friend === "true" ? true : false }};
         console.log(parsed)
-        
-        dispatch(Get_async_users(current_page, page_size, filter))
+        dispatch(actions.set_filterAC(actual_filter))
+        dispatch(Get_async_users(actual_page, page_size, actual_filter))
     }, []);
     //Request users if page was changed
     const on_page_change = function (page_number: number) {
