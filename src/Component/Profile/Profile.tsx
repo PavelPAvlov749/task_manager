@@ -19,10 +19,9 @@ type Props_type = {
     profile : Profile_type,
     status: string,
 }
-export const Profile : React.FC<Props_type> = (props) => {
+export const Profile : React.FC<Props_type> = React.memo((props) => {
     if(true)
     {
-        console.log(props.profile.profile.fullName )
         return (
             <div className={styles.Profile_container}>
     
@@ -74,4 +73,4 @@ export const Profile : React.FC<Props_type> = (props) => {
         return <Preloader/>
     }
 
-}
+})

@@ -79,7 +79,6 @@ export const get_users_status = function (id:string | undefined):Thunk_type
     return function(dispatch)
     {
         ProfileApi.get_status(id).then((response:any)=>{
-            console.log(response.data)
             dispatch(actions.set_statusAC(response.data));
         })
     }

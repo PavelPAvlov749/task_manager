@@ -19,7 +19,8 @@ import axios from "axios";
 
 
 //If avatar photo in unset use this photo instead
-const PHOTO_AVATAR_UNSET = "https://avatars.githubusercontent.com/u/91758623?s=40&v=4"
+const PHOTO_AVATAR_UNSET = "https://avatars.githubusercontent.com/u/91758623?s=40&v=4";
+
 
 //Short description,show when state.description_hide === true
 const Short_description = function (props) {
@@ -85,14 +86,14 @@ class My_profile extends React.Component {
             }
         )
         instance.get("/users").then((response)=>{
-            console.log(response)
+           return response;
         })
     }
     onPhotoUpdate (e){
     this.props.set_photo(e.target.files[0])
     }
     render() {
-        console.error(this.state.description_hide)
+
         return (
 
             <section className={styles.me_container}>

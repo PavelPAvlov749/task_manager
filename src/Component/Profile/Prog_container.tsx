@@ -4,7 +4,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import useState from "react"
+import useState from "react";
+import { useNavigate } from "react-router-dom";
 //IMPORTING TYPES 
 import {Global_state_type} from "../Redux/redux_store";
 //Another imports
@@ -53,10 +54,11 @@ type State_props_type = MapStateProps_type & MapDispatchProps_type & OwnStatePro
 
 
 
-export const Prof_container_API : React.FC<State_props_type> = (props: State_props_type) => {
+export const Prof_container_API : React.FC<State_props_type> =React.memo((props: State_props_type) => {
 
     const params = useParams();
-  
+    let navigate = useNavigate();
+
     const id = Number(params.id);
     let [photo,set_photo] = React.useState(props.profile.profile.photos.large);
     useEffect(()=>{
@@ -75,7 +77,7 @@ export const Prof_container_API : React.FC<State_props_type> = (props: State_pro
        <Profile {...props}/>
 
     )
-};
+});
 
 
 let MapStateToProps = (state:State_props_type):MapStateProps_type => {

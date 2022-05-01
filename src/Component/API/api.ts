@@ -64,7 +64,6 @@ export const usersAPI = {
     get_profile(user_id:number){
         
         return instance.get<ProfileType>(`profile/${user_id}`).then(response =>{
-            console.log(response.data)
             return response.data
         })
     },

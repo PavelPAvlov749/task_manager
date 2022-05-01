@@ -10,9 +10,6 @@ import {actions} from "../Component/Redux/users_reducers";
 
 class Header_container extends React.Component
 {
-    componentDidMount(){
-
-    }
     render()
     {
         return(

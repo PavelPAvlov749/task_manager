@@ -27,7 +27,7 @@ import { User_type } from "../Redux/Reducers";
 import { Global_state_type } from "../Redux/redux_store";
 import { threadId } from "worker_threads";
 import { followAC } from "../Redux/dist/users_reducers";
-
+import {useNavigate} from "react-router-dom";
 
 //Declaring Users API container component
 //To add types to class component use this syntax "class My_class ectends React.Compoinent <PropsType,StateType>"
@@ -61,7 +61,11 @@ export const Users_page: React.FC<Props_type> = (props) => {
     const filter = useSelector(get_users_filter);
     const current_page = useSelector(get_current_paige);
     const is_follow_fetch = useSelector(get_follow_fetch);
+    let history = useNavigate();
 
+    useEffect(()=>{
+        history(`?term=${filter.term}&friend=${filter.friend}`)
+    },[filter])
     //Request users when Component did mount
     useEffect(() => {
         dispatch(Get_async_users(current_page, page_size, filter))
@@ -69,10 +73,12 @@ export const Users_page: React.FC<Props_type> = (props) => {
     //Request users if page was changed
     const on_page_change = function (page_number: number) {
         dispatch(Get_async_users(page_number, page_size, filter))
+        
     }
     //Request users if filter parametr has been changed and set page_number parametr to 1
     const on_filter_changed = function (filter: Filter_type) {
-        dispatch(dispatch(Get_async_users(1, page_size, filter)))
+        dispatch(dispatch(Get_async_users(1, page_size, filter)));
+        dispatch(actions.set_filterAC(filter));
     }
     //Set follow fetch if follow/unfollow button was clicked
     const follow_fetch = (is_follow_fetch:boolean)=>{
@@ -115,7 +121,7 @@ class UsersAPI extends React.Component<Props_type> {
     componentDidMount() {
         this.props.is_fetch(true);
         this.props.get_users(this.props.current_paige, this.props.paige_size, this.props.filter);
-        console.log("COMPONENT DID MOUNT TERM IS : " + this.props.filter.term);
+
         this.props.is_fetch(false);
 
     }
@@ -124,7 +130,6 @@ class UsersAPI extends React.Component<Props_type> {
         this.props.set_current_page(page_number);
         this.props.get_users(this.props.current_paige, this.props.paige_size, this.props.filter)
         actions.set_filterAC(this.props.filter)
-        console.log(this.props.filter.term)
         // usersAPI.get_users(this.props.current_paige, this.props.paige_size,filter.term).then((data) => {
         //     this.props.set_users(data.items);
         //     this.props.is_fetch(false);
