@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/task_manager/static/css/main.01fc7f5a.chunk.css",
-    "main.js": "/task_manager/static/js/main.7a7a18f8.chunk.js",
-    "main.js.map": "/task_manager/static/js/main.7a7a18f8.chunk.js.map",
-    "runtime-main.js": "/task_manager/static/js/runtime-main.1cdcb6d2.js",
-    "runtime-main.js.map": "/task_manager/static/js/runtime-main.1cdcb6d2.js.map",
-    "static/js/2.79123005.chunk.js": "/task_manager/static/js/2.79123005.chunk.js",
-    "static/js/2.79123005.chunk.js.map": "/task_manager/static/js/2.79123005.chunk.js.map",
-    "static/js/3.b117f64c.chunk.js": "/task_manager/static/js/3.b117f64c.chunk.js",
-    "static/js/3.b117f64c.chunk.js.map": "/task_manager/static/js/3.b117f64c.chunk.js.map",
+    "main.css": "/task_manager/static/css/main.9d7f0d1e.chunk.css",
+    "main.js": "/task_manager/static/js/main.c2a4ebc3.chunk.js",
+    "main.js.map": "/task_manager/static/js/main.c2a4ebc3.chunk.js.map",
+    "runtime-main.js": "/task_manager/static/js/runtime-main.7e30fb93.js",
+    "runtime-main.js.map": "/task_manager/static/js/runtime-main.7e30fb93.js.map",
+    "static/js/2.bf598648.chunk.js": "/task_manager/static/js/2.bf598648.chunk.js",
+    "static/js/2.bf598648.chunk.js.map": "/task_manager/static/js/2.bf598648.chunk.js.map",
+    "static/js/3.ff88bed8.chunk.js": "/task_manager/static/js/3.ff88bed8.chunk.js",
+    "static/js/3.ff88bed8.chunk.js.map": "/task_manager/static/js/3.ff88bed8.chunk.js.map",
     "index.html": "/task_manager/index.html",
-    "static/css/main.01fc7f5a.chunk.css.map": "/task_manager/static/css/main.01fc7f5a.chunk.css.map",
-    "static/js/2.79123005.chunk.js.LICENSE.txt": "/task_manager/static/js/2.79123005.chunk.js.LICENSE.txt",
-    "static/media/Main_logo.bd336707.png": "/task_manager/static/media/Main_logo.bd336707.png",
+    "static/css/main.9d7f0d1e.chunk.css.map": "/task_manager/static/css/main.9d7f0d1e.chunk.css.map",
+    "static/js/2.bf598648.chunk.js.LICENSE.txt": "/task_manager/static/js/2.bf598648.chunk.js.LICENSE.txt",
     "static/media/preloader.ad686aaf.svg": "/task_manager/static/media/preloader.ad686aaf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1cdcb6d2.js",
-    "static/js/2.79123005.chunk.js",
-    "static/css/main.01fc7f5a.chunk.css",
-    "static/js/main.7a7a18f8.chunk.js"
+    "static/js/runtime-main.7e30fb93.js",
+    "static/js/2.bf598648.chunk.js",
+    "static/css/main.9d7f0d1e.chunk.css",
+    "static/js/main.c2a4ebc3.chunk.js"
   ]
 }
