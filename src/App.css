@@ -7,13 +7,13 @@
 
 .root{
   
-  background-size: cover;
+  /* background-size: cover;
   background-repeat: no-repeat;
   display: -ms-grid;
-  display: grid;
+  display: grid; */
    /* -ms-grid-rows: 400px auto;
   -ms-grid-columns: 400px auto; */
-  margin-left: 20%;
+  /* margin-left: 20%;
   grid-template-columns: 1000px;
   grid-template-rows: auto;
   grid-template-areas:
@@ -22,7 +22,7 @@
   "C"
   "F";
   gap: 5px;
-  align-items: center;
+  align-items: center; */
   
 }
 
