@@ -32,26 +32,35 @@ const Messages: React.FC<PropsType> = (props) => {
     const [messages,set_mesages] = useState<MessageType[]>([]);
     useEffect(()=>{
         web_socket_connectoin.addEventListener("message",(e)=>{
-            set_mesages(JSON.parse(e.data));
+            let new_messages = JSON.parse(e.data)
+            set_mesages((prev_mesages)=>[...prev_mesages,...new_messages]);
         })
     },[])
     return (
         <div id="messages" style={{height : "400px" , overflow : "auto"}} className={styles.messages}>
-            {messages.map((el)=>{
-                return <Message message={el.message} userName={el.userName} photo={el.photo} userId={el.userId}/>
+            {messages.map((el,index)=>{
+                return <Message key={index} message={el.message} userName={el.userName} photo={el.photo} userId={el.userId}/>
             })}
         </div>
     )
 }
 const MessageForm: React.FC = (props) => {
+    const [message,set_message] = useState("");
+    const send_message = () =>{
+        web_socket_connectoin.send(message);
+        set_message("")
+    }
     return (
         <div>
             <div>
-                <textarea name="message" id="message_formm" cols={133} rows={10} title="message" >
+                <textarea name="message" id="message_formm" cols={133} rows={10} title="message"
+                    onChange={(e)=>{
+                        set_message(e.currentTarget.value)
+                    }} value={message}>
                 </textarea>
             </div>
             <div>
-                <button type="button">send</button>
+                <button type="button" onClick={send_message}>send</button>
             </div>
         </div>
     )
