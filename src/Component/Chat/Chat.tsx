@@ -33,7 +33,7 @@ const Messages: React.FC<PropsType> = (props) => {
     useEffect(()=>{
         web_socket_connectoin.addEventListener("message",(e)=>{
             let new_messages = JSON.parse(e.data)
-            set_mesages((prev_mesages)=>[...prev_mesages,...new_messages]);
+            set_mesages((prev_messages)=>[...prev_messages,...new_messages]);
         })
     },[])
     return (

@@ -1,12 +1,17 @@
 import classes from "../Styles/Header.module.css"
 import { NavLink } from "react-router-dom";
-import { set_current_user } from "./Redux/users_reducers";
 import logo from "../../src/img/Titile_logo.png"
 import styles from "../Styles/Header.module.css"
+import React from "react";
+
+type Props_type = {
+    logout? : ()=>void,
+    auth? : boolean
+}
 
 
 const path = logo;
-const Header_isAuthTrue = (props) => {
+const Header_isAuthTrue :React.FC<Props_type> = (props) => {
     
     return (
     <section className={classes.Header}>
@@ -19,8 +24,8 @@ const Header_isAuthTrue = (props) => {
         
         <ul className="nav">
             <li>
-                <input type="text" placeholder="Find on page" id="Search"/>
-                <button typ="button" id="search_btn">Search</button>
+                <input type="text" placeholder="Find on page" id="Search_input"/>
+                <button type="button" id="search_button">Search</button>
             </li>
             <li>
                 <NavLink to="login/">
@@ -35,7 +40,7 @@ const Header_isAuthTrue = (props) => {
 </section>
     )
 }
-const Header_isAuthFalse = (props) => {
+const Header_isAuthFalse : React.FC<Props_type>= (props) => {
     return (
         <section className={classes.Header}>
         <h1></h1>
@@ -46,7 +51,7 @@ const Header_isAuthFalse = (props) => {
             <ul className="nav">
                 <li>
                     <input type="text" placeholder="Find on page" id="Search"/>
-                    <button typ="button" id="search_btn">Search</button>
+                    <button type="button" id="search_btn">Search</button>
                 </li>
                 <li>
                     <NavLink to="login/">
@@ -62,8 +67,8 @@ const Header_isAuthFalse = (props) => {
         )
 }
 
-const Header = (props) => {
-        if(props.auth.auth === true){
+const Header:React.FC<Props_type> = (props) => {
+        if(props.auth === true){
             return <Header_isAuthTrue logout={props.logout} />
         }else{
             return <Header_isAuthFalse />
