@@ -80,7 +80,6 @@ const Message_form: React.FC<MessagesPropsType> = (props) => {
         </div>
     )
 }
-
 //Main Chat component
 //Using React.memo to optimize render calls
 export const ChatPage: React.FC<MessagesPropsType> = React.memo((props) => {
@@ -106,8 +105,6 @@ export const ChatPage: React.FC<MessagesPropsType> = React.memo((props) => {
             //If web socket was closed create nw instance of webSocket and reconnect
             ws.addEventListener("close", close_handler)
             set_web_socket(ws);
-
-
         }
 
         create_chanel();
