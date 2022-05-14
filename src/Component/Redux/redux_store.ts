@@ -10,6 +10,7 @@ import { reducer as formReducer } from 'redux-form'
 import { App_reducer } from "./App-reducer";
 import {task_reducer} from "./Task_reducer";
 import {compose} from "redux";
+import { chat_reducer } from "./Chat_reducer";
 
 
 
@@ -33,7 +34,8 @@ let reducers = combineReducers({
     message:formReducer,
     initialized:App_reducer,
     user_task:task_reducer,
-    term: users_reducer
+    term: users_reducer,
+    chat : chat_reducer
 });
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;
 export type InferActionType<T extends {[key:string]: (...args:any)=> any}> = ReturnType<PropertieTypes<T>>;

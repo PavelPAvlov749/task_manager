@@ -16,6 +16,7 @@ import { Login_container } from './Component/Login';
 import { My_profile_container } from './Component/Profile/My_Profile';
 import {Redux_container} from "./Component/Dialogs/Dialogs_container";
 import { Users_page } from './Component/Users/Users_container';
+import { Chat_page } from './Component/Chat/Chat_2';
 //import { Redux_container } from './Component/Dialogs/Dialogs_container';
 import { Settings_with_reddirect } from './Component/Settings/Settings.jsx';
 //Importing Thunks and Acion-creators :
@@ -49,7 +50,7 @@ class App extends React.Component
 
           <Routes >
 
-            <Route path="/dialogs" element={<ChatPage />}/>
+            <Route path="/dialogs" element={<Chat_page />}/>
             <Route path="/tasks" element={<Task_container_2 />}/>
             <Route path="/Settings" element={<Settings_with_reddirect />}/>
             <Route path="/Statistics" element={<Statistics_with_redirrect />}/>
