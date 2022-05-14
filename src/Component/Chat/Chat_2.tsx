@@ -5,6 +5,7 @@ import { MessageType } from "./Chat";
 import { listen_messages_start, send_message } from "../Redux/Chat_reducer";
 import styles from "../../Styles/Chat.module.css";
 import { Global_state_type } from "../Redux/redux_store";
+import {actions} from "../Redux/Chat_reducer"
 
 
 
@@ -39,6 +40,9 @@ const Messages: React.FC<PropsType> = (props) => {
 
 const Message_input: React.FC<PropsType> = (props) => {
     let [new_message, set_new_message] = useState("");
+    let status = useSelector((state: Global_state_type)=> {
+        return state.chat.status;
+    })
     //Send Mesage function clear the textarea value after sending
     const dispatch = useDispatch();
     const send_message_handler = () => {
@@ -58,7 +62,7 @@ const Message_input: React.FC<PropsType> = (props) => {
             <div>
                 <button type="button" onClick={send_message_handler}
                     //Button should be disabled if webSocket is null(by default value) or web_socket has pending status
-                    disabled={false}
+                    disabled={status === "pending"}
                 >Send</button>
             </div>
         </div>
@@ -73,7 +77,6 @@ export const Chat_page: React.FC<PropsType> = (props) => {
     let m = useSelector((state:Global_state_type)=>{
         return state.chat.messages;
     });
-    console.log(m)
     return (
         <div>
             <Messages />

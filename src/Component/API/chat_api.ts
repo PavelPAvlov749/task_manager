@@ -35,11 +35,7 @@ export const chat_api = {
         create_chanel();
     },
     stop(){
-        subscribers = [];
         ws.close();
-        ws.addEventListener("close",close_handler);
-        ws.addEventListener("message",message_handler)
-        
     },
     subscribe (callback:SubscriberType){
         subscribers.push(callback)

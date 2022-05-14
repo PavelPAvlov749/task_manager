@@ -7,9 +7,13 @@ import { message } from "antd";
 
 const MESSAGES_RECIEVED = "MESSAGES_RECIEVED";
 const SEND_MESSAGE = "SEND_MESSAGE";
+const STATUS_CHANGED = "STATUS_CHANGED";
+
+type StatusType = "pending" | "ready";
 
 const initial_state = {
-    messages: [] as MessageType[]
+    messages: [] as MessageType[],
+    status : "pending" as StatusType
 };
 
 type initiaal_state_type = typeof initial_state;
@@ -19,10 +23,14 @@ type ThunkType = ThunkAction<void, Global_state_type, unknown, action_type>
 
 export const chat_reducer = (state = initial_state, action: action_type) => {
     switch (action.type) {
-        case MESSAGES_RECIEVED:
+        case "MESSAGES_RECIEVED":
             return {
                 ...state,
                 messages: [...state.messages, ...action.payload.messages]
+            }
+        case "STATUS_CHANHED" :
+            return {
+                ...state,status : action.payload.status
             }
         default :
             return state
@@ -33,7 +41,11 @@ export const actions = {
     messages_revieved: (messages: MessageType[]) => ({
         type: "MESSAGES_RECIEVED",
         payload: { messages }
-    } as const)
+    } as const),
+    status_changed : (status: StatusType) => ({
+        type : "STATUS_CHANHED",
+        payload : {status}
+    }as const)
 };
 let new_message_handler: ((messages: MessageType[]) => void) | null = null;
 
