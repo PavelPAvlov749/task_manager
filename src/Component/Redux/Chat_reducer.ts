@@ -12,6 +12,9 @@ const STATUS_CHANGED = "STATUS_CHANGED";
 
 export type StatusType = "pending" | "ready";
 
+type chat_mesage_type = {
+    
+}
 const initial_state = {
     messages: [] as MessageType[],
     status : "pending" as StatusType

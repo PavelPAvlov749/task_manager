@@ -24,7 +24,7 @@ const message_handler = (e:MessageEvent)=>{
     //Iterate on array of subscribers functions and push new_mesages into them
     subscribers['message_recieved'].forEach((sub)=>{
         sub(new_mesages);
-        console.log(new_mesages)
+
     })
 }
 //Creating the webSocket chanel
@@ -70,7 +70,6 @@ export const chat_api = {
     subscribe (event_name:event_names, callback:MessageRecievedSubscriberType | status_changed_subscriber_type ){
         // @ts-ignore
         subscribers[event_name]?.push(callback)
-        console.log("subscribe sdfdf")
         return ()=> {
             // @ts-ignore
             subscribers.filter(s => s !== callback)

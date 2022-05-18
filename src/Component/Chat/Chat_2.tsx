@@ -13,7 +13,7 @@ import {actions} from "../Redux/Chat_reducer"
 type PropsType = {
 }
 
-const Message: React.FC<MessageType> = (props) => {
+const Message: React.FC<MessageType> = React.memo((props) => {
     return (
         <div>
             <img src={props.photo} alt="#" />
@@ -25,37 +25,45 @@ const Message: React.FC<MessageType> = (props) => {
             <hr></hr>
         </div>
     )
-};
+});
 
-const Messages: React.FC<PropsType> = (props) => {
+const Messages: React.FC<PropsType> = React.memo((props) => {
     let messages = useSelector((state: Global_state_type) => state.chat.messages);
     const [auto_scroll,set_autoscroll] = useState(false);
     const chat_anchor_ref = useRef<HTMLDivElement>(null);
     const scroll_hanfler = (e:React.UIEvent<HTMLDivElement,UIEvent>) => {
         let element = e.currentTarget;
-        if(Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) > 60 ){
-            !auto_scroll && set_autoscroll(true)
+        if(Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 400 ){
+           if(auto_scroll){
+            set_autoscroll(false)
+           }
         }else {
-            !auto_scroll && set_autoscroll(false)
-        }
+            set_autoscroll(true)
+           }
     }
+
     useEffect(()=>{
-        if(auto_scroll)
+        if(!auto_scroll)
         {
             chat_anchor_ref.current?.scrollIntoView({behavior: "smooth"}); 
+           
         }
-    },[messages])
+    },[messages,auto_scroll])
 
     return (
-        <div id="messages" style={{ height: "400px", overflowY: "auto" , }} className={styles.messages} onScroll={scroll_hanfler}>
+        <div>
+            <div id="messages" style={{ height: "400px", overflow: "auto" }} className={styles.messages} onScroll={scroll_hanfler}>
             {messages.map((el, index) => {
-                return <Message key={index} message={el.message} userName={el.userName} photo={el.photo} userId={el.userId} />
+                return <Message  message={el.message} userName={el.userName} photo={el.photo} userId={el.userId} />
             })}
             <div ref={chat_anchor_ref}></div>
         </div>
         
+        </div>
+
+        
     )
-};
+});
 
 const Message_input: React.FC<PropsType> = (props) => {
     let [new_message, set_new_message] = useState("");
